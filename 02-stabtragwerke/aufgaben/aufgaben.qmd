@@ -1,0 +1,37 @@
+---
+title: Aufgabenblatt 1
+subtitle: FEM-Programm installieren und Kennenlernen
+format:
+    html:
+        title-block-banner: "#888888"
+    pdf: default
+---
+
+## FEM-Programm installieren
+
+Wählen Sie ein Finite-Elemente-Programm aus und installieren Sie es auf ihrem Computer. Viele Anbieter brauchen für die Bestätigung ihres Studierendenstatusses etwas Zeit, also erledigen Sie das heute noch.
+
+Suchen Sie im Netz für das gewählte Programm ein Einführungsvideo und/oder ein Tutorial zur Berechnung von Stabtragwerken. 
+
+## Tragwerke berechnen
+
+Geben Sie die beiden dargestellten Tragsysteme in das Programm ein und berechnen Sie Verformungen, Schnittgrößen und Spannungen.
+
+## Dokumentation
+
+Dokumentieren Sie in einer kleinen Präsentation
+
+- Die wichtigsten Schritte zur Erstellung eines der beiden Modelle (Screenshots) 
+
+- Alle eventuell aufgetretenen Fehlermeldungen und Warnungen (Screenshots)
+
+- Für jedes statische System
+
+  - Die maximal auftretenden Verformungen und Spannungen
+
+  - Eine Darstellung der Verformungsfigur sowie der relevanten Schnittgrößenverläufe
+
+- Die verwendeten Unterlagen
+
+
+

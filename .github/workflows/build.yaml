@@ -17,4 +17,4 @@ jobs:
           tinytex: true
       - name: Render
         run: |
-          quarto publish gh-pages 01-einfuehrung/folien/slides.qmd
+          quarto render 01-einfuehrung/folien/folien.qmd
