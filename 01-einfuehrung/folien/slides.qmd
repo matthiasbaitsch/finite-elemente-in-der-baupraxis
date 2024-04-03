@@ -1,0 +1,117 @@
+---
+title: 1. Einführung
+---
+
+# Finite Elemente Programme
+
+## SOFiSTiK
+
+![](00-pics/show.png)
+
+## InfoCAD
+
+![](00-pics/modeling03.png)
+
+## RFEM
+
+![](00-pics/2024-02-20-15-15-57.jpg)
+
+## SCIA Engineer
+
+![](00-pics/cable2.jpg)
+
+## MicroFe
+
+![](00-pics/MicroFe-2019-2.jpg)
+
+## Sap2000
+
+![](00-pics/SAP2000_Screenshot_1.png)
+
+## DIANA
+
+![](00-pics/diana-fea-softwear.webp)
+
+## Ansys
+
+![](00-pics/4ff44fec-4046-4df3-a078-c47edd1a2a17.png)
+
+## Abaqus
+
+![](00-pics/Screenshot-Abaqus.webp)
+
+# Schadensfälle
+
+## Millenium Bridge in London
+
+:::: {.columns}
+
+::: {.column width="60%"}
+{{< video https://youtu.be/y2FaOJxWqLE?si=pHarlsC6Ga8F-S4Q 
+    width="650" 
+    aspect-ratio="3364x2832" 
+>}}
+:::
+
+::: {.column width="40%" .incremental}
+- Wechselwirkungen zwischen Brücke und Fußgängern nicht richtig erfasst
+- Einbau von Dämpfern zur Reduktion der Schwingungen
+- Kosten der Maßsnahme: Knapp 8 Millionen Euro
+:::
+
+::::
+
+## Basisstruktur Plattform Sleipner A
+
+![](00-pics/sleipner-a.png)
+
+FE-Rechnung unterschätzt Scherkräfte um 47%, Wände zu dünn ausgelegt, Materialversagen, 700 Millionen Dollar Kosten
+
+##
+
+[FEM $\neq$ CAD]{.r-fit-text}
+
+- Hinter den bunten Bildern: Simulationsrechnung
+
+- Grundlage: Mathematisches Modell der physikalischen Zusammenhänge
+
+- Möglichkeiten für Fehler:  Extrem vielfältig
+
+- Notwendig: Grundlegendes Verständnis der Arbeitsweise
+
+# Über das Modul
+
+## Didaktischer Ansatz
+
+### Klassisch an Universitäten
+
+- Theorie der Methode der Finiten Elemente
+
+- Rechnen auf Papier, wenig praktische Anwendung
+
+- Hoffnung, dass daraus ein Verständnis erwächst
+
+### In diesem Modul
+
+- Praktische Rechnungen mit kommerziellen Programmen
+
+- Aufgaben so gestellt, dass Probleme auftreten werden
+
+- Diskussion der Zusammenhänge am konkreten Beispiel
+
+## Portfolioprüfung
+
+- Bearbeitung von Fallstudien über das Semester (40%)
+
+  - In der Regel über zwei Wochen
+
+  - Zwischentermin für Fragen
+
+  - Präsentation der Ergebnisse
+
+- Hausarbeit (40%)
+
+- Mündliche Prüfung (20%)
+
+$\rightarrow$ Bearbeitung Fallstudien/Hausarbeit alleine oder zu zweit
+

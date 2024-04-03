@@ -1,0 +1,20 @@
+on:
+  push:
+    branches: main
+
+name: Render and deploy
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          tinytex: true
+      - name: Render
+        run: |
+          quarto render 01-einfuehrung/folien/slides.qmd
