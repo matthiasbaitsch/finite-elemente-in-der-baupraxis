@@ -1,0 +1,13 @@
+project:
+  output-dir: _output
+author: ""
+lang: de
+format:
+  revealjs: 
+    toc: true
+    toc-depth: 1
+    embed-resources: true
+    slide-number: true
+    logo: ../../images/BO-Logo_m_Wortmarke_L10cmPrint.jpg
+    footer: Finite Elemente in der Baupraxis
+    css: ["../../custom.css"]
