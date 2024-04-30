@@ -1,0 +1,226 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      9437,        218]
+NotebookOptionsPosition[      9145,        205]
+NotebookOutlinePosition[      9483,        220]
+CellTagsIndexPosition[      9440,        217]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`cmp$$ = True, $CellContext`ea$$ = 
+    5, $CellContext`x1$$ = {2, 1}, $CellContext`X1$$ = {1, 
+    1}, $CellContext`x2$$ = {7, 4}, $CellContext`X2$$ = {5, 4}, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`X1$$], {1, 1}}, Automatic}, {{
+       Hold[$CellContext`X2$$], {5, 4}}, Automatic}, {{
+       Hold[$CellContext`x1$$], {2, 1}}, Automatic}, {{
+       Hold[$CellContext`x2$$], {7, 4}}, Automatic}, {{
+       Hold[$CellContext`ea$$], 5, "Steifigkeit EA"}, {0, 100}}, {{
+       Hold[$CellContext`cmp$$], True, "Vektoren komponentenweise"}, {
+      True, False}}}, Typeset`size$$ = {
+    800., {331.8544921875, 337.1455078125}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`ea$56247$$ = False, $CellContext`cmp$56248$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`cmp$$ = True, $CellContext`ea$$ = 
+        5, $CellContext`x1$$ = {2, 1}, $CellContext`X1$$ = {1, 
+         1}, $CellContext`x2$$ = {7, 4}, $CellContext`X2$$ = {5, 4}}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`ea$$, $CellContext`ea$56247$$, False], 
+        Hold[$CellContext`cmp$$, $CellContext`cmp$56248$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, 
+      "Body" :> $CellContext`drawit[$CellContext`ea$$, 
+        Round[{$CellContext`X1$$, $CellContext`X2$$}, 0.05], 
+        Round[{$CellContext`x1$$, $CellContext`x2$$} - {$CellContext`X1$$, \
+$CellContext`X2$$}, 0.05], $CellContext`cmp$$], 
+      "Specifications" :> {{{$CellContext`X1$$, {1, 1}}, Automatic, 
+         ControlType -> Locator}, {{$CellContext`X2$$, {5, 4}}, Automatic, 
+         ControlType -> Locator}, {{$CellContext`x1$$, {2, 1}}, Automatic, 
+         ControlType -> Locator}, {{$CellContext`x2$$, {7, 4}}, Automatic, 
+         ControlType -> Locator}, {{$CellContext`ea$$, 5, "Steifigkeit EA"}, {
+         0, 100}, ControlType -> 
+         InputField}, {{$CellContext`cmp$$, True, 
+          "Vektoren komponentenweise"}, {True, False}}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{849., {389., 395.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`drawit[
+         Pattern[$CellContext`x, 
+          Blank[]], 
+         Pattern[$CellContext`u, 
+          Blank[]]] := 
+       Module[{$CellContext`uu}, $CellContext`uu = 
+          Transpose[{$CellContext`x, $CellContext`x + $CellContext`u}]; 
+         Graphics[{
+            AbsoluteThickness[4], 
+            Line[$CellContext`x], Orange, 
+            Line[$CellContext`x + $CellContext`u], 
+            AbsoluteThickness[2], 
+            Lighter[Blue], 
+            Arrow[$CellContext`uu]}]], $CellContext`drawit[
+         Pattern[$CellContext`EA, 
+          Blank[]], 
+         Pattern[$CellContext`x, 
+          Blank[]], 
+         Pattern[$CellContext`u, 
+          Blank[]]] := 
+       Module[{$CellContext`uu}, $CellContext`uu = 
+          Transpose[{$CellContext`x, $CellContext`x + $CellContext`u}]; 
+         Graphics[{
+            AbsoluteThickness[4], 
+            Line[$CellContext`x], Orange, 
+            Line[$CellContext`x + $CellContext`u], 
+            AbsoluteThickness[2], 
+            Lighter[Blue], 
+            Arrow[$CellContext`uu]}]], $CellContext`drawit[
+         Pattern[$CellContext`EA, 
+          Blank[]], 
+         Pattern[$CellContext`x, 
+          Blank[]], 
+         Pattern[$CellContext`u, 
+          Blank[]], 
+         Pattern[$CellContext`cmp, 
+          Blank[]]] := 
+       Module[{$CellContext`x1, $CellContext`x2, $CellContext`l, \
+$CellContext`d, $CellContext`t, $CellContext`Ke, $CellContext`ue, \
+$CellContext`Pe, $CellContext`P1, $CellContext`P2, $CellContext`g}, \
+$CellContext`x1 = Part[$CellContext`x, 1]; $CellContext`x2 = 
+          Part[$CellContext`x, 2]; $CellContext`l = 
+          Norm[$CellContext`x2 - $CellContext`x1]; $CellContext`d = \
+($CellContext`x2 - $CellContext`x1)/$CellContext`l; $CellContext`t = 
+          Flatten[{$CellContext`d, -$CellContext`d}]; $CellContext`Ke = \
+($CellContext`EA/$CellContext`l) 
+           TensorProduct[$CellContext`t, $CellContext`t]; $CellContext`ue = 
+          Flatten[$CellContext`u]; $CellContext`Pe = 
+          Dot[$CellContext`Ke, $CellContext`ue]; $CellContext`P1 = 
+          Part[$CellContext`Pe, 
+            Span[1, 2]]; $CellContext`P2 = Part[$CellContext`Pe, 
+            Span[3, 4]]; $CellContext`g = 
+          Table[$CellContext`i, {$CellContext`i, 0, 8}]; Column[{
+            Row[{"l = ", 
+              Round[$CellContext`l, 0.01], "           ", 
+              $CellContext`show[$CellContext`Pe], "=", 
+              $CellContext`show[$CellContext`Ke], 
+              $CellContext`show[$CellContext`ue]}], 
+            Graphics[{
+              AbsoluteThickness[4], 
+              Line[$CellContext`x], Orange, 
+              Line[$CellContext`x + $CellContext`u], 
+              AbsoluteThickness[2], 
+              Arrowheads[0.015], 
+              Lighter[Blue], 
+              Arrow[
+               $CellContext`arrowdata[$CellContext`x, $CellContext`u, \
+$CellContext`cmp]], Red, 
+              Arrow[
+               $CellContext`arrowdata2[$CellContext`x, {$CellContext`P1, \
+$CellContext`P2}, $CellContext`cmp]]}, ImageSize -> {800, 600}, AspectRatio -> 
+             Automatic, GridLines -> {$CellContext`g, $CellContext`g}, 
+             PlotRange -> {{0, 8}, {0, 6}}]}]], $CellContext`t = {
+        3/Sqrt[10], 1/Sqrt[10], (-3)/Sqrt[
+         10], -(1/Sqrt[10])}, $CellContext`show[
+         Pattern[$CellContext`x, 
+          Blank[]]] := MatrixForm[
+         Round[
+          N[$CellContext`x], 0.01]], $CellContext`arrowdata[
+         Pattern[$CellContext`x, 
+          Blank[]], 
+         Pattern[$CellContext`v, 
+          Blank[]], 
+         Pattern[$CellContext`cmp, 
+          Blank[]]] := If[$CellContext`cmp, 
+         Flatten[{
+           Table[{
+             Part[$CellContext`x, $CellContext`i], 
+             Part[$CellContext`x, $CellContext`i] + {
+               Part[$CellContext`v, $CellContext`i, 1], 0}}, {$CellContext`i, 
+             
+             Length[$CellContext`x]}], 
+           Table[{Part[$CellContext`x, $CellContext`i] + {
+               Part[$CellContext`v, $CellContext`i, 1], 0}, 
+             Part[$CellContext`x, $CellContext`i] + 
+             Part[$CellContext`v, $CellContext`i]}, {$CellContext`i, 
+             Length[$CellContext`x]}]}, 1], 
+         Table[{
+           Part[$CellContext`x, $CellContext`i], 
+           Part[$CellContext`x, $CellContext`i] + 
+           Part[$CellContext`v, $CellContext`i]}, {$CellContext`i, 
+           Length[$CellContext`x]}]], $CellContext`arrowdata2[
+         Pattern[$CellContext`x, 
+          Blank[]], 
+         Pattern[$CellContext`v, 
+          Blank[]], 
+         Pattern[$CellContext`cmp, 
+          Blank[]]] := If[$CellContext`cmp, 
+         Flatten[{
+           Table[{
+             Part[$CellContext`x, $CellContext`i], 
+             Part[$CellContext`x, $CellContext`i] + {
+               Part[$CellContext`v, $CellContext`i, 1], 0}}, {$CellContext`i, 
+             
+             Length[$CellContext`x]}], 
+           Table[{
+             Part[$CellContext`x, $CellContext`i], 
+             Part[$CellContext`x, $CellContext`i] + {0, 
+               Part[$CellContext`v, $CellContext`i, 2]}}, {$CellContext`i, 
+             Length[$CellContext`x]}]}, 1], 
+         Table[{
+           Part[$CellContext`x, $CellContext`i], 
+           Part[$CellContext`x, $CellContext`i] + 
+           Part[$CellContext`v, $CellContext`i]}, {$CellContext`i, 
+           Length[$CellContext`x]}]]}; Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Input",
+ CellChangeTimes->{{3.922285094733725*^9, 
+  3.922285095241879*^9}},ExpressionUUID->"29d93bda-a047-4d6d-89e4-\
+5c8ef60c20cc"]
+},
+WindowSize->{1202, 955},
+WindowMargins->{{12, Automatic}, {Automatic, 24}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 8583, 183, 801, "Input",ExpressionUUID->"29d93bda-a047-4d6d-89e4-5c8ef60c20cc"]
+}
+]
+*)
+

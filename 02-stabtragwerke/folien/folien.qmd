@@ -1,0 +1,435 @@
+---
+title: 2. Finite Elemente für Stabtragwerke
+format:
+    revealjs: default
+---
+
+\newcommand{\mmat}[1]{\begin{pmatrix} #1 \end{pmatrix}}
+\newcommand{\SI}[2]{#1\,\text{#2}}
+
+
+# Was sind Finite Elemente?
+
+
+## {.smaller}
+
+![](00-pics/image5.jpg){width="40%"}
+&nbsp;
+![](00-pics/FEA-featured-image.jpg){width="27%"}
+![](00-pics/2021-09-wireless-charging-magnetic-h-streamline.png){width="30%"}
+
+. . .
+
+**Erste Erklärung**
+
+Ein Verfahren um auf dem Computer Verformungen und Beanspruchungen von Bauteilen zu berechnen. Dabei wird das Bauteil in kleine Drei- oder Vierecke (die finiten Elemente) aufgeteilt.
+
+. . .
+
+**Zweite Erklärung**
+
+Ein Näherungsverfahren zur Lösung (meist partieller) Differentialgleichungen. 
+Die gesuchte Funktion wird dabei aus elementweise definierten vorgegebenen Funktionen zusammengesetzt.
+Partielle Differentialgleichungen beschreiben eine Vielzahl von Phänomenen, zum Beispiel die Verformung von Körpern unter Lasten, Wärmeausbreitung oder Elektromagnetismus. 
+
+. . .
+
+$\rightarrow$ Beide Erklärungen richtig!
+
+
+## Zwei Pioniere {.smaller}
+
+:::: {.columns}
+::: {.column width="18%"}
+![](00-pics/john-h-argyris.png){height="250px"}
+:::
+::: {.column width="80%"}
+**John Argyris (1913 – 2004)**
+
+📝 Argyris J.: Energy Theorems and Structural Analysis. Aircraft Engineering (1955)
+
+$\rightarrow$ Wichtige Grundlagen für die computerorientierte Berechnung
+:::
+::::
+
+:::: {.columns}
+::: {.column width="18%"}
+![](00-pics/clough.jpeg){height="250px"}
+:::
+::: {.column width="80%"}
+**Ray William Clough, (1920 – 2016)**
+
+📝 Clough R.W.: The finite element method in plane stress analysis. Proceedings of the Second ASCE Conference on Electronic Computation (1960)
+
+$\rightarrow$ Erstmalige Verwendung des Begriffs "Finite Elemente"
+:::
+::::
+
+
+## Bücher zum Thema (kleine Auswahl)
+
+![](00-pics/books.png)
+
+
+## Heute: Unzählige Anwendungen
+
+- Berechnung von Tragwerken (statisch und dynamisch)
+
+- Maschinenbau, Automobilindustrie, Luft- und Raumfahrttechnik
+
+- Produktentwicklung (Wärme, Elektromagnetismus, etc.)
+
+- Medizin (Operationsvorbereitung, Prothesen)
+
+
+# Wie funktioniert das für Fachwerke?
+
+$\rightarrow$ Es geht um die Grundidee, nicht die Details!
+
+
+## Möglichkeiten an die Sache heranzugehen
+
+1. Variationelle Formulierung: Allgemeingültiger Zugang zur Finite-Elemente-Methode (FEM), *sehr mathematisch*
+
+1. Prinzip vom Minimum der potentiellen Energie: Für Aufgaben aus der Elastostatik (Stabtragwerke, Scheiben und Platten, ...), *abstrakt*
+
+1. **Direkte Steifigkeitsmethode**: Funktioniert gut für Fachwerke und Balkentragwerke,  *anschaulich*
+
+$\rightarrow$ Führen auf exakt dieselben Gleichungen!
+
+
+## Demo-Applikation: Grundidee {.smaller}
+
+::::{.columns}
+:::{.column width="50%"}
+![](00-pics/displacement-game.png)
+:::
+:::{.column width="50%"}
+- Verformung bewirkt Längenänderung der Stäbe
+- Längenänderung aktiviert Normalkraft
+- Verformung richtig, wenn Normalkräfte und äußere Lasten an jedem Knoten im Gleichgewicht
+
+$\rightarrow$ [Selber ausprobieren!](01-demos/displacement-game-app.zip) [^1]
+:::
+::::
+
+[^1]: Wolfram-Player von <https://www.wolfram.com/player> installieren
+
+
+## Schritt 1: Stabendkräfte {.smaller}
+
+$$
+  \mmat{
+    P_{11} \\[1ex]
+    P_{12} \\[1ex]
+    P_{21} \\[1ex]
+    P_{22} \\[1ex]
+  }
+  =
+  \frac{EA}{l}
+  \mmat{
+    \phantom{-}c^2 & \phantom{-}c s & -c^2 & -c s \\[1ex]
+    \phantom{-}c s & \phantom{-}s^2 & -c s & -s^2 \\[1ex]
+    -c^2 & -c s & \phantom{-}c^2 & \phantom{-}c s \\[1ex]
+    -c s & -s^2 & \phantom{-}c s & \phantom{-}s^2     
+  }
+  \mmat{
+    u_{11} \\[1ex]
+    u_{12} \\[1ex]
+    u_{21} \\[1ex]
+    u_{22} \\[1ex]
+  }
+  \quad \text{mit} \quad
+  s = \sin\alpha, \; c = \cos\alpha
+$$
+
+- Erklärung an der Tafel
+
+- Die Matrix heißt Elementsteifigkeitsmatrix und wird mit $\mathbf{K}^e$ bezeichnet
+
+- Herleitung zum Beispiel in
+  - 📖 'A first course in finite elements', @fish_2007
+  - 📖 'Tragwerke 2', @kratzig_tragwerke_1998
+  - [Skript numerische Mathematik](../unterlagen/numerische-mathematik-skript.pdf)
+
+
+##
+
+![](00-pics/fachwerkstab-kraetzig.png)
+
+Zum Vergleich aus 📖 'Tragwerke 2', @kratzig_tragwerke_1998
+
+
+## Demo-Applikation: Stabendkräfte {.smaller}
+
+![](00-pics/end-forces-app.png)
+
+$\rightarrow$ [Selber ausprobieren!](01-demos/end-forces-app.zip)
+
+
+## Schritt 2: Gesamtsteifigkeitsmatrix
+
+![](00-pics/gesamtsystem.png)
+
+
+## Elementsteifigkeitsmatrizen {.smaller}
+
+\newcommand{\kka}[1]{{\color{purple}{#1}}}
+\newcommand{\kkb}[1]{{\color{orange}{#1}}}
+\newcommand{\kkc}[1]{{\color{teal}{#1}}}
+
+$$
+\mathbf{K}^1 = 
+\mmat{
+    \phantom{-}\kka{15} & 0 & \kka{-15} & 0 \\[1ex]
+    0 & 0 & 0 & 0 \\[1ex] 
+    \kka{-15} & 0 & \phantom{-}\kka{15} & 0 \\[1ex]
+    0 & 0 & 0 & 0
+}
+\quad
+\mathbf{K}^2 = 
+\mmat{
+    0 & 0 & 0 & 0 \\[1ex]
+    0 & \phantom{-}\kkb{20} & 0 & \kkb{-20} \\[1ex]
+    0 & 0 & 0 & 0 \\[1ex] 
+    0 & \kkb{-20} & 0 & \phantom{-}\kkb{20}
+}
+$$
+
+&nbsp;
+
+$$
+\mathbf{K}^3 = 
+\mmat{
+    \kkc{\phantom{-}7.68} &           \kkc{-5.76} &           \kkc{-7.68} & \kkc{\phantom{-}5.76} \\[1ex]
+              \kkc{-5.76} & \kkc{\phantom{-}4.32} & \kkc{\phantom{-}5.76} &           \kkc{-4.32} \\[1ex]
+              \kkc{-7.68} & \kkc{\phantom{-}5.76} & \kkc{\phantom{-}7.68} &           \kkc{-5.76} \\[1ex]
+    \kkc{\phantom{-}5.76} &           \kkc{-4.32} &           \kkc{-5.76} & \kkc{\phantom{-}4.32}     
+}
+$$
+
+
+## Zusammengesetzt {.smaller}
+
+$$
+\mmat{
+    \phantom{-}\kka{15} & 0 & \kka{-15} & 0 & 0 & 0 \\[1ex]
+    0 & \phantom{-}\kkb{20} & 0 & 0 & 0 & \kkb{-20} \\[1ex]
+    \kka{-15} & 0 & \kka{15} + \kkc{7.68} &           \kkc{-5.76} &           \kkc{-7.68} & \kkc{\phantom{-}5.76} \\[1ex]
+    0 & 0 &           \kkc{-5.76} & \kkc{\phantom{-}4.32} & \kkc{\phantom{-}5.76} &           \kkc{-4.32} \\[1ex]
+    0 & 0 &           \kkc{-7.68} & \kkc{\phantom{-}5.76} & \kkc{\phantom{-}7.68} &           \kkc{-5.76} \\[1ex]
+    0 & \kkb{-20} & \kkc{\phantom{-}5.76} &           \kkc{-4.32} &           \kkc{-5.76} & \kkc{4.32} + \kkb{20}    
+}
+\mmat{
+\hat{u}_1 \\[1ex] \hat{u}_2 \\[1ex] \hat{u}_3 \\[1ex] \hat{u}_4 \\[1ex] \hat{u}_5 \\[1ex] \hat{u}_6
+}
+=
+\mmat{
+    R_{11} \\[1ex]
+    R_{12} \\[1ex]
+    0 \\[1ex]
+    R_{22} \\[1ex]
+    120 \cdot 10^{-3} \\[1ex]
+    0
+}
+$$
+
+- Die Matrix heißt Gesamtsteifigkeitsmatrix $\hat{\mathbf{K}}$
+
+- Auf der rechten Seite stehen noch die unbekannten Auflagerreaktionen
+
+
+## Schritt 3: Auflagerbedingungen {.smaller}
+
+&nbsp;
+
+$$
+  \mmat{
+    \phantom{-}1 & 0 & 0 & 0 & 0 & 0 \\[1ex]
+    0 & \phantom{-}1 & 0 & 0 & 0 & 0 \\[1ex]
+    -15 & 0 & \phantom{-}22.68 & -5.76 & -7.68 & \phantom{-}5.76 \\[1ex]
+    0 & 0 & 0 & \phantom{-}1 & 0 & 0 \\[1ex]
+    0 & 0 & -7.68 & \phantom{-}5.76 & \phantom{-}7.68 & -5.76 \\[1ex]
+    0 & -20 & \phantom{-}5.76 & -4.32 & -5.76 & \phantom{-}24.32     
+  }
+  \mmat{
+    \hat{u}_1 \\[1ex] \hat{u}_2 \\[1ex] \hat{u}_3 \\[1ex] \hat{u}_4 \\[1ex] \hat{u}_5 \\[1ex] \hat{u}_6
+  }
+  =
+  \mmat{
+    0 \\[1ex]
+    0 \\[1ex]
+    0 \\[1ex]
+    0 \\[1ex]
+    120 \cdot 10^{-3} \\[1ex]
+    0
+  }
+$$
+
+&nbsp;
+
+- Zeilen mit Auflagerbedingungen gleich $0$ setzen, eine $1$ auf die Diagonale
+
+- Damit wird sichergestellt, dass $\hat{u}_1 = \hat{u}_2 = \hat{u}_4 = 0$ 
+
+
+## Schritt 4: LGS lösen und Normalkräfte {.smaller}
+
+::::{.columns}
+:::{.column width="30%"}
+**Verschiebungsvektor**
+$$
+  \hat{\mathbf{u}} = \mmat{0 \\ 0 \\ 0.008 \\ 0 \\ 0.027 \\ 0.0045}
+$$
+:::
+:::{.column width="70%"}
+**Normalkräfte**
+$$
+\begin{aligned}
+  N^1 & = \frac{60000}{4} \cdot \mmat{1 \\ 0} \cdot \mmat{0.008 - 0 \\ 0 - 0} = \SI{120}{kN} \\[1ex]
+  N^2 & = \frac{60000}{3} \cdot \mmat{1 \\ 0} \cdot \mmat{0.0045 - 0 \\ 0 - 0} = \SI{90}{kN} \\[1ex]
+  N^3 & = \frac{60000}{5} \cdot \mmat{\phantom{-}0.8 \\ -0.6} \cdot \mmat{0.008 - 0.027 \\ 0 - 0.0045} = \SI{150}{kN}
+\end{aligned}
+$$
+
+
+Differenz $\mathbf{u}_2 - \mathbf{u}_1$ auf Stabachse projezieren und mit $EA/l$ multiplizieren
+:::
+::::
+
+
+## Berechnungsablauf lineare FEM
+
+- Systemdaten einlesen (Material, Querschnitt, Geometrie)
+
+- Elementsteifigkeitsmatrizen berechnen
+
+- Globale Steifigkeitsmatrix $\hat{\mathbf{K}}$ und Lastvektor $\hat{\mathbf{F}}$ aufstellen
+
+- Auflagerbedingungen einbauen
+
+- Lineares Gleichungssystem $\hat{\mathbf{K}}\hat{\mathbf{u}} = \hat{\mathbf{F}}$ lösen
+
+- Schnittgrößen und ggf. Spannungen berechnen
+
+- Ergebnisse grafisch darstellen und auflisten
+
+$\rightarrow$ Funktioniert im Prinzip genau so für Balken (und Platten)
+
+
+## Interpretation lineares Gleichungssystem
+
+&nbsp;
+
+$\rightarrow$ Tafel
+
+
+# Was kann dabei schiefgehen?
+
+
+## Kinematische Systeme
+
+&nbsp;
+
+$\rightarrow$ Tafel
+
+
+## Weitere Fehlerquellen
+
+&nbsp;
+
+$\rightarrow$ Tafel
+
+
+# Direkte Steifigkeitsmethode für Balkentragwerke
+
+Funktioniert im Prinzip genau gleich...
+
+
+## {.smaller}
+
+![](00-pics/balken-kraetzig.png)
+
+Steifigkeitsmatrix für Balkenelement aus @kratzig_tragwerke_1998
+
+
+# Programmierung in Matlab
+
+Um die Sache etwas zu entzaubern
+
+
+## Elementsteifigkeitsmatrizen {.smaller}
+
+Fachwerkstab 2D
+
+```{matlab}
+function ke = Ke(this)
+    e1 = this.e1;
+    t = [e1, 0, 0; 0, 0, e1];
+    kel = this.s.EA / this.l * [1, -1; -1, 1];
+    ke = (t')*kel*t;
+end
+```
+
+Balken 2D
+
+```{matlab}
+function ke = Ke(this)
+    l = this.l; t = this.tMat;
+    ea = this.s.EA; ei = this.s.EI;
+    eal = ea/l; eil = ei/l;
+    ei6l2 = 6*ei/l^2; ei12l3 = 12*ei/l^3;
+    kel = [
+          eal,       0,       0, -eal,       0,      0
+            0,  ei12l3,  -ei6l2,    0, -ei12l3, -ei6l2
+            0,  -ei6l2,   4*eil,    0,   ei6l2,  2*eil
+        -eal,       0,       0,  eal,       0,      0
+            0, -ei12l3,   ei6l2,    0,  ei12l3,  ei6l2
+            0,  -ei6l2,   2*eil,    0,   ei6l2,  4*eil
+        ];            
+    ke = transpose(t)*kel*t;
+end
+```
+
+## Gesamtsteifigkeitsmatrix {.smaller}
+
+```{matlab}
+function k = assembleMatrixDense(this)
+    k = zeros(this.nDofs);
+
+    for i = 1:length(this.elements)
+        e = this.element(i);
+        ke = e.Ke;
+        edofs = e.dofs;
+
+        for li = 1:length(edofs)
+            gi = edofs(li);
+
+            for lj = 1:length(edofs)
+                gj = edofs(lj);
+                if gi && gj
+                    k(gi, gj) = k(gi, gj) + ke(li, lj);
+                end
+            end
+        end
+    end            
+end
+```
+
+
+# Weiterführende Themen
+
+- Federn und vorgegebene Auflagerverschiebungen
+
+- Gelenkige Anschlüsse (hinges auf englisch)
+
+- Schnittgrößenumlagerung durch plastische Verformungen in Stahlkonstruktionen
+
+- Schwinden und Kriechen im Massivbau
+
+- Nachweise mit den entsprechenden Normen
+
+- Stabilität und geometrische Nichtlinearität (nächstes Thema)
+
+
+# Literatur
