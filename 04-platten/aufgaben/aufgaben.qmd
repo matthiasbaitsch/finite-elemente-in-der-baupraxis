@@ -1,0 +1,28 @@
+---
+title: Aufgabenblatt 3
+subtitle: "Finite Elemente für Plattentragwerke"
+format:
+    html: default
+    pdf: default
+---
+
+\newcommand{\SI}[2]{#1\,\text{#2}}
+
+## Beispiel zur Einführung
+
+Es soll die dargestellte Deckenplatte mit einem FE-Programm berechnet werden. Verwenden Sie dabei linear elastische Materialeigenschaften (üblicherweise die Voreinstellung), Eigengewicht wird berücksichtigt.
+
+![](00-pics/deckenplatte-1.svg)
+
+Im Einzelnen:
+
+1. Geben Sie das System ein und führen Sie eine Berechnung mit den Voreinstellungen des Programms durch. Plotten Sie die Durchbiegung sowie die Verläufe der Schnittgrößen $m_x, m_z, m_{xy}, v_x, v_y$.
+
+1. Suchen Sie in den Darstellungsoptionen für die Schnittgrößen ob es eine Option gibt, die Ergebnisse ungeglättet darzustellen (Hilfe, Google). Falls Sie fündig geworden sind: Plotten Sie $m_x, m_{xy}$ und $v_x$ in der ungeglätteten Darstellung. 
+
+1. Führen Sie die Berechnung für die Elementgrößen $L_{FE} = \SI{0.05}{m}$, $L_{FE} = \SI{0.25}{m}$ sowie  $L_{FE} = \SI{1.0}{m}$ durch. Wie groß ist jeweils die maximale Verschiebung (vier Stellen hinter dem Komma)? Plotten Sie jeweils die Schnittgrößen $m_x, m_{xy}$ und $v_x$ (falls möglich in der ungeglätteten Darstellung). Können Sie einen Unterschied in der Rechenzeit feststellen?
+
+1. Es gibt zwei Berechnungsansätze für Platten die auf Reissner und Mindlin beziehungsweise auf Kirchhoff zurückgehen. Welchen Ansatz verwendet Ihr Programm? Lässt sich die verwendete Theorie auswählen? Falls ja, wechseln Sie den Berechnungsansatz und vergleichen Sie die Ergebnisse (Verformung und Schnittgrößen) für $L_{FE} = \SI{0.25}{m}$.
+
+Fassen Sie Ihre Ergebnisse in einer kleinen Präsentation oder einem Bericht zusammen.
+

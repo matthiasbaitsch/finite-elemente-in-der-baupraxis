@@ -1,0 +1,327 @@
+   *** Start: Programm Calculation - Version 2024-4.0.759
+   *** Start: Programm aqua
+   
+   SOFiSTiK 2024-4.0.759    AQUA   - GENERAL SECTIONS
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -     1. Zugriff
+   TIME NEEDED         0, TOTAL         0
+   DATE       2024-06-13, 15:02:27
+   *** Stop : Programm aqua
+   *** Start: Programm template
+   
+   SOFiSTiK 2024-4.0.759    TEMPLATE * GENERAL REMARKS
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -     2. Zugriff
+   RECHENZEIT          1, TOTAL         1
+   DATUM      2024-06-13, 15:02:29
+   *** Stop : Programm template
+   *** Start: Programm sofimshc
+   
+   SOFiSTiK 2024-4.0.759    SOFIMSHC - GEOMETRY + STRUCT
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -     3. Zugriff
+   Projekt: Iteration parameters
+   Analysis and decomposition of structural model:
+   CPU-time [s]:    0.03,   geom. tolerance [m]:   0.021
+   RECHENZEIT          5, TOTAL         5
+   DATUM      2024-06-13, 15:02:35
+   *** Stop : Programm sofimshc
+   *** Start: Programm sofiload
+   
+   SOFiSTiK 2024-4.0.759    SOFILOAD - LOAD GENERATOR
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -     4. Zugriff
+   Projekt: Thick Circular Plate
+   RECHENZEIT          3, TOTAL         3
+   RECHENZEIT          0, TOTAL         3
+   DATUM      2024-06-13, 15:02:39
+   *** Stop : Programm sofiload
+   *** Start: Programm ase
+   
+   SOFiSTiK 2024-4.0.759    ASE   - ADVANCED SOLUTION ENGINE
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -     5. Zugriff
+   Projekt: Thick Circular Plate
+   load case   501
+   
+   Parameter of System of Equation   3
+   (Sparse Direct Solver)
+   Number of unknowns             2428
+   Total entries                 32933
+   Total entries after fill     158533
+   RECHENZEIT         22, TOTAL        22
+   RECHENZEIT          0, TOTAL        22
+   DATUM      2024-06-13, 15:03:02
+   *** Stop : Programm ase
+   *** Start: Programm template
+   
+   SOFiSTiK 2024-4.0.759    TEMPLATE * GENERAL REMARKS
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -     6. Zugriff
+   Projekt: Thick Circular Plate
+   RECHENZEIT          1, TOTAL         1
+   DATUM      2024-06-13, 15:03:04
+   *** Stop : Programm template
+   *** Start: Programm template
+   
+   SOFiSTiK 2024-4.0.759    TEMPLATE * GENERAL REMARKS
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -     7. Zugriff
+   Projekt: Thick Circular Plate
+   RECHENZEIT          1, TOTAL         1
+   DATUM      2024-06-13, 15:03:06
+   *** Stop : Programm template
+   *** Start: Programm sofimshc
+   
+   SOFiSTiK 2024-4.0.759    SOFIMSHC - GEOMETRY + STRUCT
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -     8. Zugriff
+   Projekt: Thick Circular Plate
+   Analysis and decomposition of structural model:
+   CPU-time [s]:    0.03,   geom. tolerance [m]:   0.021
+   RECHENZEIT          6, TOTAL         6
+   DATUM      2024-06-13, 15:03:13
+   *** Stop : Programm sofimshc
+   *** Start: Programm sofiload
+   
+   SOFiSTiK 2024-4.0.759    SOFILOAD - LOAD GENERATOR
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -     9. Zugriff
+   Projekt: Thick Circular Plate
+   RECHENZEIT          3, TOTAL         3
+   RECHENZEIT          0, TOTAL         3
+   DATUM      2024-06-13, 15:03:17
+   *** Stop : Programm sofiload
+   *** Start: Programm ase
+   
+   SOFiSTiK 2024-4.0.759    ASE   - ADVANCED SOLUTION ENGINE
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -    10. Zugriff
+   Projekt: Thick Circular Plate
+   load case   501
+   
+   Parameter of System of Equation   3
+   (Sparse Direct Solver)
+   Number of unknowns             2428
+   Total entries                 32933
+   Total entries after fill     158533
+   RECHENZEIT         17, TOTAL        17
+   RECHENZEIT          0, TOTAL        17
+   DATUM      2024-06-13, 15:03:35
+   *** Stop : Programm ase
+   *** Start: Programm template
+   
+   SOFiSTiK 2024-4.0.759    TEMPLATE * GENERAL REMARKS
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -    11. Zugriff
+   Projekt: Thick Circular Plate
+   RECHENZEIT          1, TOTAL         1
+   DATUM      2024-06-13, 15:03:37
+   *** Stop : Programm template
+   *** Start: Programm template
+   
+   SOFiSTiK 2024-4.0.759    TEMPLATE * GENERAL REMARKS
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -    12. Zugriff
+   Projekt: Thick Circular Plate
+   RECHENZEIT          1, TOTAL         1
+   DATUM      2024-06-13, 15:03:39
+   *** Stop : Programm template
+   *** Start: Programm sofimshc
+   
+   SOFiSTiK 2024-4.0.759    SOFIMSHC - GEOMETRY + STRUCT
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -    13. Zugriff
+   Projekt: Thick Circular Plate
+   Analysis and decomposition of structural model:
+   CPU-time [s]:    0.00,   geom. tolerance [m]:   0.021
+   RECHENZEIT          6, TOTAL         6
+   DATUM      2024-06-13, 15:03:46
+   *** Stop : Programm sofimshc
+   *** Start: Programm sofiload
+   
+   SOFiSTiK 2024-4.0.759    SOFILOAD - LOAD GENERATOR
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -    14. Zugriff
+   Projekt: Thick Circular Plate
+   RECHENZEIT          3, TOTAL         3
+   RECHENZEIT          0, TOTAL         3
+   DATUM      2024-06-13, 15:03:49
+   *** Stop : Programm sofiload
+   *** Start: Programm ase
+   
+   SOFiSTiK 2024-4.0.759    ASE   - ADVANCED SOLUTION ENGINE
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -    15. Zugriff
+   Projekt: Thick Circular Plate
+   load case   501
+   
+   Parameter of System of Equation   3
+   (Sparse Direct Solver)
+   Number of unknowns             2428
+   Total entries                 32933
+   Total entries after fill     158533
+   RECHENZEIT         16, TOTAL        16
+   RECHENZEIT          0, TOTAL        16
+   DATUM      2024-06-13, 15:04:06
+   *** Stop : Programm ase
+   *** Start: Programm template
+   
+   SOFiSTiK 2024-4.0.759    TEMPLATE * GENERAL REMARKS
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -    16. Zugriff
+   Projekt: Thick Circular Plate
+   RECHENZEIT          1, TOTAL         1
+   DATUM      2024-06-13, 15:04:08
+   *** Stop : Programm template
+   *** Start: Programm template
+   
+   SOFiSTiK 2024-4.0.759    TEMPLATE * GENERAL REMARKS
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -    17. Zugriff
+   Projekt: Thick Circular Plate
+   RECHENZEIT          1, TOTAL         1
+   DATUM      2024-06-13, 15:04:09
+   *** Stop : Programm template
+   *** Start: Programm sofimshc
+   
+   SOFiSTiK 2024-4.0.759    SOFIMSHC - GEOMETRY + STRUCT
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -    18. Zugriff
+   Projekt: Thick Circular Plate
+   Analysis and decomposition of structural model:
+   CPU-time [s]:    0.02,   geom. tolerance [m]:   0.021
+   RECHENZEIT          6, TOTAL         6
+   DATUM      2024-06-13, 15:04:16
+   *** Stop : Programm sofimshc
+   *** Start: Programm sofiload
+   
+   SOFiSTiK 2024-4.0.759    SOFILOAD - LOAD GENERATOR
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -    19. Zugriff
+   Projekt: Thick Circular Plate
+   RECHENZEIT          2, TOTAL         2
+   RECHENZEIT          0, TOTAL         2
+   DATUM      2024-06-13, 15:04:19
+   *** Stop : Programm sofiload
+   *** Start: Programm ase
+   
+   SOFiSTiK 2024-4.0.759    ASE   - ADVANCED SOLUTION ENGINE
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -    20. Zugriff
+   Projekt: Thick Circular Plate
+   load case   501
+   
+   Parameter of System of Equation   3
+   (Sparse Direct Solver)
+   Number of unknowns             2428
+   Total entries                 32933
+   Total entries after fill     158533
+   RECHENZEIT         16, TOTAL        16
+   RECHENZEIT          0, TOTAL        16
+   DATUM      2024-06-13, 15:04:36
+   *** Stop : Programm ase
+   *** Start: Programm template
+   
+   SOFiSTiK 2024-4.0.759    TEMPLATE * GENERAL REMARKS
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -    21. Zugriff
+   Projekt: Thick Circular Plate
+   RECHENZEIT          1, TOTAL         1
+   DATUM      2024-06-13, 15:04:38
+   *** Stop : Programm template
+   *** Start: Programm template
+   
+   SOFiSTiK 2024-4.0.759    TEMPLATE * GENERAL REMARKS
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -    22. Zugriff
+   Projekt: Thick Circular Plate
+   RECHENZEIT          1, TOTAL         1
+   DATUM      2024-06-13, 15:04:39
+   *** Stop : Programm template
+   *** Start: Programm sofimshc
+   
+   SOFiSTiK 2024-4.0.759    SOFIMSHC - GEOMETRY + STRUCT
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -    23. Zugriff
+   Projekt: Thick Circular Plate
+   Analysis and decomposition of structural model:
+   CPU-time [s]:    0.00,   geom. tolerance [m]:   0.021
+   RECHENZEIT          6, TOTAL         6
+   DATUM      2024-06-13, 15:04:47
+   *** Stop : Programm sofimshc
+   *** Start: Programm sofiload
+   
+   SOFiSTiK 2024-4.0.759    SOFILOAD - LOAD GENERATOR
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -    24. Zugriff
+   Projekt: Thick Circular Plate
+   RECHENZEIT          3, TOTAL         3
+   RECHENZEIT          0, TOTAL         3
+   DATUM      2024-06-13, 15:04:51
+   *** Stop : Programm sofiload
+   *** Start: Programm ase
+   
+   SOFiSTiK 2024-4.0.759    ASE   - ADVANCED SOLUTION ENGINE
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -    25. Zugriff
+   Projekt: Thick Circular Plate
+   load case   501
+   
+   Parameter of System of Equation   3
+   (Sparse Direct Solver)
+   Number of unknowns             2428
+   Total entries                 32933
+   Total entries after fill     158533
+   RECHENZEIT         16, TOTAL        16
+   RECHENZEIT          0, TOTAL        16
+   DATUM      2024-06-13, 15:05:07
+   *** Stop : Programm ase
+   *** Start: Programm template
+   
+   SOFiSTiK 2024-4.0.759    TEMPLATE * GENERAL REMARKS
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -    26. Zugriff
+   Projekt: Thick Circular Plate
+   RECHENZEIT          1, TOTAL         1
+   DATUM      2024-06-13, 15:05:08
+   *** Stop : Programm template
+   *** Start: Programm template
+   
+   SOFiSTiK 2024-4.0.759    TEMPLATE * GENERAL REMARKS
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -    27. Zugriff
+   Projekt: Thick Circular Plate
+   RECHENZEIT          1, TOTAL         1
+   DATUM      2024-06-13, 15:05:10
+   *** Stop : Programm template
+   *** Start: Programm template
+   
+   SOFiSTiK 2024-4.0.759    TEMPLATE * GENERAL REMARKS
+   Ausgabe auf Datei thick_plate.plb
+   Projektdatenbasis thick_plate.cdb      -    28. Zugriff
+   Projekt: Thick Circular Plate
+   RECHENZEIT          1, TOTAL         1
+   DATUM      2024-06-13, 15:05:12
+   *** Stop : Programm template
+   *** Start: Programm wing
+   
+   SOFiSTiK 2024-4.0.759    WinGraf - Graphical Output
+   Ausgabe auf Datei thick_plate.plb
+   graphics picture layer : title
+          1       1     1 : All loads  LC:        501
+   RECHENZEIT         15, TOTAL        15
+   DATUM      2024-06-13, 15:05:28
+   *** Stop : Programm wing
+   *** Start: Programm wing
+   
+   SOFiSTiK 2024-4.0.759    WinGraf - Graphical Output
+   Ausgabe auf Datei thick_plate.plb
+   graphics picture layer : title
+          1       1     1 : Bending moment m-xx in local x  LC:        501
+          2       1     1 : Bending moment m-yy in local y  LC:        501
+          3       1     1 : Quadrilateral Elements , Displacement in local z  LC:        501
+   RECHENZEIT         17, TOTAL        17
+   DATUM      2024-06-13, 15:05:45
+   *** Stop : Programm wing
+   *** Ende der Berechnung!

@@ -6,6 +6,19 @@ format:
 
 \newcommand{\mmat}[1]{\begin{pmatrix} #1 \end{pmatrix}}
 \newcommand{\SI}[2]{#1\,\text{#2}}
+\newcommand{\mmund}{\quad \text{und} \quad}
+
+\newcommand{\xa}{\mathbf{x}_1}
+\newcommand{\xb}{\mathbf{x}_2}
+\newcommand{\ua}{\mathbf{u}_1}
+\newcommand{\ub}{\mathbf{u}_2}
+
+\newcommand{\kka}[1]{{\color{purple}{#1}}}
+\newcommand{\kkb}[1]{{\color{orange}{#1}}}
+\newcommand{\kkc}[1]{{\color{teal}{#1}}}
+
+$$
+
 
 
 # Was sind Finite Elemente?
@@ -118,6 +131,135 @@ $\rightarrow$ [Selber ausprobieren!](01-demos/displacement-game-app.zip) [^1]
 
 ## Schritt 1: Stabendkräfte {.smaller}
 
+![](00-pics/fachwerkstab-linear.png)
+
+
+## Bezeichnungen 1/2 {.smaller}
+
+Knotenkoordinaten und Länge
+$$
+  \xa = \mmat{x_{11} \\ x_{12}}
+  , \; 
+  \xb = \mmat{x_{21} \\ x_{22}}
+  \mmund
+  l = |\xb - \xa|
+$$
+
+Richtungsvektor und Transformationsvektor
+
+[]{.up30}
+
+$$
+\mathbf{d} = \frac{1}{l}(\xb - \xa) = \mmat{\cos\alpha \\ \sin\alpha} = \mmat{c \\ s}
+\mmund
+\mathbf{t} = \mmat{-c \\ -s \\ c \\ s}
+$$
+
+[]{.up30}
+
+Stabendkräfte und Elementstabendkraftvektor
+
+[]{.up30}
+
+$$
+\mathbf{P}_1 = \mmat{P_{11} \\ P_{12}}
+, \; 
+\mathbf{P}_2 = \mmat{P_{21} \\ P_{22}}
+\mmund
+\mathbf{P} = \mmat{P_{11} \\ P_{12} \\ P_{21} \\ P_{22}}
+$$
+
+
+## Bezeichnungen 2/2 {.smaller}
+
+Verschiebungsvektoren und Elementverschiebungsvektor
+
+[]{.up30}
+
+$$
+\mathbf{u}_1 = \mmat{u_{11} \\ u_{12}}
+, \; 
+\mathbf{u}_2 = \mmat{u_{21} \\ u_{22}}
+\mmund
+\mathbf{u} = \mmat{u_{11} \\ u_{12} \\ u_{21} \\ u_{22}}
+$$
+
+[]{.up30}
+
+Projektion der Verschiebungen auf Stabachse
+
+$$
+\tilde{u}_1 = \ua \cdot \mathbf{d} = c \cdot u_{11} + s \cdot u_{12}
+\mmund
+\tilde{u}_2 = \ub \cdot \mathbf{d} = c \cdot u_{21} + s \cdot u_{22}
+$$
+
+Längenänderung als Differenz der projezierten Verschiebungen
+
+$$
+\Delta l
+=
+\tilde{u}_2 - \tilde{u}_1 
+= 
+c \cdot u_{21} + s \cdot u_{22} - c \cdot u_{11} - s \cdot u_{12}
+=
+\mathbf{t} \cdot \mathbf{u}
+$$
+
+
+## {.smaller}
+
+### Normalkraft und Stabendkräfte
+
+Normalkraft (aus Projektion der Verschiebungen auf Stabachse)
+
+$$
+  N 
+  = 
+  EA \cdot \varepsilon 
+  = 
+  = 
+  EA \cdot \frac{\Delta l}{l}
+  = 
+  EA \cdot \frac{\tilde{u}_2 - \tilde{u}_1}{l}
+  =
+  \frac{EA}{l} \cdot  \mathbf{t} \cdot \mathbf{u}
+$$
+
+Elementstabendkraftvektor (in Richtung der Stabachse)
+
+$$
+\mathbf{P} 
+= 
+N \cdot \mathbf{t}
+=
+\frac{EA}{l} \cdot  (\mathbf{t} \cdot \mathbf{u}) \cdot \mathbf{t}
+=
+\frac{EA}{l} \mathbf{t}\mathbf{t}^T \mathbf{u}
+$$
+
+mit dem dyadischen Produkt
+
+[]{.up20}
+
+$$
+\mathbf{t}\mathbf{t}^T
+=
+\mmat{-c \\ -s \\ c \\ s} (-c \; -s \; c \; s)
+=
+  \mmat{
+    \phantom{-}c^2 & \phantom{-}c s & -c^2 & -c s \\[1ex]
+    \phantom{-}c s & \phantom{-}s^2 & -c s & -s^2 \\[1ex]
+    -c^2 & -c s & \phantom{-}c^2 & \phantom{-}c s \\[1ex]
+    -c s & -s^2 & \phantom{-}c s & \phantom{-}s^2     
+  }
+$$
+
+
+## {.smaller}
+
+### Ergebnis
+
 $$
   \mmat{
     P_{11} \\[1ex]
@@ -139,15 +281,11 @@ $$
     u_{21} \\[1ex]
     u_{22} \\[1ex]
   }
-  \quad \text{mit} \quad
-  s = \sin\alpha, \; c = \cos\alpha
 $$
-
-- Erklärung an der Tafel
 
 - Die Matrix heißt Elementsteifigkeitsmatrix und wird mit $\mathbf{K}^e$ bezeichnet
 
-- Herleitung zum Beispiel in
+- Alternative Herleitungen zum Beispiel in
   - 📖 'A first course in finite elements', @fish_2007
   - 📖 'Tragwerke 2', @kratzig_tragwerke_1998
   - [Skript numerische Mathematik](../unterlagen/numerische-mathematik-skript.pdf)
@@ -174,11 +312,6 @@ $\rightarrow$ [Selber ausprobieren!](01-demos/end-forces-app.zip)
 
 ## Elementsteifigkeitsmatrizen {.smaller}
 
-\newcommand{\kka}[1]{{\color{purple}{#1}}}
-\newcommand{\kkb}[1]{{\color{orange}{#1}}}
-\newcommand{\kkc}[1]{{\color{teal}{#1}}}
-
-$$
 \mathbf{K}^1 = 
 \mmat{
     \phantom{-}\kka{15} & 0 & \kka{-15} & 0 \\[1ex]
@@ -364,10 +497,7 @@ Fachwerkstab 2D
 
 ```{matlab}
 function ke = Ke(this)
-    e1 = this.e1;
-    t = [e1, 0, 0; 0, 0, e1];
-    kel = this.s.EA / this.l * [1, -1; -1, 1];
-    ke = (t')*kel*t;
+    ke = this.s.EA / this.l * this.t * this.t';
 end
 ```
 

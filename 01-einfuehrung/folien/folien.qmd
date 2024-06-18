@@ -1,5 +1,7 @@
 ---
 title: 1. Einführung
+format:
+    revealjs: default
 ---
 
 # Finite Elemente Programme
@@ -20,7 +22,7 @@ title: 1. Einführung
 
 ![](00-pics/cable2.jpg)
 
-## MicroFe
+## MicroFe (mb AEC Software)
 
 ![](00-pics/MicroFe-2019-2.jpg)
 
@@ -28,9 +30,21 @@ title: 1. Einführung
 
 ![](00-pics/SAP2000_Screenshot_1.png)
 
+## ETABS
+
+![](00-pics/Completely Customizable2.png)
+
+## Robot (Autodesk)
+
+![](00-pics/get-architecture-engineering-construction-collection-video-poster-1152x648.jpg)
+
 ## DIANA
 
 ![](00-pics/diana-fea-softwear.webp)
+
+## ATENA
+
+![](00-pics/911386767735323827c622e211a74b78c8a2cf1de3a0.jpg)
 
 ## Ansys
 
@@ -39,6 +53,25 @@ title: 1. Einführung
 ## Abaqus
 
 ![](00-pics/Screenshot-Abaqus.webp)
+
+## LS Dyna
+
+{{< video https://youtu.be/Jq9qCcijCAU?si=QLg8lUPTAJi-9Ddi
+    width="1050" 
+    aspect-ratio="2422x1154" 
+>}}
+
+## FEM - Programme heute
+
+- Eingabe schnell & einfach
+
+- Schöne Grafiken auf Knopfdruck
+
+- Statiken werden automatisch und abgabefähig erstellt
+
+- Hunderte von Seiten fast ohne Aufwand
+
+$\rightarrow$ Verantwortung liegt beim Ersteller, nicht beim Prüfstatiker!
 
 # Schadensfälle
 
@@ -56,7 +89,7 @@ title: 1. Einführung
 ::: {.column width="40%" .incremental}
 - Wechselwirkungen zwischen Brücke und Fußgängern nicht richtig erfasst
 - Einbau von Dämpfern zur Reduktion der Schwingungen
-- Kosten der Maßsnahme: Knapp 8 Millionen Euro
+- Kosten der Maßnahme: Knapp 8 Millionen Euro
 :::
 
 ::::
@@ -83,7 +116,9 @@ FE-Rechnung unterschätzt Scherkräfte um 47%, Wände zu dünn ausgelegt, Materi
 
 ## Didaktischer Ansatz
 
-### Klassisch an Universitäten
+. . .
+
+**Klassisch an Universitäten**
 
 - Theorie der Methode der Finiten Elemente
 
@@ -91,13 +126,15 @@ FE-Rechnung unterschätzt Scherkräfte um 47%, Wände zu dünn ausgelegt, Materi
 
 - Hoffnung, dass daraus ein Verständnis erwächst
 
-### In diesem Modul
+. . .
+
+**In diesem Modul**
 
 - Praktische Rechnungen mit kommerziellen Programmen
 
 - Aufgaben so gestellt, dass Probleme auftreten werden
 
-- Diskussion der Zusammenhänge am konkreten Beispiel
+- Erläuterung der Zusammenhänge am konkreten Beispiel
 
 ## Portfolioprüfung
 

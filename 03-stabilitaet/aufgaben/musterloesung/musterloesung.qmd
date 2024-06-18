@@ -1,0 +1,203 @@
+---
+title: Musterlösung Aufgabenblatt 2
+author: Matthias Baitsch
+project:
+    execute-dir: file
+format:
+    html: default
+    pdf: default
+jupyter: julia-1.10
+---
+
+\newcommand{\SI}[2]{#1\,\text{#2}}
+
+```{julia}
+#| echo: false
+using CSV
+using XLSX
+using Plots
+using Unitful
+using DataFrames
+using Unitful: kN, m, mm
+
+# pathto(f) = "03-stabilitaet/aufgaben/musterloesung/" * f;
+pathto(f) =  f;
+```
+
+
+## Von-Mises-Fachwerk
+
+### Handrechnung
+
+Systemparameter
+
+```{julia}
+A = 60u"mm" * 40u"mm"
+E = 11000u"N/mm^2"
+b = 1u"m"
+h0 = 5u"cm"
+l0 = hypot(b, h0)
+```
+
+Berechnung
+
+```{julia}
+u = (-20:5:120)u"mm"
+h = h0 .- u
+l = hypot.(b, h)
+
+# Ingenieursverzerrungen
+eps1 = (l .- l0) ./ l0
+N1 = E * A * eps1
+F1 = uconvert.(u"kN", -2 * N1 .* h ./ l)
+
+# Green-Lagrange-Verzerrung
+eps2 = 1 / 2 * (l .^ 2 .- l0 .^ 2) ./ l0 .^ 2
+N2 = E * A * eps2
+F2 = uconvert.(u"kN", -2 * N2 .* h ./ l)
+
+# Dataframe
+d = DataFrame(u=u, F1=F1, F2=F2)
+d2 = filter(:u => u -> u in [-20u"mm", 20u"mm", 50u"mm", 80u"mm", 10u"cm", 12u"cm"], d)
+```
+
+Werte aus Berechnung RFEM (aus PDF rausgesucht)
+
+```{julia}
+f_rfem = d2[!, :F1]
+u_rfem = [-30.5, 8.7, 0, -8.7, 0, 30.5]u"mm"
+
+r_rfem = XLSX.readtable(
+    "rfem/von-mises-fachwerk-last-verformungs-diagramm.xlsx" |> pathto,
+    1, "C:D", first_row=3, header=false, infer_eltypes=true, column_labels=[:λ, :u]
+) |>
+         DataFrame
+```
+
+Plot Last-Verschiebung
+
+```{julia}
+plot(u, F1, label="Nichtlinear")
+plot!(u_rfem, f_rfem, marker=:circle, label="RFEM linear")
+plot!(r_rfem[!, :u]u"mm", 4u"kN" * r_rfem[!, :λ], label="RFEM nichtlinear")
+```
+
+Plot Unterschied Verzerrungsmaße
+
+```{julia}
+plot(u, F2 - F1)
+```
+
+![](00-pics/rfem-nichtlinear.png){width="50%"}
+
+Normalkraft bei linearer Berechnung (Kontrolle FE-Rechnung)
+
+```{julia}
+l = 100u"cm"
+h = 5u"cm"
+F = 2u"kN"
+
+alpha = atan(h, l)
+N = 0.5 * F / sin(alpha)
+```
+
+
+## Verzweigungslasten
+
+### Eulerfall verifizieren
+
+#### Theoretische Knicklast
+
+- Eulerfall 1
+- Länge $l = \SI{10}{m}$
+- Stahl S235, $E = \SI{210000}{N/mm}^2$
+- Querschnitt HEA 300 $I = \SI{18263}{cm}^4$
+
+```{julia}
+l = 10u"m"
+E = 210000u"N/mm^2"
+I = 18263u"cm^4"
+Fc = uconvert(u"kN", pi^2 * E * I / (2l)^2)
+```
+
+#### Knicklast in RFEM
+
+| Teilungen| Schubweich $F_c$ (kN) | Schubstarr $F_c$ (kN) |
+|--|--|--|
+| 2 | 941.918 | 946.780 |
+| 5 | 941.242 | 946.308 |
+| 10 | 941.199 | 946.296 |
+| 20 | 941.191 | 946.295 |
+
+![](00-pics/rfem-knicken-1.png){width="50%"}
+
+![](00-pics/rfem-schubweich.png){width="50%"}
+
+Schubstarre Theorie (Bernoulli) wenn "Schubsteifigkeit deaktivieren" angewählt
+
+
+### Beispiel Rahmen
+
+Sofistik Eingabedatei
+
+```{raw}
+{{< include sofistik/aufgabe-2/teil-2/rahmen.dat >}}
+```
+
+Ergebnisse
+
+![](sofistik/aufgabe-2/teil-2/knickfigur-1.png)
+
+![](sofistik/aufgabe-2/teil-2/knickfigur-2.png)
+
+
+## Unterspannter Träger
+
+### Abschätzung der Schnittgrößen
+
+```{julia}
+lges = 20
+l1 = 8
+h = 1.8
+q = 8
+
+N = -q * lges^2 / 8 / h;
+Mz = q * l1^2 / 12;
+```
+
+### Ergebnisse
+
+Kritischer Lastfaktor $\lambda_{crit} = 5.739$
+
+```{julia}
+A	= 76.8u"cm^2"
+Wy	= 675u"cm^3"
+Wz	= 231u"cm^3"
+df = DataFrame(CSV.File("rfem/unterspannter-traeger-ergebnisse.csv" |> pathto, delim=" ", ignorerepeated=true))
+
+pushfirst!(df, ["Abschätzung", N, Mz, 0.0, 0.0, 0.0, 0.0])
+df.N *= kN
+df.My *= kN * m
+df.Mz *= kN * m
+df.ux *= mm
+df.uy *= mm
+df.uz *= mm
+df.sigma = uconvert.(u"N/mm^2", abs.(df.N) / A + abs.(df.My) / Wy + abs.(df.Mz) / Wz)
+
+df
+```
+
+Plots
+
+![](rfem/unterspannter-traeger/stabilitaet.png)
+
+![](rfem/unterspannter-traeger/n.png)
+
+![](rfem/unterspannter-traeger/my.png)
+
+![](rfem/unterspannter-traeger/mz.png)
+
+![](rfem/unterspannter-traeger/u.png)
+
+
+

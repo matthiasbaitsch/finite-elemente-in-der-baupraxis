@@ -1,0 +1,669 @@
+---
+title: 3. Stabilität
+subtitle: und geometrisch nichtlineares Tragverhalten
+format:
+    revealjs: default
+---
+
+\newcommand{\mmat}[1]{\begin{pmatrix} #1 \end{pmatrix}}
+\newcommand{\SI}[2]{#1\,\text{#2}}
+\newcommand{\mmund}{\quad \text{und} \quad}
+
+\newcommand{\xa}{\mathbf{x}_1}
+\newcommand{\xb}{\mathbf{x}_2}
+\newcommand{\ua}{\mathbf{u}_1}
+\newcommand{\ub}{\mathbf{u}_2}
+
+\newcommand{\mmd}{\mathbf{d}}
+\newcommand{\mmn}{\bar{\mathbf{d}}}
+\newcommand{\mmdt}{\mathbf{t}}
+\newcommand{\mmnt}{\bar{\mathbf{t}}}
+\newcommand{\mkhat}{\hat{\mathbf{K}}}
+\newcommand{\mshat}{\hat{\mathbf{S}}}
+\newcommand{\muhat}{\hat{\mathbf{u}}}
+
+
+# Beispiele aus der Praxis
+
+
+## Strommast in Thüringen {background-color="black" background-image="00-pics/191874_1_De_6_Fig1_HTML.jpg"}
+
+
+## Sporthalle Halstenbek (bei Hamburg) {background-color="black" background-image="00-pics/halstenbek-2.jpg"}
+
+
+## Knick-Ei von Halstenbek {background-color="black" background-image="00-pics/halstenbek-3.jpg"}
+
+
+## Knick-Ei von Halstenbek {background-color="black" background-image="00-pics/halstenbek-1.jpg"}
+
+
+## Windpark Sitten {background-image="00-pics/Havarie-im-Windpark-Sitten.jpg"}
+
+
+## Versagensmechanismen
+
+$\rightarrow$ Tafel
+
+
+# Nichtlineare Analyse
+
+Andere Bezeichnungen
+
+- Theorie III. Ordnung
+
+- Geometrisch exakte Theorie
+
+
+## Grundidee
+
+**Im Prinzip wie gehabt**
+
+- Verformungen so bestimmen, dass freigeschnittene Knoten im statischen Gleichgewicht
+
+**Dabei allerdings**
+
+- 'Echte' Längenänderung und nicht Projektion auf unverformte Stabachse
+
+- Gleichgewicht am verformten System formulieren (Normalkräft in Richtung der verformten Stabachse)
+
+
+## Fachwerkstab nichtlinear
+
+![](00-pics/fachwerkstab-nichtlinear.png)
+
+
+## {.smaller}
+
+Länge im unverformten und verformten Zustand
+
+$$
+l_0 = |\xb - \xa|
+\mmund
+l = |\xb + \ub - (\xa + \ua)|
+$$
+
+Richtungsvektor und Transformationsvektor (wie gehabt, aber verformte Lage)
+
+$$
+\mathbf{d} = \frac{1}{l}(\xb + \ub - (\xa + \ua)) = \mmat{\cos\alpha \\ \sin\alpha} = \mmat{c \\ s}
+\mmund
+\mmdt = \mmat{-c \\ -s \\ c \\ s}
+$$
+
+Stabendkräfte
+
+$$
+\mathbf{P} = N \cdot \mmdt = EA \cdot \frac{l - l_0}{l_0} \cdot \mmdt
+$$
+
+
+## Demo-Applikation: Stabendkräfte {.smaller}
+
+![](00-pics/end-forces-nonlinear-app.png)
+
+$\rightarrow$ [Selber ausprobieren!](01-demos/end-forces-nonlinear-app.zip)
+
+
+## Und was soll daran schwierig sein? {.smaller .scrollable}
+
+. . .
+
+$$
+\mathbf{P} = 
+\frac{\text{EA}}{\left(u_{11}-u_{21}+x_{11}-x_{21}\right){}^2+\left(u_{12}-u_{22}+x_{12}-x_{22}\right){}^2}
+\mmat{
+-\left(-u_{11}+u_{21}-x_{11}+x_{21}\right)
+\left(
+    \sqrt{\left(u_{11}-u_{21}+x_{11}-x_{21}\right){}^2+\left(u_{12}-u_{22}+x_{12}-x_{22}\right){}^2}-
+    \sqrt{\left(x_{11}-x_{21}\right){}^2+\left(x_{12}-x_{22}\right){}^2}
+\right)
+\\
+-\left(
+    \sqrt{\left(u_{11}-u_{21}+x_{11}-x_{21}\right){}^2+\left(u_{12}-u_{22}+x_{12}-x_{22}\right){}^2}-
+    \sqrt{\left(x_{11}-x_{21}\right){}^2+\left(x_{12}-x_{22}\right){}^2}
+\right) 
+\left(-u_{12}+u_{22}-x_{12}+x_{22}\right)
+\\
+\left(-u_{11}+u_{21}-x_{11}+x_{21}\right)
+   \left(
+    \sqrt{\left(u_{11}-u_{21}+x_{11}-x_{21}\right){}^2+\left(u_{12}-u_{22}+x_{12}-x_{22}\right){}^2}-
+    \sqrt{\left(x_{11}-x_{21}\right){}^2+\left(x_{12}-x_{22}\right){}^2}
+\right)
+\\
+\left(
+    \sqrt{\left(u_{11}-u_{21}+x_{11}-x_{21}\right){}^2+\left(u_{12}-u_{22}+x_{12}-x_{22}\right){}^2}-
+    \sqrt{\left(x_{11}-x_{21}\right){}^2+\left(x_{12}-x_{22}\right){}^2}
+\right) 
+\left(-u_{12}+u_{22}-x_{12}+x_{22}\right)
+}
+$$
+
+. . . 
+
+$\rightarrow$ Vektor der Stabendkräfte hängt nichtlinear von den Knotenverschiebungen ab!
+
+
+## Balken
+
+![](00-pics/balken-nichtlinear.png)
+
+Funktioniert im Prinzip genau gleich, ist jedoch **wesentlich** komplizierter, Abbildung aus @jelenic_geometrically_1999
+
+
+## Nichtlineares Gleichungssystem {.smaller}
+
+Stabendkräfte für jeden Knoten aufaddieren liefert nichtlineares Gleichungssystem
+
+\newcommand{\nlinfunc}{\hat{\mathbf{P}}}
+\newcommand{\nlinlhs}{\nlinfunc(\muhat)}
+
+$$
+    \nlinlhs = \hat{\mathbf{F}}
+    \quad \text{wobei} \quad
+    \nlinfunc: \mathbb{R}^N \to \mathbb{R}^N
+    \mmund
+    \hat{\mathbf{F}} \in \mathbb{R}^N
+$$
+
+**Anmerkungen**
+
+- Handrechnung kann man komplett vergessen
+
+- Iterative Lösung mit Newton-Verfahren
+
+- Mehrere Lastschritte
+
+  - Last-Verformungs-Diagramm gibt wichtige Hinweise auf Tragverhalten
+
+  - Konvergenz des Newton-Verfahrens
+
+
+## Newton-Raphson-Verfahren {.smaller}
+
+Lastgesteuert: Folge von Problemen $\nlinfunc(\hat{\mathbf{u}_k}) = \lambda_k \hat{\mathbf{F}}, \; k = 1, \dots, n, \; \lambda_k < \lambda_{k+1}, \; \lambda_n = 1$
+
+![](00-pics/ngs-newton-raphson.png)
+
+
+## Bogenlängenverfahren {.smaller}
+
+Pfadgesteuert: Lösung einer Folge von Problemen mit Nebenbedingung
+
+![](00-pics/ngs-bogenlaengenverfahren.png)
+
+
+## Berechnungsoptionen in RStab 
+
+![](00-pics/optionen-rfem.png)
+
+
+##  Konvergenzprobleme {.smaller}
+
+![](00-pics/rfem-nr-1.png)
+
+- In der Regel ein Hinweis auf Probleme mit Tragfähigkeit
+
+
+##  Konvergenzprobleme {.smaller}
+
+![](00-pics/rfem-nr-2.png)
+
+- In der Regel ein Hinweis auf Probleme mit Tragfähigkeit
+
+
+## Rechenbeispiel: Fachwerkstütze {.smaller}
+
+:::: {.columns}
+::: {.column width="30%"}
+![](00-pics/truss-column/system.png)
+:::
+::: {.column width="70%"}
+- Baustahl S235
+- Rundrohre 51/3.6 (Gurte) und 30/1.76 (Streben)
+- Höhe $h = 40 \times \SI{1}{m}$, Breite $b = \SI{1}{m}$ 
+- Belastung $F = \SI{50}{kN}$ (zwei mal)
+- Vorverformung 
+  $$
+  e(z) = e_0 \cdot \left(1 - \cos\left(\frac{\pi}{2h}z\right)\right)
+  $$
+  mit $e_0 = h / 250 = \SI{16}{cm}$ (dargestellt für $e_0 = \SI{5}{m}$)
+
+$\rightarrow$ Demonstrationszwecke, kein realistisches Tragwerk!
+:::
+::::
+
+
+## Lineare Berechnung {.smaller}
+
+![](00-pics/truss-column/sigma-linear.png){fig-align="center"}
+
+
+## Nichtlineare Berechnung {.smaller}
+
+![](00-pics/truss-column/sigma-nichtlinear.png){fig-align="center"}
+
+
+## Last-Verformungs-Diagramm {.smaller}
+
+![](00-pics/truss-column/last-verformung-1.png){fig-align="center"}
+
+
+## Last-Verformungs-Diagramm {.smaller}
+
+![](00-pics/truss-column/last-verformung-2.png){fig-align="center"}
+
+
+# Theorie II. Ordnung
+
+- Ein bisschen nichtlinear
+
+- Grundlage für Stabilitätsanalyse
+
+- In diesem Zusammenhang verwendet: $P$-$\Delta$-Effekt
+
+- Genauer nachlesen in 📖 @rust_nichtlineare_2016
+
+
+## Fachwerkstab Theorie II. Ordnung
+
+![](00-pics/fachwerkstab-theorie-ii.png)
+
+
+## {.smaller}
+
+Richtungsvektor und erster Transformationsvektor
+
+$$
+\mmd = \mmat{\cos\alpha \\ \sin\alpha} = \mmat{c \\ s}
+, \quad
+\mmdt = \mmat{-\mmd \\ \phantom{-} \mmd} = \mmat{-c \\ -s \\ c \\ s}
+$$
+
+Normalenvektor und zweiter Transformationsvektor
+
+$$
+\mmn = \mmat{- \sin\alpha \\ \cos\alpha} = \mmat{-s \\ c}
+, \quad
+\mmnt = \mmat{-\mmn \\ \phantom{-} \mmn} = \mmat{s \\ -c \\ -s \\ c}
+$$
+
+
+## {.smaller}
+
+Zerlegung der Stabendkräfte
+
+$$
+\begin{align}
+\mathbf{P}_1 & =          - N \cos \beta \cdot \mmd - N \sin \beta \cdot \mmn \\[1ex]
+\mathbf{P}_2 & = \phantom{-}N \cos \beta \cdot \mmd + N \sin \beta \cdot \mmn
+\end{align}
+$$
+
+Näherungen für kleine Winkel $\beta$
+
+$$
+\cos \beta \approx 1
+\mmund
+\sin \beta \approx \frac{\tilde{v}_2 - \tilde{v}_1}{l} 
+$$
+
+Normalkraft aus Projektion der Verschiebung auf Stabachse
+
+$$
+N \approx EA \cdot \frac{\tilde{u}_2 - \tilde{u_1}}{l} = \frac{EA}{l} \cdot \mmdt \cdot \mathbf{u}
+$$
+
+Verschiebungsdifferenzen
+
+$$
+\begin{aligned}
+\tilde{u}_2 - \tilde{u}_1 & = \mmd \cdot \ub - \mmd \cdot \ua = \mmdt \cdot \mathbf{u} \\[1ex]
+\tilde{v}_2 - \tilde{v}_1 & = \mmn \cdot \ub - \mmn \cdot \ua = \mmnt \cdot \mathbf{u}
+\end{aligned}
+$$
+
+## {.smaller}
+
+Damit
+
+$$
+\begin{align}
+\mathbf{P}_1 & =          - \frac{EA}{l} (\mmdt \cdot \mathbf{u}) \cdot \mmd - \frac{N}{l} (\mmnt \cdot \mathbf{u}) \cdot \mmn \\[1ex]
+\mathbf{P}_2 & = \phantom{-}\frac{EA}{l} (\mmdt \cdot \mathbf{u}) \cdot \mmd + \frac{N}{l} (\mmnt \cdot \mathbf{u}) \cdot \mmn
+\end{align}
+$$
+
+Zusammengefasst zu
+
+$$
+\begin{align}
+\mmat{\mathbf{P}_1 \\ \mathbf{P}_1}
+& =
+\frac{EA}{l} (\mmdt \cdot \mathbf{u}) \mmat{-\mmd \\ \phantom{-}\mmd}
++
+\frac{N}{l} (\mmnt \cdot \mathbf{u}) \mmat{-\mmn \\ \phantom{-}\mmn}
+\\[1ex]
+\iff \qquad \mathbf{P}
+& =
+\frac{EA}{l} (\mmdt \cdot \mathbf{u}) \cdot \mmdt
++
+ \frac{N}{l} (\mmnt \cdot \mathbf{u}) \cdot \mmnt
+\end{align}
+$$
+
+Mit $(\mmdt \cdot \mathbf{u}) \cdot \mmdt = \mmdt \mmdt^T \mathbf{u}$ (dyadisches Produkt)
+
+$$
+\mathbf{P} 
+= 
+\left(\frac{EA}{l} \mmdt \mmdt^T + \frac{N}{l} \mmnt \mmnt^T\right) \mathbf{u}
+=
+(\mathbf{K} + \mathbf{S}) \mathbf{u}
+$$
+
+
+## {.smaller}
+
+Spannungsversteifungsmatrix (engl. *stress stiffening matrix*)
+
+$$
+\mathbf{S} = \frac{N}{l}\mmat{
+s^2 & -c s & -s^2 & c s \\
+ -c s & c^2 & c s & -c^2 \\
+ -s^2 & c s & s^2 & -c s \\
+ c s & -c^2 & -c s & c^2 \\    
+}
+$$
+
+- Erfasst näherungsweise den Einfluss der Verformung auf die Stabendkräfte
+
+- Hängt von der Normalkraft (und damit von den Verschiebungen) ab
+
+- Der Zusammenhang 
+  $$
+  \mathbf{P} = (\mathbf{K} + \mathbf{S}) \mathbf{u}
+  $$ 
+  ist für gegebenes $N$ nach wie vor linear
+
+
+## Berechnung Theorie II. Ordnung {.smaller}
+
+Gleichungssystem auf Systemebene
+
+$$
+(\mkhat + \mshat)\muhat = \hat{\mathbf{F}}
+$$
+
+- Nichtlinear da $\mshat$ von den Verschiebungen abhängt
+
+- Schwächere Form der Nichtlinearität 
+
+**Vorgehensweise**
+
+1. Lineare Berechnung wie gehabt
+
+1. Für jeden Stab Normalkraft und Spannungsversteifungsmatrix berechnen
+
+1. Globale Spannungsversteifungsmatrix $\mshat$ zusammenbauen
+
+1. Lineares Gleichungssystem $(\mkhat + \mshat)\muhat = \hat{\mathbf{F}}$ lösen
+
+$\rightarrow$ Für kleine Systeme auch in der Handrechnung
+
+
+## Rechenbeispiel Theorie II. Ordnung
+
+- Fachwerkstütze wie im vorherigen Beispiel
+
+
+## Last-Verformungs-Diagramm {.smaller}
+
+:::: {.columns}
+::: {.column width="60%"}
+![](00-pics/truss-column/last-verformung-3.png)
+:::
+::: {.column width="40%"}
+- Lastniveau aus nichtlinearer Rechnung wird nicht erreicht
+- Verformungen absurd groß
+:::
+::::
+
+
+## Deformation und Spannung {.smaller}
+
+:::: {.columns}
+::: {.column width="60%"}
+![](00-pics/truss-column/sigma-ii.png)
+:::
+::: {.column width="40%"}
+- Deformation mit Skalierungsfaktor 1 geplottet
+- Verformungsfigur nicht plausibel, Stütze wird länger!
+- Ursache: Normalkraft aus Projektion der Verschiebungen
+:::
+::::
+
+
+## Vergleich mit nichtlinearer Lösung {.smaller}
+
+:::: {.columns}
+::: {.column width="60%"}
+![](00-pics/truss-column/last-verformung-4.png)
+:::
+::: {.column width="40%"}
+- Gute Übereinstimmung für moderate Verformungen!
+:::
+::::
+
+
+## Vergleich mit nichtlinearer Lösung {.smaller}
+
+:::: {.columns}
+::: {.column width="60%"}
+![](00-pics/truss-column/last-verformung-5.png)
+:::
+::: {.column width="40%"}
+- Gute Übereinstimmung für moderate Verformungen!
+- Wirklich gut!
+:::
+::::
+
+
+# Verzweigungslasten
+
+- Stabilitätsanalyse
+
+
+## {.smaller}
+
+[]{.down40}
+
+**Wir haben gesehen**
+
+- Bei dem Beispiel mit der Stütze gab es ein Lastniveau, das in der Rechnung nach Theorie II. Ordnung nicht überschritten wurde
+
+- Vermutung: Das System wird bei einem bestimmten Lastfaktor $\lambda$ instabil
+
+$\rightarrow$ Wie man diesen Lastfaktor ermitteln?
+
+. . . 
+
+[]{.down60}
+
+**Vorüberlegung**
+
+- Die Elementmatrizen $\mathbf{S}$ hängen linear von der Normalkraft ab
+
+- Die Normalkraft hängt linear von den Verschiebungen ab
+
+- Ist also $\mshat$ die Spannungsversteifungsmatrix für die gegebenen Lasten, dann ist $\lambda\mshat$ die Spannungsversteifungsmatrix zu den $\lambda$-fachen Lasten
+
+
+## {.smaller}
+
+Bekannt aus der linearen Theorie
+$$
+    \text{"System instabil"} 
+    \iff 
+    \mkhat\muhat = \mathbf{0} 
+    \quad \text{besitzt Lösungen} \quad \muhat \neq \mathbf{0}
+$$
+
+. . .
+
+Übertragen auf Theorie II. Ordnung
+$$
+\text{Lastfaktor $\lambda$ führt zu Verlust der Stabilität}
+$$
+$$
+\iff
+$$
+$$
+(\mkhat + \lambda\mshat)\muhat = \mathbf{0}
+\quad \text{besitzt Lösungen} \quad \muhat \neq \mathbf{0}
+$$
+
+. . .
+
+$$
+\iff
+$$
+$$
+\det(\mkhat + \lambda\mshat) = 0
+$$
+
+. . .
+
+Aus mathematischer Sicht: Generalisiertes Eigenwertproblem
+
+$$
+\mkhat\muhat = - \lambda\mshat\muhat
+$$
+
+. . .
+
+[]{.up10}
+
+$\rightarrow$ Damit: Verzweigungslastfaktor und Knickfigur
+
+
+## Berechnung der Verzweigungslast {.smaller}
+
+- Lineare Berechnung durchführen
+
+- Globale Spannungsversteifungsmatrix $\mshat$ aufstellen
+
+- Generalisiertes Eigenwertproblem $\mkhat\muhat  = -\lambda\mshat\muhat{}\;$ lösen (der Computer kann das gut)
+
+  - Ursprüngliche Last mal Faktor $\lambda$ ist die Knicklast
+
+  - Verformung $\muhat$ ist die zugehörige Knickfigur
+
+- Wichtig
+
+  - Im generalisierten Eigenwertproblem kann $\muhat$ beliebig skaliert werden
+
+  - Die Knickfigur hat also nur qualitative Aussagekraft
+
+  - Für reale Systeme gibt es keine Knicklasten, es handelt sich um eine (allerdings oft hilfreiche) Hilfsgröße
+
+
+## Anwendung: DIN EN 1993-1-1
+
+![](00-pics/bedingung-1993.png)
+
+
+## Rechenbeispiel {.smaller}
+
+:::: {.columns}
+::: {.column width="28%"}
+![](00-pics/truss-column/knickfigur.png)
+:::
+::: {.column width="5%"}
+:::
+::: {.column width="67%" .incremental}
+- Verzweigungslastfaktor $\lambda_{crit} = 0.86504$
+- System wird bei $F_{crit} = \SI{86.5043}{kN}$ instabil
+- Abschätzung der Knicklast aus Eulerfall 1
+  $$
+  \begin{align}
+    E &= \SI{2.1 \cdot 10^{11}}{N/mm$^2$} \\[1ex]
+    I &= 2 \cdot \left(\frac{1}{2}\right)^2 \cdot \frac{\pi}{4} \cdot \left(0.051^2 - (0.051 - 2 \cdot 0.0036)^2\right) \\[1ex]
+      &= \SI{2.6804 \cdot 10^{-4}}{m$^4$} \\[1ex]
+    F_{crit} &= 10^{-3}\frac{\pi^2 \cdot 2.1 \cdot 10^{11} \cdot 2.6804 \cdot 10^{-4}}{4 \cdot 40^2} 
+    = \SI{86.8040}{kN}
+  \end{align}
+  $$
+  $\rightarrow$ Sehr gute Übereinstimmung!
+:::
+::::
+
+
+## Verzweigungslasten Balkentragwerke {.smaller}
+
+![](00-pics/verzweigungsproblem-balken.png)
+
+- Funktioniert für Balken im Prinzip wir für Fachwerkstäbe
+
+- Wichtig: Ein Stab muss in mehrere Elemente unterteilt werden (Genauigkeit)
+
+- Quellen: Spannungsversteifungsmatrix Balken aus @cook_concepts_1989, Knickberechnung Rahmen aus @lohse_stahlbau_2020
+
+
+## Eulerfälle {.smaller}
+
+![](00-pics/eulerfaelle.png)
+
+- Knicklasten für Eulerfälle analytisch hergeleitet
+
+- Lösung einer Differentialgleichung
+
+
+# Imperfektionen
+
+
+## {background-image="00-pics/baustelle-parkhaus-imperfektionen.png" background-size="contain" background-repeat="no-repeat"}
+
+
+## {.smaller}
+
+![](00-pics/imperfektionen.png)
+
+- Imperfektionen: Reale Tragwerke entsprechen nicht exakt der Planung
+  - Strukturell (Eigenspannungen oder ungleichmäßige Verteilung der Streckgrenze)
+  - Geometrisch (Schiefstellungen, Vorkrümmungen oder Toleranzen)
+- Äquivalente Ersatzimperfektionen in nichtlinearer Rechnung/Theorie II. Ordnung
+- Häufig affin zur Knickfigur mit entsprechender Skalierung
+- Abbildung aus @lohse_stahlbau_2020
+
+
+
+# Weiterführende Themen
+
+
+## {background-image="00-pics/Buehnenbild_-_Plattenbeulen_am_Schiff_1300x0.jpg"}
+
+## {background-image="00-pics/schalenbeulen.png"}
+
+## {background-image="00-pics/Behnisch_Trahndorff.jpg"}
+
+
+##
+
+- Platten- und Schalenbeulen
+
+- Seiltragwerke (Olympiastadion München)
+
+- Membrankonstruktionen (Zelte)
+
+- Andere Ursachen nichtlinearen Tragverhaltens
+
+  - Material (Stahlbeton, Stahlseile, ...)
+
+  - Kontakt zwischen Bauteilen (im Bauwesen selten)
+
+
+# Literatur
+
+
+

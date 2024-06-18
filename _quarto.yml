@@ -6,8 +6,17 @@ format:
   revealjs: 
     toc: true
     toc-depth: 1
-    embed-resources: true
+    chalkboard:
+      chalkEffect: 0.0
     slide-number: true
-    logo: ../../images/BO-Logo_m_Wortmarke_L10cmPrint.jpg
+    logo: ../../images/BO-Logo_o_Wortmarke.png
     footer: Finite Elemente in der Baupraxis
     css: ["../../custom.css"]
+  html:
+    title-block-banner: "#888888"
+    number-sections: true
+    number-depth: 2
+  pdf:
+    number-sections: true
+bibliography: 
+  - references.bib

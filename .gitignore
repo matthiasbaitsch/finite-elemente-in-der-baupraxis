@@ -1,2 +1,11 @@
 /.quarto/
 /_output/
+decktape
+*.rf6bak
+*.sqlite
+*.$d1
+*.$d2
+*.dat
+*.erg
+**/rfem/*.pdf
+old

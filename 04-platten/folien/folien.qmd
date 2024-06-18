@@ -1,0 +1,32 @@
+---
+title: 4. Finite Elemente für Plattentragwerke
+format:
+    revealjs: default
+---
+
+# Inhalte
+
+# {background-image="00-pics/platten.svg" background-opacity="0.2"}
+
+- Anwendungsbeispiel
+
+- Einfluss der Elementgröße
+
+  - Diskretisierungsfehler
+
+  - Geglättete und ungeglättete Darstellung
+
+- Grundideen Plattentheorie (Kirchhoff und Reissner-Mindlin)
+
+- Spannungen an einspringende Ecken, abhebende Ecken
+
+- Modellierung von Unterzügen
+
+# 
+
+![](00-pics/platten.svg)
+
+Quellen: @mittelstedt_theory_2023 und @baitsch_piecewise_2009
+
+# Literatur
+

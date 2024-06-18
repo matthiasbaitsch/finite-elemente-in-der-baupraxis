@@ -1,0 +1,129 @@
+---
+jupyter: julia-1.10
+---
+
+```{julia}
+using MMJMesh
+using MMJMesh.Meshes
+using MMJMesh.Plots
+using MMJMesh.MMJBase
+using MMJMesh.Utilities
+using MMJMesh.Geometries
+using MMJMesh.Topologies
+using MMJMesh.Mathematics
+using MMJMesh.Mathematics: domain, domaintype
+
+import MMJMesh.Mathematics.FixedPolynomials as FP
+
+using Revise
+using CairoMakie
+using LinearAlgebra
+
+include("rkp.jl")
+```
+
+```{julia}
+h = 0.5
+ly = 5
+lx = 4
+
+n(l) = Int(ceil(l / h))
+m = makemeshonrectangle(lx, ly, n(lx), n(ly))
+
+mplot(m) |> mconf()
+```
+
+```{julia}
+include("rkp.jl")
+
+d = 0.2
+E = 31000e6
+nu = 0.27
+q = 8e3
+
+kef = rkpKe(d, E, nu)
+ref = rkpRe(q)
+
+m.data[:kefunc] = kef
+m.data[:refunc] = ref
+```
+
+```{julia}
+include("fem.jl")
+
+bn = m.groups[:boundarynodes]
+
+K, r = assembleKr(m, 4)
+applydirichletbcs!(bn, K, r, [true, true, true, false])
+
+w = K \ r
+N = length(w)
+mplot(m, w[4:4:end]) |> mconf()
+```
+
+Vergleich Czerny-Tafeln
+
+```{julia}
+wc = 0.0219 * q * lx^4 / (E * d^3)
+```
+
+```{julia}
+wfe = maximum(abs.(w[1:4:end]))
+```
+
+```{julia}
+100 * (wc - wfe) / wc
+```
+
+```{julia}
+include("rkp.jl")
+include("fem.jl")
+
+hh = []
+nn = []
+ne = []
+ww = []
+
+l = 10
+d = 0.2
+E = 31000e6
+nu = 0 * 0.27
+q = 8e3
+
+kef = rkpKe(d, E, nu)
+ref = rkpRe(q)
+
+
+for n = 4:2:20
+    println(n)
+    m = makemeshonrectangle(l, l, n, n)
+    m.data[:kefunc] = kef
+    m.data[:refunc] = ref
+    bn = m.groups[:boundarynodes]
+    K, r = assembleKr(m, 4)
+    applydirichletbcs!(bn, K, r, [true, true, true, false])
+    w = K \ r
+    wfe = maximum(abs.(w[1:4:end]))
+
+    push!(hh, l / n)
+    push!(ww, wfe)
+    push!(nn, 4 * nnodes(m))
+    push!(ne, n)
+end
+
+scatterlines(hh, ww)
+```
+
+```{julia}
+w_fe = minimum(ww)
+```
+
+
+```{julia}
+w_czerny = q * l^4 / (E * d^3) * 0.0152
+```
+
+
+```{julia}
+100 * (w_fe - w_czerny) / w_czerny
+```
