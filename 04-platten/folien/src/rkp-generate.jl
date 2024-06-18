@@ -135,19 +135,55 @@ println("Somethings wrong with my code or with Symbolics.jl")
 
 ## Write code
 
-function writecode(a, Ke, b, re)
+function writecode(name, a, Ke, b, re, io::IO=stdout)
+
+    ne = size(Ke, 1)
+
+    println(io,
+        "function $(name)Ke(h, E, ν)
+    function keFunc(e)
+        a, b = ab(e)
+        Ke = zeros($ne, $ne)
+        D = E*h^3 / (12*(1 - ν^2))"
+    )
 
     for i = 1:size(Ke, 1), j = i:size(Ke, 2)
         if i == j
-            println("Ke[$i, $j] = $(Ke[i, j])")
+            println(io, "        Ke[$i, $j] = $(Ke[i, j])")
         else
-            println("Ke[$i, $j] = Ke[$j, $i] = $(Ke[i, j])")
+            println(io, "        Ke[$i, $j] = Ke[$j, $i] = $(Ke[i, j])")
         end
     end
 
-    # for i = 1:length(re)
-    #     println("re[$i] = $(re[i])")
-    # end
+    println(io,
+        "        return D*Ke
+    end
+    return keFunc
+end
+"
+    )
 
+    println(
+        io,
+        "
+function $(name)Re(q)
+    function reFunc(e)
+        a, b = ab(e)
+        re = zeros($ne)"
+    )
+    for i = 1:length(re)
+        println(io, "        re[$i] = $(simplifyx(re[i]))")
+    end
+    println(
+        io,
+        "        return q / 144*re
+    end
+    return reFunc
+end
+"
+    )
 end
 
+out = open("04-platten/folien/src/rkp-conforming.jl", "w")
+writecode("rkp", 1, Ke, 1, 144 * re, out)
+close(out)

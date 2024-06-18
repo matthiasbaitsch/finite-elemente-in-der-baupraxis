@@ -23,7 +23,7 @@ include("rkp.jl")
 ```
 
 ```{julia}
-h = 0.5
+h = 0.25
 ly = 5
 lx = 4
 
@@ -38,7 +38,7 @@ include("rkp.jl")
 
 d = 0.2
 E = 31000e6
-nu = 0.27
+nu = 0 * 0.27
 q = 8e3
 
 kef = rkpKe(d, E, nu)
@@ -58,7 +58,7 @@ applydirichletbcs!(bn, K, r, [true, true, true, false])
 
 w = K \ r
 N = length(w)
-mplot(m, w[4:4:end]) |> mconf()
+mplot(m, w[1:4:end]) |> mconf()
 ```
 
 Vergleich Czerny-Tafeln
@@ -93,8 +93,7 @@ q = 8e3
 kef = rkpKe(d, E, nu)
 ref = rkpRe(q)
 
-
-for n = 4:2:20
+for n = 4:2:30
     println(n)
     m = makemeshonrectangle(l, l, n, n)
     m.data[:kefunc] = kef
@@ -111,7 +110,7 @@ for n = 4:2:20
     push!(ne, n)
 end
 
-scatterlines(hh, ww)
+scatterlines(nn, ww)
 ```
 
 ```{julia}
