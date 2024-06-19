@@ -16,42 +16,7 @@ using Symbolics
 using SymbolicUtils
 using SymbolicUtils: Postwalk, Chain
 
-# function isxnumeric(x)
-#     for t = [Int32, Int64, BigInt, Float32, Float64, BigFloat, Rational]
-#         if typeof(x) <: t
-#             return true
-#         end
-#     end
-#     return false
-# end
-
-# function toint(e)
-#     @variables xone, xnull
-#     isinteger(x) = isxnumeric(x) && round(x, digits=0) == x
-#     e = simplify(e)
-#     e = simplify(e, Postwalk(Chain([@rule ~x::isinteger => xone * (Int(~x) + xnull)])))
-#     e = simplify(Symbolics.fixpoint_sub(e, Dict(xone => 1, xnull => 0)))
-#     return e
-# end
-
-# function toint!(c::Vector{Num})
-#     for i = eachindex(c)
-#         c[i] = toint(c[i])
-#     end
-#     return c
-# end
-
-# function MMJMesh.Mathematics._simplify(exponents::Matrix, coefficients::Vector{Num})
-#     return exponents, toint!(coefficients)
-# end
-
 ei(n, i) = [j == i ? 1 : 0 for j = 1:n]
-
-function pmat(a)
-    for i = 1:size(a, 1), j = 1:size(a, 2)
-        println(i, ", ", j, ": ", a[i, j])
-    end
-end
 
 ##
 @variables a, b, E, ν, h;
@@ -95,7 +60,8 @@ H4i = invM * P
 D = E * h^3 / (12 * (1 - ν^2))
 C = [1 ν 0; ν 1 0; 0 0 (1-ν)/2]
 
-B(w) = [-∂xx(w), -∂yy(w), 2 * ∂xy(w)]
+B(w) = [∂xx(w), ∂yy(w), 2 * ∂xy(w)]
+
 ae(w, δw) = simplifyx(integrate((B(w) ⋅ (C * B(δw))), 0 .. a, 0 .. b))
 be(δw) = simplifyx(integrate(δw, 0 .. a, 0 .. b))
 
