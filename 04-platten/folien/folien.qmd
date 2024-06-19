@@ -1,7 +1,12 @@
 ---
 title: 4. Finite Elemente für Plattentragwerke
+
 format:
     revealjs: default
+
+jupyter: julia-1.10
+
+fig-format: png
 ---
 
 # Inhalte
@@ -27,6 +32,265 @@ format:
 ![](00-pics/platten.svg)
 
 Quellen: @mittelstedt_theory_2023 und @baitsch_piecewise_2009
+
+
+# Grundideen Plattentheorie
+
+## Verschiebung
+
+![](00-pics/verschiebung.svg)
+
+
+## Kinematische Annahmen {.smaller}
+
+\newcommand{\R}{\mathbb{R}}
+
+:::: {.columns}
+
+::: {.column width="35%"}
+![](00-pics/verdrehung.svg)
+:::
+
+::: {.column width="65%"}
+- Eine Faser, die im unverformten Zustand senkrecht auf der Mittelfläche steht, bleibt gerade
+
+- Die senkrechte Verschiebung ist unabhängig von $z$
+
+- Die Mittelfläche verschiebt sich nur in vertikaler Richtung
+
+- Rotation der senkrechten Faser wird durch Winkelfunktionen $\alpha, \beta : \Omega \to \R$ beschrieben
+
+Damit (kleine Rotationen)
+
+$$
+\begin{align}
+u(x, y, z) & = z \cdot \sin(\alpha(x, y)) \approx z \cdot \alpha(x, y) \\
+v(x, y, z) & = z \cdot \sin(\beta(x, y))  \approx z \cdot \beta(x, y) \\
+w(x, y, z) & = w(x, y)
+\end{align}
+$$
+:::
+
+::::
+
+
+## Plattentheorien {.smaller}
+
+:::: {.columns}
+
+::: {.column width="35%"}
+![](00-pics/plattentheorien.svg)
+:::
+
+::: {.column width="65%"}
+
+**Kirchhoff**
+
+- Faser bleibt senkrecht auf Plattenmittelfläche
+
+- Etwas salopp: Quadrat bleibt Quadrat (blau)
+
+- Es gilt $\alpha(x, y) = -u_x(x, y)$ und $\beta(x, y) = -v_y(x, y)$
+
+$\rightarrow$ Gut geeignet für dünne Platten (Stahlbau) 
+
+**Reissner-Mindlin**
+
+- Faser dreht sich unabhängig von Plattenmittelfläche
+
+- Etwas salopp: Aus Quadrat wird Parallelogramm
+
+- Unabhängige Funktionen für $\alpha$ und $\beta$
+
+$\rightarrow$ Genauer für sehr dicke Platten
+
+:::
+
+::::
+
+Für 'normale' Anwendungen im Hochbau sind beide Theorien gut geeignet
+
+
+## Verzerrungen {.smaller}
+
+$$
+\begin{align}
+\varepsilon_x(x, y, z) 
+& = 
+\frac{\partial}{\partial x} u(x, y, z)
+=
+\frac{\partial}{\partial x} (z \cdot \alpha(x,y))
+=
+z \cdot \alpha_x(x,y)
+\\[1ex]
+\varepsilon_y(x, y, z) 
+& = 
+\frac{\partial}{\partial y} v(x, y, z)
+=
+\frac{\partial}{\partial y} (z \cdot \beta(x, y))
+=
+z \cdot \beta_y(x, y)
+\\[1ex]
+\gamma_{xy}(x, y, z)
+& =
+\frac{\partial}{\partial x} v(x, y, z) + \frac{\partial}{\partial y} u(x, y, z)
+=
+z \cdot (\alpha_y(x, y) + \beta_x(x, y))
+\\[1ex]
+\gamma_{xz}(x, y, z)
+& =
+\frac{\partial}{\partial x} w(x, y, z) + \frac{\partial}{\partial z} u(x, y, z)
+=
+w_x(x, y) + \alpha(x, y)
+\\[1ex]
+\gamma_{yz}(x, y, z)
+& =
+\frac{\partial}{\partial y} w(x, y, z) + \frac{\partial}{\partial z} v(x, y, z)
+=
+w_y(x, y) + \beta(x, y)
+\end{align}
+$$
+
+
+## Spannungen und Schnittgrößen {.smaller}
+
+![](00-pics/sigma-1.svg)
+
+- Spannungen aus linearem (!) Stoffgesetz
+
+- Schnittgrößen aus Integration der Spannungen
+
+- Moment $m_x$ auf Schnittfläche normal zur $x$-Achse, Moment $m_y$ analog
+
+
+## Spannungen und Schnittgrößen {.smaller}
+
+![](00-pics/sigma-2.svg)
+
+- Spannungen aus linearem (!) Stoffgesetz
+
+- Schnittgrößen aus Integration der Spannungen
+
+- Drillmomente $m_{xy}$ und $m_{yx}$ sind gleich groß
+
+
+## Spannungen und Schnittgrößen {.smaller}
+
+![](00-pics/sigma-3.svg)
+
+- Spannungen aus linearem (!) Stoffgesetz
+
+- Schnittgrößen aus Integration der Spannungen
+
+- Querkraft $q_x$ auf Schnittfläche normal zur $x$-Achse, Querkraft $q_y$ analog
+
+
+## Gleichgewichtsbedingungen {.smaller}
+
+:::: {.columns}
+::: {.column width="60%"}
+![](00-pics/gleichgewicht.svg)
+:::
+::: {.column width="40%"}
+**Differentialgleichungen**
+$$
+\begin{align}
+q_{x,x}(x, y) + q_{y,y}(x,y) & = q
+\\[1em]
+m_{xy,x}(x, y) + m_{y,y}(x, y) & = q_y(x, y)
+\\[1em]
+m_{x,x}(x, y) + m_{xy,y}(x, y) & = q_x(x, y)
+\end{align}
+$$
+:::
+::::
+
+**Vorgehensweise**
+
+- Gleichgewichtsbedingungen $\sum V, \sum M_x, \sum M_y$ aufstellen 
+
+- Grenzübergang $\Delta x, \Delta y \to 0$ 
+
+- Die Bezeichnung $m_{x,x}(x, y)$ meint die partielle Ableitung $\partial/\partial x \; m_x(x, y)$
+
+
+## Alles zusammen
+
+![](00-pics/schema.svg)
+
+
+## Plattengleichung Kirchhoff {.smaller}
+
+$$
+   \frac{h^3 E}{12(1-\nu^2)} (w_{xxxx}(x, y) + 2w_{xxyy}(x, y) + w_{yyyy}(x, y)) = q
+$$
+
+- Eine partielle Differentialgleichungen **vierter** Ordnung
+
+- Eine unbekannte Funktionen
+
+- Analytische Lösung für Kreisplatte
+
+- Lösungen für Rechteckplatten in Czerny-Tafeln (Betonkalender)
+
+
+## Plattengleichungen Reissner-Mindlin {.smaller}
+
+$$
+\begin{align}
+  \tfrac{h^3}{12} (\tfrac{E}{1-\nu^2}(\alpha_{xx} + \nu \beta_{xy})+G(\alpha_{yy}+\beta_{xy}))
+  -
+  kGh(\alpha + w_x)
+  & = 0
+  \\[1ex]
+  \tfrac{h^3}{12} (\tfrac{E}{1-\nu^2}(\nu\alpha_{xy} +  \beta_{yy})+G(\alpha_{xy}+\beta_{xx}))
+  -
+  kGh(\beta + w_y)
+  & = 0
+  \\[1ex]
+  kGh(\alpha_x + \beta_y + w_{xx} + w_{yy}) + q &= 0
+\end{align}
+$$
+
+- Drei partielle Differentialgleichungen **zweiter** Ordnung
+
+- Drei unbekannte Funktionen
+
+- Interessanterweise einfacher zu programmieren als Kirchhoff
+
+- Lösungen für Rechteckplatten nach Stiglat-Wippel (Betonkalender)
+
+
+# Näherungslösung mit Finiten Elementen
+
+```{julia}
+include("setup-slides.jl")
+```
+
+
+## Beispiel {.smaller}
+
+```{julia}
+m, w = plate(8, 8, 4, 4, params)
+
+f = mkfig(h=600)
+mplot!(m, edgesvisible=false, nodesvisible=false)
+f
+```
+
+- Deckenplatte 8 auf 8 Meter, 20cm dick, q = 
+
+
+## Grundidee 1: Vorgegebene Funktionen zu Näherungslösung kombinieren
+
+
+
+## Anmerkungen
+
+Das waren die (meiner Meinung nach) wichtigsten Ideen. Genauer nachlesen:
+
+- Plattentheorie: @altenbach_ebene_2023 und @mittelstedt_theory_2023
+
 
 # Literatur
 

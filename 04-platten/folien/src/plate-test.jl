@@ -15,7 +15,7 @@ include("fem.jl")
 include("hermite4.jl")
 
 set_theme!(theme_minimal())
-update_theme!(colormap=:blues)
+update_theme!(colormap=Reverse(:blues))
 
 
 # Make and solve plate model
@@ -83,19 +83,13 @@ function fsize(face)
     return p, l1, l2
 end
 
-function makegmap(face) # TODO move to mmjmesh
-    nn(x) = (1 + x) / 2
-    p, a, b = fsize(face)
-    return x -> p + [nn(x[1]) * a, nn(x[2] * b)]
-end
-
 function plotmeshsolution(m, mf, cr, s)
     fig = Figure()
     ax = Axis3(fig[1, 1], protrusions=0, aspect=:data)
     hidedecorations!(ax)
     for f = faces(m)
         fplot3d!(
-            mf(f), gmap=makegmap(f), mesh=0, npoints=50, colorrange=cr, zscale=s
+            mf(f), gmap=_makegmap(f), mesh=0, npoints=50, colorrange=cr, zscale=s
         )
     end
     fig
@@ -118,27 +112,25 @@ include("mplot3d.jl")
 
 WGLMakie.activate!()
 m, w = plate(10, 5, 4, 2, params)
-plotmeshsolution2(
+
+fig = Figure()
+Axis3(fig[1, 1], aspect=:data)
+mplot3d!(
     m, makefacefunction(w),
     zscale=2 / maximum(w),
+    color=3,
     npoints=25
 )
+fig
+
 
 ##
 
 mf = makefacefunction(w)
-g = mf(face(m,1))
-#g = MPolynomial([2 1; 0 1], [1.0, -1.0], QHat)
+g = mf(face(m, 4))
+
 fig = Figure()
 Axis3(fig[1, 1])
-fplot3d!(g)
+fplot3d!(g, npoints=200)
 fig
 
-##
-WGLMakie.activate!()
-
-ei(n, i) = [j == i ? 1 : 0 for j = 1:n]
-plotmeshsolution2(m, makefacefunction(ei(N, 76)), (-0.02, 0.02), 25)
-
-
-#plot(w[2:4:end])

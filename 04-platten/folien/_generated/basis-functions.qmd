@@ -1,0 +1,215 @@
+## 
+Basisfunktion $\quad \varphi_{1}$
+```{julia}
+plotw(
+    m, 
+    ei(NN, adofs[1]), 
+    w=1200, h=550, colorrange=[-1, 1], colormap=:redblue,
+    limits=(nothing,nothing,(-1,1))
+)
+```
+
+## 
+Basisfunktion $\quad \varphi_{2}$
+```{julia}
+plotw(
+    m, 
+    ei(NN, adofs[2]), 
+    w=1200, h=550, colorrange=[-1, 1], colormap=:redblue,
+    limits=(nothing,nothing,(-1,1))
+)
+```
+
+## 
+Basisfunktion $\quad \varphi_{3}$
+```{julia}
+plotw(
+    m, 
+    ei(NN, adofs[3]), 
+    w=1200, h=550, colorrange=[-1, 1], colormap=:redblue,
+    limits=(nothing,nothing,(-1,1))
+)
+```
+
+## 
+Basisfunktion $\quad \varphi_{4}$
+```{julia}
+plotw(
+    m, 
+    ei(NN, adofs[4]), 
+    w=1200, h=550, colorrange=[-1, 1], colormap=:redblue,
+    limits=(nothing,nothing,(-1,1))
+)
+```
+
+## 
+Basisfunktion $\quad \varphi_{5}$
+```{julia}
+plotw(
+    m, 
+    ei(NN, adofs[5]), 
+    w=1200, h=550, colorrange=[-1, 1], colormap=:redblue,
+    limits=(nothing,nothing,(-1,1))
+)
+```
+
+## 
+Basisfunktion $\quad \varphi_{6}$
+```{julia}
+plotw(
+    m, 
+    ei(NN, adofs[6]), 
+    w=1200, h=550, colorrange=[-1, 1], colormap=:redblue,
+    limits=(nothing,nothing,(-1,1))
+)
+```
+
+## 
+Basisfunktion $\quad \varphi_{7}$
+```{julia}
+plotw(
+    m, 
+    ei(NN, adofs[7]), 
+    w=1200, h=550, colorrange=[-1, 1], colormap=:redblue,
+    limits=(nothing,nothing,(-1,1))
+)
+```
+
+## 
+Basisfunktion $\quad \varphi_{8}$
+```{julia}
+plotw(
+    m, 
+    ei(NN, adofs[8]), 
+    w=1200, h=550, colorrange=[-1, 1], colormap=:redblue,
+    limits=(nothing,nothing,(-1,1))
+)
+```
+
+## 
+Basisfunktion $\quad \varphi_{9}$
+```{julia}
+plotw(
+    m, 
+    ei(NN, adofs[9]), 
+    w=1200, h=550, colorrange=[-1, 1], colormap=:redblue,
+    limits=(nothing,nothing,(-1,1))
+)
+```
+
+## 
+Basisfunktion $\quad \varphi_{10}$
+```{julia}
+plotw(
+    m, 
+    ei(NN, adofs[10]), 
+    w=1200, h=550, colorrange=[-1, 1], colormap=:redblue,
+    limits=(nothing,nothing,(-1,1))
+)
+```
+
+## 
+Basisfunktion $\quad \varphi_{11}$
+```{julia}
+plotw(
+    m, 
+    ei(NN, adofs[11]), 
+    w=1200, h=550, colorrange=[-1, 1], colormap=:redblue,
+    limits=(nothing,nothing,(-1,1))
+)
+```
+
+## 
+Basisfunktion $\quad \varphi_{12}$
+```{julia}
+plotw(
+    m, 
+    ei(NN, adofs[12]), 
+    w=1200, h=550, colorrange=[-1, 1], colormap=:redblue,
+    limits=(nothing,nothing,(-1,1))
+)
+```
+
+## 
+Basisfunktion $\quad \varphi_{13}$
+```{julia}
+plotw(
+    m, 
+    ei(NN, adofs[13]), 
+    w=1200, h=550, colorrange=[-1, 1], colormap=:redblue,
+    limits=(nothing,nothing,(-1,1))
+)
+```
+
+## 
+Basisfunktion $\quad \varphi_{14}$
+```{julia}
+plotw(
+    m, 
+    ei(NN, adofs[14]), 
+    w=1200, h=550, colorrange=[-1, 1], colormap=:redblue,
+    limits=(nothing,nothing,(-1,1))
+)
+```
+
+## 
+Basisfunktion $\quad \varphi_{15}$
+```{julia}
+plotw(
+    m, 
+    ei(NN, adofs[15]), 
+    w=1200, h=550, colorrange=[-1, 1], colormap=:redblue,
+    limits=(nothing,nothing,(-1,1))
+)
+```
+
+## 
+Basisfunktion $\quad \varphi_{16}$
+```{julia}
+plotw(
+    m, 
+    ei(NN, adofs[16]), 
+    w=1200, h=550, colorrange=[-1, 1], colormap=:redblue,
+    limits=(nothing,nothing,(-1,1))
+)
+```
+
+## 
+Zufällige Kombination 1/3
+```{julia}
+wrand = zeros(NN)
+wrand[adofs] = rand(NNa)
+plotw(
+    m, 
+    wrand, 
+    w=1200, h=550, colorrange=[-1, 1], colormap=:redblue,
+    limits=(nothing,nothing,(-1,1))
+)
+```
+
+## 
+Zufällige Kombination 2/3
+```{julia}
+wrand = zeros(NN)
+wrand[adofs] = rand(NNa)
+plotw(
+    m, 
+    wrand, 
+    w=1200, h=550, colorrange=[-1, 1], colormap=:redblue,
+    limits=(nothing,nothing,(-1,1))
+)
+```
+
+## 
+Zufällige Kombination 3/3
+```{julia}
+wrand = zeros(NN)
+wrand[adofs] = rand(NNa)
+plotw(
+    m, 
+    wrand, 
+    w=1200, h=550, colorrange=[-1, 1], colormap=:redblue,
+    limits=(nothing,nothing,(-1,1))
+)
+```
+

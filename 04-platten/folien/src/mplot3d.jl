@@ -1,15 +1,33 @@
-using WGLMakie
-using CairoMakie
-
+using MakieCore
 
 using MMJMesh.Plots: sample2d, sample2dlines
 
+function _fsize(face)
+    x = coordinates(face)
+    p = x[:, 1]
+    l1 = x[1, 2] - x[1, 1]
+    l2 = x[2, 3] - x[2, 2]
+    return p, l1, l2
+end
+
+function _makegmap(face) # TODO move to mmjmesh
+    nn(x) = (1 + x) / 2
+    p, a, b = _fsize(face)
+    return x -> p + [nn(x[1]) * a, nn(x[2] * b)]
+end
 
 
-function collectlines(cl)
-    l1 = Float64[]
-    l2 = Float64[]
-    l3 = Float64[]
+function _getcolor(x::Matrix, color, zscale)
+    if typeof(color) == Int && 1 <= color <= 3
+        return x[color, :] / zscale
+    end
+    return color
+end
+
+function _collectlines(cl)
+    l1 = Float32[]
+    l2 = Float32[]
+    l3 = Float32[]
     for c in cl
         append!(l1, c[1])
         push!(l1, NaN)
@@ -21,9 +39,9 @@ function collectlines(cl)
     return l1, l2, l3
 end
 
-function collectfaces(cf)
-    xx = [[], [], []]
-    tt = [[], [], []]
+function _collectfaces(cf)
+    xx = [Float32[], Float32[], Float32[]]
+    tt = [Int[], Int[], Int[]]
     for c in cf
         xf, tf = c
         pos = length(xx[1])
@@ -32,33 +50,62 @@ function collectfaces(cf)
             append!(tt[i], pos .+ tf[:, i])
         end
     end
-    x = Float64.(stack(xx))
-    t = Int.(stack(tt))
-    return x, t
+    return stack(xx, dims=1), stack(tt)
 end
 
-function plotmeshsolution2(m, mf; npoints=20, zscale=1, mesh=4)
-
+function _sample(m, mf, npoints, zscale, mesh)
     cf = []
     cl1 = []
     cl2 = []
-
     for face = faces(m)
         f = mf(face)
-        gmap = makegmap(face)
-        push!(cf, sample2d(f, domain=QHat, npoints=2npoints, gmap=gmap, zscale=zscale))
+        gmap = _makegmap(face)
+        push!(cf, sample2d(f, domain=QHat, npoints=2 * npoints, gmap=gmap, zscale=zscale))
         push!(cl1, sample2dlines(f, domain=QHat, npoints=npoints, mesh=0, gmap=gmap, zscale=zscale))
         push!(cl2, sample2dlines(f, domain=QHat, npoints=npoints, mesh=mesh, gmap=gmap, zscale=zscale))
     end
+    return cf, cl1, cl2
+end
 
-    fig = Figure()
-    ax = Axis3(fig[1, 1], aspect=:data)
-    hidedecorations!(ax)
-    lines!(collectlines(cl1)..., color=:black, linewidth=2)
-    lines!(collectlines(cl2)..., color=:black, linewidth=1)
+MakieCore.@recipe(MPlot3D, functions) do scene
+    attr = Attributes(
+        npoints=30,
+        color=3,
+        meshcolor=:black,
+        mesh=5,
+        edgesvisible=true,
+        edgeslinewidth=2,
+        colorrange=MakieCore.automatic,
+        colormap=MakieCore.theme(scene, :colormap),
+        zscale=1
+    )
+    MakieCore.generic_plot_attributes!(attr)
+    MakieCore.colormap_attributes!(attr, MakieCore.theme(scene, :colormap))
+    return attr
+end
 
-    x, t = collectfaces(cf)
-    mesh!(x, t, color=x[:, 3] / zscale)
+function MakieCore.plot!(plot::MPlot3D)
+    attributes = plot.attributes
+    npoints = attributes.npoints[]
+    color = attributes.color[]
+    meshcolor = attributes.meshcolor[]
+    mesh = attributes.mesh[]
+    edgesvisible = attributes.edgesvisible[]
+    edgeslinewidth = attributes.edgeslinewidth[]
+    colorrange = attributes.colorrange[]
+    colormap = attributes.colormap[]
+    zscale = attributes.zscale[]
 
-    return fig
+    m = plot.args[1][]
+    mf = plot.args[2][]
+    cf, cl1, cl2 = _sample(m, mf, npoints, zscale, mesh)
+    x, t = _collectfaces(cf)
+
+    mesh!(plot, x, t, color=_getcolor(x, color, zscale), colormap=colormap, colorrange=colorrange)
+    lines!(plot, _collectlines(cl2)..., color=meshcolor, linewidth=1.25)
+    if edgesvisible
+        lines!(plot, _collectlines(cl1)..., color=meshcolor, linewidth=edgeslinewidth)
+    end
+
+    return plot
 end
