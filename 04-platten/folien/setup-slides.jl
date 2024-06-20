@@ -22,7 +22,7 @@ include("src/hermite4.jl")
 include("src/mplot3d.jl")
 
 set_theme!(theme_minimal())
-update_theme!(colormap=:blues)
+update_theme!(colormap=:aquamarine)
 
 function makefacefunction(w)
     function doit(face)

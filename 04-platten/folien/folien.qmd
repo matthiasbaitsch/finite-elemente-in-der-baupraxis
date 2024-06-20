@@ -9,6 +9,12 @@ jupyter: julia-1.10
 fig-format: png
 ---
 
+
+\newcommand{\mmat}[1]{\begin{pmatrix} #1 \end{pmatrix}}
+\newcommand{\SI}[2]{#1\,\text{#2}}
+\newcommand{\R}{\mathbb{R}}
+
+
 # Inhalte
 
 # {background-image="00-pics/platten.svg" background-opacity="0.2"}
@@ -43,8 +49,6 @@ Quellen: @mittelstedt_theory_2023 und @baitsch_piecewise_2009
 
 ## Kinematische Annahmen {.smaller}
 
-\newcommand{\R}{\mathbb{R}}
-
 :::: {.columns}
 
 ::: {.column width="35%"}
@@ -52,20 +56,22 @@ Quellen: @mittelstedt_theory_2023 und @baitsch_piecewise_2009
 :::
 
 ::: {.column width="65%"}
-- Eine Faser, die im unverformten Zustand senkrecht auf der Mittelfläche steht, bleibt gerade
+- Faser, die im unverformten Zustand senkrecht auf der Mittelfläche steht, bleibt gerade
 
-- Die senkrechte Verschiebung ist unabhängig von $z$
+- Senkrechte Verschiebung $w$ ist unabhängig von $z$
 
-- Die Mittelfläche verschiebt sich nur in vertikaler Richtung
+- Mittelfläche verschiebt sich nur in vertikaler Richtung
 
-- Rotation der senkrechten Faser wird durch Winkelfunktionen $\alpha, \beta : \Omega \to \R$ beschrieben
+- Rotation senkrechte Faser beschrieben durch Winkelfunktionen $\alpha, \beta : \Omega \to \R$
 
 Damit (kleine Rotationen)
 
 $$
 \begin{align}
-u(x, y, z) & = z \cdot \sin(\alpha(x, y)) \approx z \cdot \alpha(x, y) \\
-v(x, y, z) & = z \cdot \sin(\beta(x, y))  \approx z \cdot \beta(x, y) \\
+u(x, y, z) & = z \cdot \sin(\alpha(x, y)) \approx z \cdot \alpha(x, y) 
+\\[1ex]
+v(x, y, z) & = z \cdot \sin(\beta(x, y))  \approx z \cdot \beta(x, y) 
+\\[1ex]
 w(x, y, z) & = w(x, y)
 \end{align}
 $$
@@ -92,6 +98,8 @@ $$
 
 - Es gilt $\alpha(x, y) = -u_x(x, y)$ und $\beta(x, y) = -v_y(x, y)$
 
+[]{.up10}
+
 $\rightarrow$ Gut geeignet für dünne Platten (Stahlbau) 
 
 **Reissner-Mindlin**
@@ -101,6 +109,8 @@ $\rightarrow$ Gut geeignet für dünne Platten (Stahlbau)
 - Etwas salopp: Aus Quadrat wird Parallelogramm
 
 - Unabhängige Funktionen für $\alpha$ und $\beta$
+
+[]{.up10}
 
 $\rightarrow$ Genauer für sehr dicke Platten
 
@@ -122,7 +132,7 @@ $$
 \frac{\partial}{\partial x} (z \cdot \alpha(x,y))
 =
 z \cdot \alpha_x(x,y)
-\\[1ex]
+\\[1em]
 \varepsilon_y(x, y, z) 
 & = 
 \frac{\partial}{\partial y} v(x, y, z)
@@ -130,19 +140,19 @@ z \cdot \alpha_x(x,y)
 \frac{\partial}{\partial y} (z \cdot \beta(x, y))
 =
 z \cdot \beta_y(x, y)
-\\[1ex]
+\\[1em]
 \gamma_{xy}(x, y, z)
 & =
 \frac{\partial}{\partial x} v(x, y, z) + \frac{\partial}{\partial y} u(x, y, z)
 =
 z \cdot (\alpha_y(x, y) + \beta_x(x, y))
-\\[1ex]
+\\[1em]
 \gamma_{xz}(x, y, z)
 & =
 \frac{\partial}{\partial x} w(x, y, z) + \frac{\partial}{\partial z} u(x, y, z)
 =
 w_x(x, y) + \alpha(x, y)
-\\[1ex]
+\\[1em]
 \gamma_{yz}(x, y, z)
 & =
 \frac{\partial}{\partial y} w(x, y, z) + \frac{\partial}{\partial z} v(x, y, z)
@@ -150,6 +160,13 @@ w_x(x, y) + \alpha(x, y)
 w_y(x, y) + \beta(x, y)
 \end{align}
 $$
+
+TODO: Mit Zeichnung illustrieren
+
+
+## Spannungen und Schnittgrößen {.smaller}
+
+TODO: Stoffgesetz und Querdehnzahl erläutern
 
 
 ## Spannungen und Schnittgrößen {.smaller}
@@ -227,7 +244,7 @@ $$
 
 - Eine partielle Differentialgleichungen **vierter** Ordnung
 
-- Eine unbekannte Funktionen
+- Eine unbekannte Funktionen $w \to \R$
 
 - Analytische Lösung für Kreisplatte
 
@@ -254,7 +271,7 @@ $$
 
 - Drei partielle Differentialgleichungen **zweiter** Ordnung
 
-- Drei unbekannte Funktionen
+- Drei unbekannte Funktionen $w, \alpha, \beta: \Omega \to \R$
 
 - Interessanterweise einfacher zu programmieren als Kirchhoff
 
@@ -264,25 +281,307 @@ $$
 # Näherungslösung mit Finiten Elementen
 
 ```{julia}
-include("setup-slides.jl")
+include("setup-slides.jl");
 ```
 
-
-## Beispiel {.smaller}
+## Anwendungsbeispiel {.smaller}
 
 ```{julia}
-m, w = plate(8, 8, 4, 4, params)
+m, w = plate(8, 8, 3, 3, params);
+NN = 4 * nnodes(m)
+nb = collect(m.groups[:boundarynodes])
+ni = [i for i in 1:nnodes(m) if i ∉ nb]
+adofs = dofs(ni, 4)
+NNa = length(adofs);
+```
 
-f = mkfig(h=600)
+:::: {.columns}
+::: {.column width="50%"}
+```{julia}
+f = mkfig(a3d=false,w=800, h=800)
 mplot!(m, edgesvisible=false, nodesvisible=false)
 f
 ```
+:::
+::: {.column width="50%"}
+[]{.down20}
 
-- Deckenplatte 8 auf 8 Meter, 20cm dick, q = 
+- Deckenplatte $\SI{8}{m} \times \SI{8}{m}$ 
+
+- Allseitig eingespannt gelagert
+
+- $E=\SI{31000}{N/mm}^2$ und $\nu = 0$
+
+- Dicke $d = \SI{20}{cm}$, 
+
+- Belastung $q = \SI{5}{kN/m}^2$
+
+- Kirchhoff-Plattentheorie
+
+$\nu = 0$ für Vergleich mit Czerny-Tafeln
+:::
+::::
 
 
-## Grundidee 1: Vorgegebene Funktionen zu Näherungslösung kombinieren
+## 💡 FE: Näherungslösung {.smaller}
 
+$\quad$
+
+Vorgegebene Funktionen zu Näherungslösung zusammenbauen
+
+$$
+    w_h(x, y) = \sum_{i=1}^N \hat w_i \cdot \varphi_i(x, y)
+$$
+
+- $w_h$ ist die Näherungslösung (Index $h$ später)
+
+- $\varphi_i: \Omega \to \R$ heißen Basisfunktionen
+
+- $\Omega$ ist das Berechnungsgebiet (die Platte)
+
+- $\hat w_i \in \R$ heißen Freiheitsgrade
+
+- $N$ ist die Anzahl der Freiheitsgrade
+
+```{julia}
+out = open("_generated/basis-functions.qmd", "w")
+
+for i in 1:length(adofs)
+println(out,
+"## 
+Basisfunktion \$\\quad \\varphi_{$i}\$
+```{julia}
+plotw(
+    m, 
+    ei(NN, adofs[$i]), 
+    w=1200, h=550, # colorrange=[-1, 1], # colormap=:redblue,
+    limits=(nothing,nothing,(-1,1))
+)
+\`\`\`
+"
+)
+end
+
+
+for i in 1:3
+println(out,
+"## 
+Zufällige Kombination $i/3
+```{julia}
+wrand = zeros(NN)
+wrand[adofs] = rand(NNa)
+plotw(
+    m, 
+    wrand, 
+    w=1200, h=550, # colorrange=[-1, 1], # colormap=:redblue,
+    limits=(nothing,nothing,(-1,1))
+)
+\`\`\`
+"
+)
+end
+
+close(out)
+```
+
+{{< include _generated/basis-functions.qmd >}}
+
+
+## 💡 FE: Basisfunktionen elementweise {.smaller}
+
+:::: {.columns}
+::: {.column width="50%"}
+```{julia}
+f = mkfig(a3d=false,w=800, h=800)
+mplot!(m, edgesvisible=true, nodesvisible=true)
+f
+```
+:::
+::: {.column width="50%"}
+[]{.down20}
+
+- Gebiet wird in Elemente zerlegt
+
+- In der Ebene: Drei- oder Vierecke
+
+- Elemente an Knoten miteinander verbunden
+
+- Anzahl der Elemente frei wählbar
+:::
+::::
+
+
+## 💡 FE: Basisfunktionen elementweise {.smaller}
+
+:::: {.columns}
+::: {.column width="55%"}
+**Funktionen für ein Element**
+```{julia}
+include("setup-slides.jl");
+GLMakie.activate!()
+fplot3d(H4) # ,colormap=:redblue)
+```
+:::
+::: {.column width="45%"}
+**Kombination der Elementfunktionen**
+```{julia}
+plotw(
+    m, 
+    ei(NN, adofs[5]), 
+    w=1200, h=550, # colorrange=[-1, 1], # colormap=:redblue,
+    edgesvisible=true, mesh=nothing,
+    limits=(nothing,nothing,(-1,1))
+)
+```
+[]{.up40}
+```{julia}
+plotw(
+    m, 
+    ei(NN, adofs[12]), zs=4,
+    w=1200, h=550, # colorrange=[-1, 1], # colormap=:redblue,
+    edgesvisible=true, mesh=nothing,
+    limits=(nothing,nothing,(-1,1))
+)
+```
+:::
+::::
+
+$\rightarrow$ Wichtig bei Kirchhoff-Platte: Kein Knick an den Nahtstellen!
+
+
+## 💡 FE: Optimale Koeffizienten $\hat w_i$ {.smaller}
+
+Bestimmung aus linearem Gleichungssystem
+
+$$
+    \mathbf{K}\hat{\mathbf{w}} = \mathbf{r}
+$$
+
+- Herleitung: Koeffizienten so wählen, dass Fehler im 'gewichteten Mittel' minimal wird
+
+- Näherungslösung: Differentialgleichung wird nicht in jedem Punkt erfüllt
+
+- Diskretisierungsfehler: Unterschied zwischen Näherung $w_h$ und exakter Lösung $w$
+
+- Auflagerbedingungen und Lasten im LGS berücksichtigen
+
+- Matrix $\mathbf{K}$ wird wieder aus Elementmatrizen assembliert
+
+- Elementmatrizen nicht unmittelbar physikalisch interpretierbar
+
+- Kinematisches System wie für Stabtragwerke
+
+$\rightarrow$ Mathematische Theorie umfangreich und schwierig!
+
+
+## Anwendungsbeispiel
+
+```{julia}
+function plotsol(n,mesh)
+m, w = plate(8, 8, n, n, params);
+plotw(
+    m, 
+    w, 
+    w=1200, h=650,
+    zs=2400*maximum(w),
+    edgesvisible=true, edgeslinewidth=4, mesh=mesh,
+    limits=(nothing,nothing,(0,1.15))
+)
+end;
+```
+
+
+## Lösung mit 4 Elementen
+```{julia}
+plotsol(2, 5)
+```
+
+
+## Lösung mit 9 Elementen
+```{julia}
+plotsol(3, 5)
+```
+
+
+## Lösung mit 16 Elementen
+```{julia}
+plotsol(4, 5)
+```
+
+
+## Lösung mit 100 Elementen
+```{julia}
+plotsol(10, 5)
+```
+
+
+## Konvergenz
+```{julia}
+CairoMakie.activate!()
+l = 8
+nn = [];
+ww = [];
+for n = 4:2:30
+    mn, wn = plate(l, l, n, n, params)
+    push!(nn, 4 * nnodes(mn))
+    push!(ww, maximum(abs.(wn[1:4:end])))
+end
+w_fe = ww[end];
+```
+
+:::: {.columns}
+::: {.column width="50%"}
+```{julia}
+fig = Figure()
+Axis(fig[1, 1], xlabel="Anzahl Freiheitsgrade", ylabel="Maximale Verschiebung in mm")
+scatterlines!(nn, 1000*ww)
+fig
+```
+:::
+::: {.column width="50%"}
+- Verschiebung nähert sich exakter Lösung an
+- Wenige Elemente: Verschiebung zu groß
+- Wichtiger: Schnittgrößen - später
+:::
+TODO: Vergleich Reissner-Mindlin
+::::
+
+
+## Vergleich mit Czerny-Tafel {.smaller}
+
+![](00-pics/czerny.png)
+
+```{julia}
+#| echo: true
+w_czerny = 5e3 * 8^4 / (31000e6 * 0.2^3) * 0.0152
+100 * abs(w_fe - w_czerny) / w_czerny
+```
+
+$\rightarrow$ Hervorragende Übereinstimmung mit 0.05 Prozent Unterschied
+
+
+## Schnittgrößen und Spannungen 
+
+Wird noch ergänzt
+
+
+# Zusammenfassung
+
+##
+
+- Plattentheorien: Schubstarr (Kirchhoff) und schubweich (Reissner-Mindlin)
+
+- Differentialgleichungen i.d.R. nicht auf dem Papier lösbar
+
+- Kernideen der Finite-Elemente-Methode
+
+  1. Näherungslösung $w_h(x, y) = \sum \hat w_i \cdot \varphi_i(x, y)$ 
+
+  1. Basisfunktionen $\varphi_i$ elementweise definiert
+
+  1. Optimale Koeffizienten $\hat w_i$ aus LGS $\mathbf{K}\hat{\mathbf{w}} = \mathbf{r}$
+
+- Diskretisierungsfehler abhängig von Anzahl der Elemente
 
 
 ## Anmerkungen
@@ -291,6 +590,11 @@ Das waren die (meiner Meinung nach) wichtigsten Ideen. Genauer nachlesen:
 
 - Plattentheorie: @altenbach_ebene_2023 und @mittelstedt_theory_2023
 
+- Finite Elemente
 
-# Literatur
+  - Praktisch orientiert: @werkle_finite_2008 und @fish_2007
+
+  - Mathematisch ausgerichtet: @johnson_numerical_1987 und @braess_finite_2013
+
+# Literatur {.smaller}
 
