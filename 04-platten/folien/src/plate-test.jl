@@ -1,136 +1,127 @@
-using MMJMesh
-using MMJMesh.Meshes
-using MMJMesh.Plots
-using MMJMesh.Utilities
+include("setup.jl")
 
 using WGLMakie
-using CairoMakie
-
-using Revise
-using VarStructs
-using LinearAlgebra
-
-include("rkp.jl")
-include("fem.jl")
-include("hermite4.jl")
-
-set_theme!(theme_minimal())
-update_theme!(colormap=Reverse(:blues))
-
-
-# Make and solve plate model
-
-params = @var Params()
-
-params.q = 8
-params.nu = 0
-params.d = 0.2
-params.E = 31000e6
-
-function plate(lx, ly, nx, ny, p)
-    m = makemeshonrectangle(lx, ly, nx, ny)
-    m.data[:kefunc] = rkpKe(p.d, p.E, p.nu)
-    m.data[:refunc] = rkpRe(p.q)
-    K, r = assembleKr(m, 4)
-    applydirichletbcs!(m.groups[:boundarynodes], K, r, [true, true, true, false])
-    w = K \ r
-    return m, w
-end
+WGLMakie.activate!()
 
 
 ## Analysis of one plate
-
-m, w = plate(10, 6, 20, 12, params)
-
+# params.nu = 0.3
+m, w, nf = plate(10, 10, 50, 50, params, :reissner_mindlin)
 mplot(m, edgesvisible=true) |> mconf()
-mplot(m, edgesvisible=true, w[1:4:end]) |> mconf()
-mplot(m, edgesvisible=true, w[2:4:end]) |> mconf()
-mplot(m, edgesvisible=true, w[3:4:end]) |> mconf()
-mplot(m, edgesvisible=true, w[4:4:end]) |> mconf()
+update_theme!(colormap=:acton)
+mplot(m, edgesvisible=true, w[1:nf:end]) |> mconf()
+update_theme!(colormap=:redblue)
+mplot(m, edgesvisible=true, w[2:nf:end]) |> mconf()
+mplot(m, edgesvisible=true, w[3:nf:end]) |> mconf()
+
+maximum(w[1:nf:end])
+
+#mplot(m, edgesvisible=true, w[4:nf:end]) |> mconf()
 
 
-## Convergence study for quadratic plate with lx = ly = 10
+## Convergence study for quadratic plate - Czerny
 
+# Compute
 l = 10
-hh = [];
-nn = [];
-ww = [];
+params.h = 0.2
+params.nu = 0
+
+hh = []
+nn = []
+wwc = []
+wwn = []
 for n = 4:2:30
     print("$n ")
-    mn, wn = plate(l, l, n, n, params)
+    mn, wn, nf = plate(l, l, n, n, params, :kirchhoff_conforming)
     push!(hh, l / n)
     push!(nn, 4 * nnodes(mn))
-    push!(ww, maximum(abs.(wn[1:4:end])))
+    push!(wwc, maximum(abs.(wn[1:nf:end])))
+    mn, wn, nf = plate(l, l, n, n, params, :kirchhoff_nonconforming)
+    push!(wwn, maximum(abs.(wn[1:nf:end])))
 end
 println()
-scatterlines(hh, ww)
 
-
-## Comparison to Czerny
-
-w_fe = ww[end]
+# Comparison to Czerny tables
+w_fe = wwc[end]
 w_czerny = params.q * l^4 / (params.E * params.d^3) * 0.0152
 100 * abs(w_fe - w_czerny) / w_czerny
 
+# Plot
+f = Figure()
+Axis(f[1, 1])
+p3 = lines!(hh, 1000 * w_czerny * ones(length(hh)), color=:gray)
+p1 = scatterlines!(hh, 1000 * wwc)
+p2 = scatterlines!(hh, 1000 * wwn)
+Legend(f[1, 2], [p1, p2, p3], ["Compatible", "Incompatible", "Czerny"])
+f
+
+
+## Convergence study for quadratic plate - With Reissner Mindlin
+
+# Compute
+l = 10
+params.d = 0.5
+params.nu = 0.27
+
+hh = []
+nn = []
+wwc = []
+wwn = []
+for n = 4:2:30
+    print("$n ")
+    mn, wn, nf = plate(l, l, n, n, params, :kirchhoff_conforming)
+    push!(hh, l / n)
+    push!(nn, 4 * nnodes(mn))
+    push!(wwc, maximum(abs.(wn[1:nf:end])))
+    mn, wn, nf = plate(l, l, n, n, params, :kirchhoff_nonconforming)
+    push!(wwn, maximum(abs.(wn[1:nf:end])))
+end
+println()
+
+hhrm = []
+nnrm = []
+wwrm = []
+for n = 2 .^ collect((3:7))
+    print("$n ")
+    mn, wn, nf = plate(l, l, n, n, params, :reissner_mindlin)
+    push!(hhrm, l / n)
+    push!(nnrm, 4 * nnodes(mn))
+    push!(wwrm, maximum(abs.(wn[1:nf:end])))
+end
+println()
+
+# Plot
+f = Figure()
+Axis(f[1, 1])
+p1 = scatterlines!(hh, 1000 * wwc)
+p2 = scatterlines!(hh, 1000 * wwn)
+p3 = scatterlines!(hhrm, 1000 * wwrm)
+Legend(f[1, 2], [p1, p2, p3], ["Compatible", "Incompatible", "Reissner-Mindlin"])
+f
 
 ## Plots
 
-function fsize(face)
-    x = coordinates(face)
-    p = x[:, 1]
-    l1 = x[1, 2] - x[1, 1]
-    l2 = x[2, 3] - x[2, 2]
-    return p, l1, l2
-end
-
-function plotmeshsolution(m, mf, cr, s)
-    fig = Figure()
-    ax = Axis3(fig[1, 1], protrusions=0, aspect=:data)
-    hidedecorations!(ax)
-    for f = faces(m)
-        fplot3d!(
-            mf(f), gmap=_makegmap(f), mesh=0, npoints=50, colorrange=cr, zscale=s
-        )
-    end
-    fig
-end
-
-function makefacefunction(w)
-    function doit(face)
-        idxs = dofs(nodeindices(face), 4)
-        _, a, b = fsize(face)
-        t = repeat([1, a / 2, b / 2, a * b / 2], 4)
-        return sum(w[idxs] .* t .* H4) # TODO make dot work
-    end
-    return doit
-end
-
-
 ##
 
-include("mplot3d.jl")
+include("setup.jl")
 
+using WGLMakie
 WGLMakie.activate!()
-m, w = plate(10, 5, 4, 2, params)
 
+
+# update_theme!(colormap=:acton)
+#update_theme!(faceplotmesh=5)
+#update_theme!(edgelinewidth=2.5)
+# update_theme!(faceplotmeshcolor=:green)
+# update_theme!(edgecolor=:black)
+
+
+m, w = plate(10, 5, 12, 6, params)
 fig = Figure()
 Axis3(fig[1, 1], aspect=:data)
-mplot3d!(
+mplot!(
     m, makefacefunction(w),
-    zscale=2 / maximum(w),
     color=3,
-    npoints=25
+    faceplotzscale=2 / maximum(w)
 )
 fig
-
-
-##
-
-mf = makefacefunction(w)
-g = mf(face(m, 4))
-
-fig = Figure()
-Axis3(fig[1, 1])
-fplot3d!(g, npoints=200)
-fig
-

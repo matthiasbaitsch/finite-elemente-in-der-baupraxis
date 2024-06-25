@@ -18,4 +18,7 @@ function ab(e)
 end
 
 
-include("rkp-conforming.jl")
+include("generated/plate-rrm-element.jl")
+include("generated/plate-rkpc-element-conforming.jl")
+include("generated/plate-rkpn-element-nonconforming.jl")
+

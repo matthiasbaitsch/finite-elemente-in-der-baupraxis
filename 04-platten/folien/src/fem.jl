@@ -5,22 +5,20 @@ dofs(idxs, nf) = collect(reshape([(i - 1) * nf + j for i = idxs, j = 1:nf]', :))
 
 function assembleKr(m, n=1)
     N = n * nnodes(m)
-    K = zeros(N, N)
+    K = sparse([], [], Float64[], N, N)
     r = zeros(N)
 
-    for d = 2:2
-        for e ∈ entities(m, d)
-            I = dofs(nodeindices(e), n)
+    for e ∈ faces(m)
+        I = dofs(nodeindices(e), n)
 
-            kef = e.data[:kefunc]
-            if !isnothing(kef)
-                K[I, I] += kef(e)
-            end
+        kef = e.data[:kefunc]
+        if !isnothing(kef)
+            K[I, I] += kef(e)
+        end
 
-            ref = e.data[:refunc]
-            if !isnothing(ref)
-                r[I] += ref(e)
-            end
+        ref = e.data[:refunc]
+        if !isnothing(ref)
+            r[I] += ref(e)
         end
     end
 
@@ -43,11 +41,10 @@ function fixeddofs(dofs, fixed)
     return idxs
 end
 
-function applydirichletbcs!(dofs, K, r, fixed = [true])
-    # pen = 1e8 * maximum(abs.(K))
+function applydirichletbcs!(dofs, K, r, fixed=[true])
     fdofs = fixeddofs(dofs, fixed)
     K[fdofs, :] .= 0
     r[fdofs] .= 0
-    K[diagind(K)[fdofs]] .= 1 #.+= pen
+    K[diagind(K)[fdofs]] .= 1
     return nothing
 end

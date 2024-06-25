@@ -1,6 +1,6 @@
 using MakieCore
 
-using MMJMesh.Plots: sample2d, sample2dlines
+using MMJMesh.Plots: sample2d, sample2dlines, _getcolor
 
 function _fsize(face)
     x = coordinates(face)
@@ -14,14 +14,6 @@ function _makegmap(face) # TODO move to mmjmesh
     nn(x) = (1 + x) / 2
     p, a, b = _fsize(face)
     return x -> p + [nn(x[1]) * a, nn(x[2] * b)]
-end
-
-
-function _getcolor(x::Matrix, color, zscale)
-    if typeof(color) == Int && 1 <= color <= 3
-        return x[color, :] / zscale
-    end
-    return color
 end
 
 function _collectlines(cl)
@@ -98,6 +90,8 @@ function MakieCore.plot!(plot::MPlot3D)
 
     m = plot.args[1][]
     mf = plot.args[2][]
+
+    
     cf, cl1, cl2 = _sample(m, mf, npoints, zscale, mesh)
     x, t = _collectfaces(cf)
 
