@@ -9,3 +9,4 @@ decktape
 *.erg
 **/rfem/*.pdf
 old
+04-platten/folien/test.qmd

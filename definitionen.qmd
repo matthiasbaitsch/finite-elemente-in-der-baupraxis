@@ -1,0 +1,3 @@
+\newcommand{\mmat}[1]{\begin{pmatrix} #1 \end{pmatrix}}
+\newcommand{\SI}[2]{#1\,\text{#2}}
+\newcommand{\R}{\mathbb{R}}

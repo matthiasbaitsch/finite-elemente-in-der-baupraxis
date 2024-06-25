@@ -1,7 +1,9 @@
 project:
   output-dir: _output
 author: ""
+
 lang: de
+
 format:
   revealjs: 
     toc: true
@@ -18,5 +20,10 @@ format:
     number-depth: 2
   pdf:
     number-sections: true
+
+fig-format: png    
+
+jupyter: julia-1.10
+
 bibliography: 
-  - references.bib
+  - references.bib  

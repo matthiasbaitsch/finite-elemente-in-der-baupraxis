@@ -1,0 +1,33 @@
+# Zusammenfassung
+
+##
+
+- Plattentheorien: Schubstarr (Kirchhoff) und schubweich (Reissner-Mindlin)
+
+- Differentialgleichungen i.d.R. nicht auf dem Papier lösbar
+
+- Kernideen der Finite-Elemente-Methode
+
+  1. Näherungslösung $w_h(x, y) = \sum \hat w_i \cdot \varphi_i(x, y)$ 
+
+  1. Basisfunktionen $\varphi_i$ elementweise definiert
+
+  1. Optimale Koeffizienten $\hat w_i$ aus LGS $\mathbf{K}\hat{\mathbf{w}} = \mathbf{r}$
+
+- Diskretisierungsfehler abhängig von Anzahl der Elemente
+
+
+## Anmerkungen
+
+Das waren die (meiner Meinung nach) wichtigsten Ideen. Genauer nachlesen:
+
+- Plattentheorie: @altenbach_ebene_2023 und @mittelstedt_theory_2023
+
+- Finite Elemente
+
+  - Praktisch orientiert: @werkle_finite_2008 und @fish_2007
+
+  - Mathematisch ausgerichtet: @johnson_numerical_1987 und @braess_finite_2013
+
+# Literatur {.smaller}
+
