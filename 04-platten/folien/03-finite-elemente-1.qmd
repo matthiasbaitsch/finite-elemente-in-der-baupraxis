@@ -4,7 +4,7 @@
 #| output: false
 include("src/setup.jl")
 
-m, w = plate(8, 8, 3, 3, params);
+m, w = plate(params, 3);
 NN = 4 * nnodes(m)
 nb = collect(m.groups[:boundarynodes])
 ni = [i for i in 1:nnodes(m) if i ∉ nb]
@@ -158,55 +158,53 @@ $$
 $\rightarrow$ Mathematische Theorie umfangreich und schwierig!
 
 
-## Anwendungsbeispiel
-
 ```{julia}
-function plotsol(n,mesh)
-m, w = plate(8, 8, n, n, params);
+function plotsol(n)
+m, wHat = plate(params, n);
 plotw(
-    m, 
-    w, 
+    m, wHat, 
     w=1200, h=650,
-    zs=2400*maximum(w),
-    edgesvisible=true, edgeslinewidth=4, mesh=mesh,
+    zs=2400*maximum(wHat), # plotw scales by 1 / maximum(wHat)
+    edgesvisible=true, edgelinewidth=4,
     limits=(nothing,nothing,(0,1.15))
 )
 end;
 ```
 
 
-## Lösung mit 4 Elementen
+## Beispiel: Lösung mit 4 Elementen
 ```{julia}
-plotsol(2, 5)
+plotsol(2)
 ```
 
 
-## Lösung mit 9 Elementen
+## Beispiel: Lösung mit 9 Elementen
 ```{julia}
-plotsol(3, 5)
+plotsol(3)
 ```
 
 
-## Lösung mit 16 Elementen
+## Beispiel: Lösung mit 16 Elementen
 ```{julia}
-plotsol(4, 5)
+plotsol(4)
 ```
 
 
-## Lösung mit 100 Elementen
+## Beispiel: Lösung mit 100 Elementen
 ```{julia}
-plotsol(10, 5)
+plotsol(10)
 ```
 
 
 ## Konvergenz
+
 ```{julia}
 CairoMakie.activate!()
 l = 8
 nn = [];
 ww = [];
 for n = 4:2:30
-    mn, wn = plate(l, l, n, n, params)
+    mn, wn = plate(params, n)
     push!(nn, 4 * nnodes(mn))
     push!(ww, maximum(abs.(wn[1:4:end])))
 end
@@ -227,7 +225,6 @@ fig
 - Wenige Elemente: Verschiebung zu groß
 - Wichtiger: Schnittgrößen - später
 :::
-TODO: Vergleich Reissner-Mindlin
 ::::
 
 
@@ -242,8 +239,3 @@ w_czerny = 5e3 * 8^4 / (31000e6 * 0.2^3) * 0.0152
 ```
 
 $\rightarrow$ Hervorragende Übereinstimmung mit 0.05 Prozent Unterschied
-
-
-## Schnittgrößen und Spannungen 
-
-Wird noch ergänzt

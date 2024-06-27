@@ -1,0 +1,280 @@
+```{julia}
+#| output: false
+include("src/setup.jl")
+
+set_theme!(theme_minimal())
+
+update_theme!(
+    colormap=:redblue,
+    color=3,
+    faceplotzscale=1,
+    faceplotnpoints=15,
+    edgesvisible=true,
+    featureedgelinewidth=2.5
+)
+
+params.E = 34000e6
+params.nu = 0.2
+m, wHat = plate(params, 20)
+post = m.data[:post];
+```
+
+
+## Ermittlung der Schnittgrößen
+
+Für die Kirchhoff-Platte (Materialparameter für C35/45)...
+
+
+## 💡 Einfach Verschiebungen ableiten {.smaller}
+
+Zur Erinnerung
+$$
+\begin{align}
+  m_x(x, y) & = - D \cdot (w,_{xx}(x, y) + \nu \cdot w,_{yy}(x, y))
+  \\[1em]
+  m_y(x, y) & = - D \cdot (\nu \cdot w,_{xx}(x, y) + w,_{yy}(x, y))
+  \\[1em]
+  m_{xy}(x, y) & = - (1 - \nu)  \cdot D \cdot w,_{xy}(x, y)
+  \\[1em]
+  q_x(x, y) & = -D \cdot (w,_{xxx}(x, y) + w,_{yyx}(x, y))
+  \\[1em]
+  q_y(x, y) & = -D \cdot (w,_{xxy}(x, y) + w,_{yyy}(x, y))
+\end{align}
+$$
+
+
+```{julia}
+function maketitle(p, title)
+    min, max = string.(round.(valuerange(p), digits=2))
+    return title * " | min: " * min * " | max: " * max
+end
+
+function plotr(m, result, title, cr, npoints=15; nodal=false, a3d)
+    fig = Figure(size=(1200, 800))
+    if a3d
+        ax = Axis3(fig[1, 1])
+        zscale = 1
+    else
+        ax = Axis(fig[1, 1], aspect=DataAspect())
+        zscale = 0
+    end
+
+    if nodal
+        r = nodalresult(m, result)
+    else
+        r = result
+    end
+
+    p = mplot!(
+        m, r, edgesvisible=a3d,
+        faceplotzscale=zscale, faceplotnpoints=npoints,
+        colorrange=cr
+    )
+
+    if !a3d
+        mplot!(m, edgesvisible=false, facesvisible=false)
+    end
+
+    Colorbar(fig[1, 2], p)
+    hidespines!(ax)
+    hidedecorations!(ax)
+    ax.title = maketitle(p, title)
+
+    return fig
+end;
+```
+
+## {.smaller}
+```{julia}
+plotr(m, :mx, "Biegemoment mx", (-17, 17), a3d=false)
+```
+
+## {.smaller}
+```{julia}
+plotr(m, :mx, "Biegemoment mx", (-17, 17), a3d=true)
+```
+
+## {.smaller}
+```{julia}
+plotr(m, :mxy, "Biegemoment mxy", (-3.2, 3.2), a3d=false)
+```
+
+## {.smaller}
+```{julia}
+plotr(m, :mxy, "Biegemoment mxy", (-3.2, 3.2), a3d=true)
+```
+
+## {.smaller}
+```{julia}
+plotr(m, :qx, "Querkraft qx", (-25.5, 25.5), a3d=false)
+```
+
+## {.smaller}
+```{julia}
+plotr(m, :qx, "Querkraft qx", (-25.5, 25.5), a3d=true)
+```
+
+
+## Überlegungen
+
+- Ergebnisse sehen "wild" aus
+
+- Das zeigt Ihnen kein kommerzielles FE-Programm
+
+  - Grafiken mit eigenem Code erzeugt (auf [Github](https://github.com/matthiasbaitsch/finite-elemente-in-der-baupraxis))
+
+- Basisfunktionen haben stetige Ableitungen, höhere Ableitungen nicht stetig!
+
+- Sprünge an Elementkanten: Diskretisierungsfehler!
+
+
+## 💡 Verbesserte Schnittgrößen {.smaller}
+
+![](00-pics/interpolation.svg)
+
+- Schnittgrößen in speziellen Punkten berechnen
+
+  - Häufig Punkte aus Gauss-Integration mit höherer Genauigkeit
+
+  - Punkte entsprechend gesuchter Größe wählen
+
+- Verlauf dazwischen interpolieren
+
+  - Häufig bilinear
+
+  - Mein Eindruck: Nicht immer gut dokumentiert
+
+
+## {.smaller}
+```{julia}
+plotr(m, :mxg, "Biegemoment mx (interpoliert)", (-17, 17), a3d=false)
+```
+
+
+## {.smaller}
+```{julia}
+plotr(m, :mxg, "Biegemoment mx (interpoliert)", (-17, 17), a3d=true)
+```
+
+
+## {.smaller}
+```{julia}
+plotr(m, :mxyg, "Biegemoment mxy (interpoliert)", (-3.2, 3.2), a3d=false)
+```
+
+
+## {.smaller}
+```{julia}
+plotr(m, :mxyg, "Biegemoment mxy (interpoliert)", (-3.2, 3.2), a3d=true)
+```
+
+
+## {.smaller}
+```{julia}
+plotr(m, :qxg, "Querkraft qx (interpoliert)", (-25.5, 25.5), a3d=false)
+```
+
+
+## {.smaller}
+```{julia}
+plotr(m, :qxg, "Querkraft qx (interpoliert)", (-25.5, 25.5), a3d=true)
+```
+
+
+## Überlegungen
+
+- Vergleichbare Ergebnisse zeigt Ihnen das Programm bei ungeglätteter Darstellung
+
+- Auf jeden Fall anschauen!
+
+- Auf keinem Fall dem Kunden zeigen!
+
+
+## 💡 Werte an Knoten mitteln {.smaller}
+
+![](00-pics/mittelung.svg)
+
+- Werte an gemeinsamen Knoten mitteln
+
+- Verlauf zwischen Knoten bilinear interpolieren
+
+- Ergebnis per Konstruktion stetig
+
+
+## {.smaller}
+```{julia}
+plotr(m, :mxg, "Biegemoment mx (geglättet)", (-17, 17), nodal=true, a3d=false)
+```
+
+
+## {.smaller}
+```{julia}
+plotr(m, :mxg, "Biegemoment mx (geglättet)", (-17, 17), nodal=true, a3d=true)
+```
+
+
+## {.smaller}
+```{julia}
+plotr(m, :mxyg, "Biegemoment mxy (geglättet)", (-3.2, 3.2), nodal=true, a3d=false)
+```
+
+
+## {.smaller}
+```{julia}
+plotr(m, :mxyg, "Biegemoment mxy (geglättet)", (-3.2, 3.2), nodal=true, a3d=true)
+```
+
+
+## {.smaller}
+```{julia}
+plotr(m, :qxg, "Querkraft qx (geglättet)", (-25.5, 25.5), nodal=true, a3d=false)
+```
+
+## {.smaller}
+```{julia}
+plotr(m, :qxg, "Querkraft qx (geglättet)", (-25.5, 25.5), nodal=true, a3d=true)
+```
+
+
+## Überlegungen
+
+- Standardeinstellung in den meisten Programmen
+
+- Zur Beurteilung der Ergebnisse wenig hilfreich!
+
+- Das zeigen Sie dem Kunden!
+
+
+## Ergebnisse aus RFEM 6
+
+##
+![](00-pics/rfem/00-pics/mx.png)
+
+##
+![](00-pics/rfem/00-pics/mx_s.png)
+
+##
+![](00-pics/rfem/00-pics/mxy.png)
+
+##
+![](00-pics/rfem/00-pics/mxy_s.png)
+
+##
+![](00-pics/rfem/00-pics/vx.png)
+
+##
+![](00-pics/rfem/00-pics/vx_s.png)
+
+
+## Überlegungen
+
+- Ergebnisse sehen anders aus!
+
+- Farben bereichsweise gleich
+
+- Andere Wahl der Auswertepunkte bzw. der Interpolation
+
+
+
+
+

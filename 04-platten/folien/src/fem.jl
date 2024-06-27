@@ -1,6 +1,13 @@
 import MMJMesh.Meshes: entities
 
-dofs(idxs, nf) = collect(reshape([(i - 1) * nf + j for i = idxs, j = 1:nf]', :))
+
+"""
+    dofs(nodes, nf)
+
+Returns the degrees of freedom for the specified nodes `nodes` with `nf` 
+degrees of freedom per node.
+"""
+dofs(nodes::AbstractVector{<:Integer}, nf::Integer) = collect(reshape([(i - 1) * nf + j for i = nodes, j = 1:nf]', :))
 
 
 function assembleKr(m, n=1)

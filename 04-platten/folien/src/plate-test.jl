@@ -1,20 +1,23 @@
-include("setup.jl")
-
+using Test
 using WGLMakie
+
+include("setup.jl")
+include("fem-utils.jl")
+
 WGLMakie.activate!()
 
 
 ## Analysis of one plate
 # params.nu = 0.3
-m, w, nf = plate(10, 10, 50, 50, params, :reissner_mindlin)
+m, wHat, nf = plate(params, 10, 10, :reissner_mindlin)
 mplot(m, edgesvisible=true) |> mconf()
 update_theme!(colormap=:acton)
-mplot(m, edgesvisible=true, w[1:nf:end]) |> mconf()
+mplot(m, edgesvisible=true, wHat[1:nf:end]) |> mconf()
 update_theme!(colormap=:redblue)
-mplot(m, edgesvisible=true, w[2:nf:end]) |> mconf()
-mplot(m, edgesvisible=true, w[3:nf:end]) |> mconf()
+mplot(m, edgesvisible=true, wHat[2:nf:end]) |> mconf()
+mplot(m, edgesvisible=true, wHat[3:nf:end]) |> mconf()
 
-maximum(w[1:nf:end])
+maximum(wHat[1:nf:end])
 
 #mplot(m, edgesvisible=true, w[4:nf:end]) |> mconf()
 
@@ -22,7 +25,7 @@ maximum(w[1:nf:end])
 ## Convergence study for quadratic plate - Czerny
 
 # Compute
-l = 10
+l = params.lx
 params.h = 0.2
 params.nu = 0
 
@@ -32,7 +35,7 @@ wwc = []
 wwn = []
 for n = 4:2:30
     print("$n ")
-    mn, wn, nf = plate(l, l, n, n, params, :kirchhoff_conforming)
+    mn, wn, nf = plate(params, n, n, :kirchhoff_conforming)
     push!(hh, l / n)
     push!(nn, 4 * nnodes(mn))
     push!(wwc, maximum(abs.(wn[1:nf:end])))
@@ -59,7 +62,7 @@ f
 ## Convergence study for quadratic plate - With Reissner Mindlin
 
 # Compute
-l = 10
+l = params.lx
 params.d = 0.5
 params.nu = 0.27
 
@@ -108,20 +111,81 @@ include("setup.jl")
 using WGLMakie
 WGLMakie.activate!()
 
+# g = MPolynomial([0 1 0 1; 0 0 1 1], [5, 4, 3, 2])
+# gi = interpolateg(g) 
+# @test g.p.coefficients ≈ gi.p.coefficients
 
-# update_theme!(colormap=:acton)
-#update_theme!(faceplotmesh=5)
-#update_theme!(edgelinewidth=2.5)
-# update_theme!(faceplotmeshcolor=:green)
-# update_theme!(edgecolor=:black)
+# TODO
 
+set_theme!(theme_minimal())
 
-m, w = plate(10, 5, 12, 6, params)
-fig = Figure()
-Axis3(fig[1, 1], aspect=:data)
-mplot!(
-    m, makefacefunction(w),
+update_theme!(
+    colormap=:redblue,
     color=3,
-    faceplotzscale=2 / maximum(w)
+    faceplotzscale=1,
+    faceplotnpoints=15,
+    edgesvisible=true,
+    featureedgelinewidth=2.5
 )
+
+#update_theme!(colormap=:romaO10)
+params.E = 34000
+params.nu = 0.2
+m, wHat = plate(params, 20)
+post = m.data[:post]
+
+println("Max w: ", 1000 * maximum(wHat[1:4:end]))
+
+# Test two versions of shear force
+using Test
+ff = face(m, 33)
+qx = post(ff, :qx)
+qxe = post(ff, :qxe)
+@test qx.p.exponents == qxe.p.exponents
+@test qx.p.coefficients ≈ qxe.p.coefficients
+
+
+## Result to plot
+result = :qxg
+
+## Plot 3D
+fig = Figure()
+Axis3(fig[1, 1])
+mplot!(m, result) |> valuerange
+Colorbar(fig[1, 2], p, label=string(result))
 fig
+
+## Plot 2D 
+fig = Figure()
+Axis(fig[1, 1], aspect=DataAspect())
+(p = mplot!(m, result, faceplotzscale=0, edgesvisible=false)) |> valuerange
+mplot!(m, facesvisible=false, edgesvisible=false)
+Colorbar(fig[1, 2], p, label=string(result))
+fig
+
+## Plot 2D Smooth result
+fig = Figure()
+Axis(fig[1, 1], aspect=DataAspect())
+mplot!(m, nodalresult(m, result), edgesvisible=false) |> valuerange
+Colorbar(fig[1, 2], p, label=string(result))
+fig
+
+## Plot one element
+fig = Figure()
+Axis3(fig[1, 1])
+fplot3d!(qx, gmap=_makegmap(ff), npoints=40)
+fig
+
+## Cerny
+p = 1e-3 * params.q
+lx = params.lx
+
+mxerm = -p * lx^2 / 19.4
+mxm = p * lx^2 / 56.8
+qxerm = p * lx / 2.24
+
+println("mxerm: $mxerm")
+println("  mxm: $mxm")
+println("qxerm: $qxerm")
+
+

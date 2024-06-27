@@ -12,8 +12,9 @@ project:
 
 {{< include 02-plattentheorie.qmd >}}
 
-{{< include 03-finite-elemente.qmd >}}
+{{< include 03-finite-elemente-1.qmd >}}
+
+{{< include 03-finite-elemente-2.qmd >}}
 
 {{< include 04-ende.qmd >}}
-
 
