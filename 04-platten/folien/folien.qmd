@@ -16,5 +16,7 @@ project:
 
 {{< include 03-finite-elemente-2.qmd >}}
 
-{{< include 04-ende.qmd >}}
+{{< include 04-weitere-aspekte.qmd >}}
+
+{{< include 05-ende.qmd >}}
 

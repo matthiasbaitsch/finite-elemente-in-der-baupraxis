@@ -17,7 +17,6 @@ function ab(e)
     return a, b
 end
 
-
 include("generated/plate-rrm-element.jl")
 include("generated/plate-rkpc-element-conforming.jl")
 include("generated/plate-rkpn-element-nonconforming.jl")

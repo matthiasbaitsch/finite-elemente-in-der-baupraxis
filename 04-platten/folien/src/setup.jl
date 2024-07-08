@@ -138,12 +138,13 @@ function postprocessor(params, wHat)
         name == :qy && return qy
         name == :qxe && return qxe
         name == :qye && return qye
-
-        name == :mxg && return interpolateg(mx)
-        name == :myg && return interpolateg(my)
+        name == :mxg && return interpolateg(mx, 2)
+        name == :myg && return interpolateg(my, 2)
         name == :mxyg && return interpolateg(mxy, 2)
         name == :qxg && return interpolateg(qx, 2)
         name == :qyg && return interpolateg(qy, 2)
+        name == :qxgg && return ∂X(interpolateg(mx, 2)) + ∂Y(interpolateg(mxy, 2))
+        name == :qygg && return ∂X(interpolateg(mxy, 2)) + ∂Y(interpolateg(my, 2))
 
         # Unknown label
         error("Unkown function: ", name)

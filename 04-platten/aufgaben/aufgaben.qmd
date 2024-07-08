@@ -24,5 +24,19 @@ Im Einzelnen:
 
 1. Es gibt zwei Berechnungsansätze für Platten die auf Reissner und Mindlin beziehungsweise auf Kirchhoff zurückgehen. Welchen Ansatz verwendet Ihr Programm? Lässt sich die verwendete Theorie auswählen? Falls ja, wechseln Sie den Berechnungsansatz und vergleichen Sie die Ergebnisse (Verformung und Schnittgrößen) für $L_{FE} = \SI{0.25}{m}$.
 
-Fassen Sie Ihre Ergebnisse in einer kleinen Präsentation oder einem Bericht zusammen.
+## Testproblem aus der Literatur zu Finiten Elementen
+
+Führen Sie für das Testproblem mit 9 Stützen aus der Veröffentlichung [@duster_p-version_2001] eine FE-Berechnung durch (Paper auf Moodle). Verwenden Sie abweichend von den Angaben dort Beton C35/45 als Material, eine Flächenlast von $\SI{5}{kN/m}^2$ und eine Bettungszahl von $c_w =  \SI{1 \cdot 10^7}{kN/m}^3$ für die Stützen.
+
+Im Einzelnen:
+
+1. Die Stützen können als Punktlager, Flächenlager oder mit einer elastischen Bettung modelliert werden. Entscheiden Sie sich für einen Ansatz.
+
+1. Führen Sie die Berechnung mit der vom Programm vorgegebenen Elementgröße durch und speichern Sie die Verläufe von Verformungen und Schnittgrößen (jeweils geglättet und ungeglättet).
+
+1. Geben Sie an den einspringenden Ecken und den Stützen eine Elementgröße von $\SI{5}{cm}$ vor. Vergleichen Sie die Ergebnisse.
+
+Fassen Sie Ihre Ergebnisse zu beiden Aufgaben in einer kleinen Präsentation oder einem Bericht zusammen.
+
+## Literatur
 

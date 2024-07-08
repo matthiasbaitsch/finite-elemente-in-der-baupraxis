@@ -41,11 +41,9 @@ $$
 ## Plattentheorien {.smaller}
 
 :::: {.columns}
-
 ::: {.column width="35%"}
 ![](00-pics/plattentheorien.svg)
 :::
-
 ::: {.column width="65%"}
 
 **Kirchhoff**
@@ -58,7 +56,7 @@ $$
 
 []{.up10}
 
-$\rightarrow$ Gut geeignet für dünne Platten (Stahlbau) 
+$\rightarrow$ Gut geeignet für dünne Platten ($h/l < 1/10$ [@werkle_finite_2021])
 
 **Reissner-Mindlin**
 
@@ -71,9 +69,7 @@ $\rightarrow$ Gut geeignet für dünne Platten (Stahlbau)
 []{.up10}
 
 $\rightarrow$ Genauer für sehr dicke Platten
-
 :::
-
 ::::
 
 Für 'normale' Anwendungen im Hochbau sind beide Theorien gut geeignet

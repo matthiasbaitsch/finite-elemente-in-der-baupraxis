@@ -1,0 +1,191 @@
+# Weitere Aspekte
+
+## Modellierung von Stützen {.smaller}
+
+:::: {.columns}
+::: {.column width="60%"}
+![](00-pics/stuetzen.png)
+:::
+::: {.column width="40%"}
+- RDT: Verbindungen mit Verschiebungsannahme 
+
+  (*Rigid area Displacement Transformation*)
+
+- EST: Verbindungen mit Spannungsannahme 
+
+  (*Equivalent Stress Transformation*)
+:::
+::::
+
+Quelle: @werkle_finite_2021
+
+
+## Singularitäten
+
+
+## Beispiel Platte {.smaller}
+
+![](00-pics/beispiel-singularitaeten.svg)
+
+## 
+![](00-pics/rfem-singularitaet/00-pics/n1-w.png)
+
+## 
+![](00-pics/rfem-singularitaet/00-pics/n2-w.png)
+
+## 
+![](00-pics/rfem-singularitaet/00-pics/n3-w.png)
+
+## 
+![](00-pics/rfem-singularitaet/00-pics/n1-mx.png)
+
+## 
+![](00-pics/rfem-singularitaet/00-pics/n2-mx.png)
+
+## 
+![](00-pics/rfem-singularitaet/00-pics/n3-mx.png)
+
+## 
+![](00-pics/rfem-singularitaet/00-pics/n3-mx-detail.png)
+
+## 
+![](00-pics/rfem-singularitaet/00-pics/n3-mx-detail-2.png)
+
+## 
+![](00-pics/rfem-singularitaet/00-pics/n1-vx.png)
+
+## 
+![](00-pics/rfem-singularitaet/00-pics/n2-vx.png)
+
+## 
+![](00-pics/rfem-singularitaet/00-pics/n3-vx.png)
+
+## 
+![](00-pics/rfem-singularitaet/00-pics/n3-vx-detail.png)
+
+
+## Wir beobachten
+
+- Verformungen nähern sich einem festen Wert an
+
+- Schnittgrößen $m_x$ und $q_y$ mit feinem Netz immer größer
+
+- Kritisch sind
+
+  - Punktlager (im Beispiel nicht erkennbar)
+
+  - Einspringende Ecken
+
+  - Wände mit Knick (oder Wände die im Inneren enden)
+
+$\rightarrow$ Rechnet das Programm falsch?
+
+
+## Querkraft bei Punktlagerung {.smaller}
+
+![](00-pics/singularitaet-punktlager.svg)
+
+- Kreisplatte um Punktlager kreisförmig freigeschnitten
+
+- Querkraft $q$ umso größer je kleiner der Radius
+
+- Also: Querkraft muss für exakte Lösung der Plattengleichung unendlich groß sein
+
+- FE-Programm approximiert das so gut es geht
+
+$\rightarrow$ Alles in Ordnung, muss so sein!
+
+
+## Moment an einspringender Ecke {.smaller}
+
+![](00-pics/singularitaet-einspringende-ecke-2.svg)
+
+- Sprung in Momenten $m_x$, $m_y$ führt zu Konzentration
+
+  - Momente müssen gewissermaßen um die Ecke geleitet werden
+
+- Wieder: Für exakte Lösung ist Moment an dem Knick unendlich groß
+
+- Schwierig vorstellbar
+
+$\rightarrow$ Wieder kein Problem, wir sehen ein mathematisches Phänomen!
+
+
+## Moment und Querkraft an Knick im Auflager {.smaller}
+
+![](00-pics/singularitaet-auflager.svg)
+
+- Singularität falls Knick im Verlauf des Auflagers in die Decke zeigt
+
+- Normale Ecke unproblematisch
+
+
+## Grenzwinkel für Singularitäten {.smaller}
+
+![](00-pics/singularita%CC%88ten-grenzwerte.png)
+
+Grenzwinkel für Singularitäten von Schnittgrößen an den Eckpunkten schubstarrer Platten aus @werkle_finite_2021
+
+
+## Praktische Bemessung von Decken {.smaller}
+
+[]{.down40}
+
+**In realen Deckenplatten treten diese Phänomene so nicht auf**
+
+- Es gibt keine starren Punktlager und keine starren Linienlager
+
+  - Lagerungen immer flächig verteilt und nachgiebig
+
+- Spannungsspitzen werden durch Risse und plastische Verformungen abgebaut
+
+- Es bilden sich komplizierte räumliche Spannungszustände aus
+
+**Für die Berechnung mit FE-Programmen**
+
+- Sie müssen über die Zusammenhänge Bescheid wissen
+
+- Schnittgrößen nicht direkt an kritischen Stellen verwenden
+
+- Netz nicht zu sehr verfeinern
+
+- Erfahrungswissen!
+
+
+## Konstruktive Lösung Stützenkopf {.smaller}
+
+:::: {.columns}
+::: {.column width="75%"}
+![](00-pics/stuetzen-schultes.png)
+:::
+::: {.column width="25%"}
+![](00-pics/SchultesFrank_Architekten_Kunsttmuseum_Bonn_Bonn_1992_3_1x2.jpg)
+:::
+::::
+
+[]{.up20}
+
+- Kunstmuseum Bonn, Architektur Axel Schultes, Tragwerksplanung Polonyi & Partner 
+
+
+## Bei zyklischer Belastungen {.smaller}
+
+:::: {.columns}
+::: {.column width="47%"}
+![](00-pics/stahlbruecke.jpg)
+:::
+::: {.column width="53%"}
+![](00-pics/fenster-flugzeug-2.png)
+:::
+::::
+
+$\rightarrow$ Spannungskonzentrationen vermeiden (Materialermüdung)
+
+
+## Zum Umgang mit Finite-Elemente-Programmen
+
+## {.smaller}
+
+![](00-pics/psychologische-aspekte.png)
+
+Aus @werkle_anwendung_1996
