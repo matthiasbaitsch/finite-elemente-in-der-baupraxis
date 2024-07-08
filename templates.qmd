@@ -1,0 +1,8 @@
+:::: {.columns}
+::: {.column width="35%"}
+
+:::
+::: {.column width="65%"}
+
+:::
+::::
