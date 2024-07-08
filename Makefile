@@ -51,6 +51,7 @@ deploy:
 
 clean:
 	rm -rf _output
-	@for ext in ipynb pdf ; do \
+	rm -rf 0*/*/*_files
+	@for ext in ipynb pdf log html aux tex; do \
 		rm -f 0*/*/*.$$ext; \
 	done
