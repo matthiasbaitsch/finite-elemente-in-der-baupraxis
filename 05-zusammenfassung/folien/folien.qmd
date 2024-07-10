@@ -1,0 +1,24 @@
+---
+title: 5. Zusammenfassung
+format:
+    revealjs: default
+project:
+    pre-render: generate-plots.jl
+---
+
+
+## Anmerkungen
+
+Das waren die (meiner Meinung nach) wichtigsten Ideen. Genauer nachlesen:
+
+- Plattentheorie: @altenbach_ebene_2023 und @mittelstedt_theory_2023
+
+- Finite Elemente
+
+  - Praktisch orientiert: @werkle_finite_2021 und @fish_2007
+
+  - Mathematisch ausgerichtet: @johnson_numerical_1987 und @braess_finite_2013
+
+# Literatur {.smaller}
+
+

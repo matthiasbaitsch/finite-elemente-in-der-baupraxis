@@ -21,7 +21,7 @@ format:
   pdf:
     number-sections: true
 
-fig-format: png    
+fig-format: png
 
 jupyter: julia-1.10
 

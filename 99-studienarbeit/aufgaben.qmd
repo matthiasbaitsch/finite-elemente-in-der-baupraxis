@@ -1,0 +1,59 @@
+---
+title: Studienarbeit
+subtitle: "Finite Elemente in der Baupraxis"
+format:
+    html: default
+    pdf: default
+---
+
+
+::: {#fig-beispiele layout-ncol=2}
+![Dulles International Airport](00-pics/dulles.jpeg){#fig-a}
+
+![Hängeseilbrücke Geierlay](00-pics/geierlayhaengebruecke.jpg){#fig-b}
+
+![Hörsaal H9 der Hochschule Bochum](00-pics/h9.jpeg){#fig-c}
+
+![Kunstmuseum Bonn](00-pics/kunstmuseum-bonn.jpg){#fig-d}
+
+![Eiskunstlaufhalle in München](00-pics/lze.jpg){#fig-e}
+
+![Seilkonstruktion](00-pics/seilnetz.jpg){#fig-f}
+
+![Sonnenbergbrücke über die A46](00-pics/sonnenbergbruecke.jpg){#fig-g}
+:::
+
+
+## Aufgabenstellung
+
+Im Rahmen der Studienarbeit zum Modul 'Finite Elemente in der Baupraxis' soll ein existierendes Tragwerk in einem Finite-Elemente-Programm modelliert und berechnet werden. Dabei sind folgende Punkte zu bearbeiten und zu dokumentieren:
+
+1. Wählen Sie ein existierendes Bauwerk aus und beschreiben Sie die wichtigsten Lastabtragsmechanismen
+
+1. Welche Möglichkeiten zur Modellbildung kommen für das Tragwerk in Frage? Diskutieren Sie verschiedene Möglichkeiten, wählen Sie einen Ansatz aus und begründen Sie die Wahl
+
+1. Erstellen Sie das Tragwerksmodell in der von Ihnen gewählten Software
+
+1. Führen Sie die Berechnung für die wichtigsten Lastfälle durch. Sind nichtlineare Effekte zu berücksichtigen? Wie groß ist deren Einfluss?
+
+1. Diskutieren Sie ihre Ergebnisse. Was müsste zusätzlich berücksichtigt oder untersucht werden, wenn Ihre Berechnung Grundlage für das Bauprojekt wäre?
+
+Den ersten Punkt sollten Sie vor Beginn der Bearbeitung kurz mit den Betreuern Matthias Baitsch und/oder Denis Busch abstimmen.
+
+
+## Projekte zur Anregung
+
+a) [Dachkonstruktion Dulles International Airport](https://www.pbs.org/wnet/americanmasters/eero-saarinens-revolutionary-design-dulles-airport/7853/): Berechnung des Dachtragwerks des Dulles International Airport an einem vereinfachten Modell (ein Streifen mit geeigneten Symmetrierandbedingungen)
+
+a) [Hängeseilbrücke Geierlay](https://www.hunsruecktouristik.de/reisethemen/natur/haengeseilbruecke-geierlay): Modellierung der vorgespannten Seilkonstruktion
+
+a) Hörsaal H9 der Hochschule Bochum: Untersuchung des Lastabtrags der ineinander gehängten Träger und Vergleich mit einer alternativen Konstruktion
+
+a) [Dach Kunstmuseum Bonn](https://www.kunstmuseum-bonn.de/en/museum/the-museum/): Modellierung des Daches unter besonderer Berücksichtigung der Stützenanschlüsse
+
+a) [Leistungszentrum für Eiskunstlauf im Olympiapark](https://www.ackermannarchitekten.com/entry/leistungszentrum-fuer-eiskunstlauf-im-olympiapark): Modellierung eines Binders und der angehängten Sekundärträger unter Ausnutzung der Symmetrie.
+
+a) [Errichtung eines Seilnetzes](https://www.abendzeitung-muenchen.de/kultur/kunst/olympia-architektur-in-muenchen-gebaute-demokratie-art-835858): Untersuchung des Aufspannvorgangs eines Seilnetzes an einem start vereinfachten Beispiel
+
+a) [Sonnenbergbrücke über die A46](https://www.wuppertal-vohwinkel.net/7-diverse/autobahn.htm): Berechnung der Brücke und Diskussion des gewählten Tragwerksentwurfs
+
