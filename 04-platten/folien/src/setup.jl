@@ -1,7 +1,7 @@
-try 
+try
 	using MMJMesh
 catch e
-	Pkg.add(url="https://github.com/matthiasbaitsch/mmjmesh.git")
+	Pkg.add(url = "https://github.com/matthiasbaitsch/mmjmesh.git")
 	using MMJMesh
 end
 
@@ -258,42 +258,45 @@ function maketitle(p, title)
 end
 
 function plotr(m, result, title, cr, npoints = 15; nodal = false, a3d)
-	# fig = Figure(size = (1200, 800))
-	# if a3d
-	# 	ax = Axis3(fig[1, 1])
-	# 	zscale = 1
-	# else
-	# 	ax = Axis(fig[1, 1], aspect = DataAspect())
-	# 	zscale = 0
-	# end
+	if false
+		fig = Figure(size = (1200, 800))
+		if a3d
+			ax = Axis3(fig[1, 1])
+			zscale = 1
+		else
+			ax = Axis(fig[1, 1], aspect = DataAspect())
+			zscale = 0
+		end
 
-	# warpnodes = nothing
+		warpnodes = nothing
 
-	# if nodal
-	# 	r = nodalresult(m, result)
-	# 	if a3d
-	# 		warpnodes = r
-	# 	end
-	# else
-	# 	r = result
-	# end
+		if nodal
+			r = nodalresult(m, result)
+			if a3d
+				warpnodes = r
+			end
+		else
+			r = result
+		end
 
-	# p = mplot!(
-	# 	m, r, edgesvisible = a3d,
-	# 	nodewarp = warpnodes,
-	# 	faceplotzscale = zscale, faceplotnpoints = npoints,
-	# 	colorrange = cr,
-	# )
+		p = mplot!(
+			m, r, edgesvisible = a3d,
+			nodewarp = warpnodes,
+			faceplotzscale = zscale, faceplotnpoints = npoints,
+			colorrange = cr,
+		)
 
-	# if !a3d
-	# 	mplot!(m, edgesvisible = false, facesvisible = false)
-	# end
+		if !a3d
+			mplot!(m, edgesvisible = false, facesvisible = false)
+		end
 
-	# Colorbar(fig[1, 2], p)
-	# hidespines!(ax)
-	# hidedecorations!(ax)
-	# ax.title = maketitle(p, title)
+		Colorbar(fig[1, 2], p)
+		hidespines!(ax)
+		hidedecorations!(ax)
+		ax.title = maketitle(p, title)
 
-	# return fig
-	return L"Zeitweise außer Betrieb"
+		return fig
+	else
+		return L"Zeitweise außer Betrieb"
+	end
 end
