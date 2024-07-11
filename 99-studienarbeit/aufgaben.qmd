@@ -53,7 +53,7 @@ a) [Dach Kunstmuseum Bonn](https://www.kunstmuseum-bonn.de/en/museum/the-museum/
 
 a) [Leistungszentrum für Eiskunstlauf im Olympiapark](https://www.ackermannarchitekten.com/entry/leistungszentrum-fuer-eiskunstlauf-im-olympiapark): Modellierung eines Binders und der angehängten Sekundärträger unter Ausnutzung der Symmetrie.
 
-a) [Errichtung eines Seilnetzes](https://www.abendzeitung-muenchen.de/kultur/kunst/olympia-architektur-in-muenchen-gebaute-demokratie-art-835858): Untersuchung des Aufspannvorgangs eines Seilnetzes an einem start vereinfachten Beispiel
+a) [Errichtung eines Seilnetzes](https://www.abendzeitung-muenchen.de/kultur/kunst/olympia-architektur-in-muenchen-gebaute-demokratie-art-835858): Untersuchung des Aufspannvorgangs eines Seilnetzes an einem stark vereinfachten Beispiel
 
 a) [Sonnenbergbrücke über die A46](https://www.wuppertal-vohwinkel.net/7-diverse/autobahn.htm): Berechnung der Brücke und Diskussion des gewählten Tragwerksentwurfs
 

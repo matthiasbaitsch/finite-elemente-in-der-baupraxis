@@ -2,9 +2,21 @@
 title: 5. Zusammenfassung
 format:
     revealjs: default
-project:
-    pre-render: generate-plots.jl
 ---
+
+
+## Schritte in Finite-Elemente-Rechnung und Fehlerquellen
+
+Tafel
+
+
+## Zum Umgang mit Finite-Elemente-Programmen
+
+## {.smaller}
+
+![](00-pics/psychologische-aspekte.png)
+
+Aus @werkle_anwendung_1996
 
 
 ## Anmerkungen
@@ -18,6 +30,7 @@ Das waren die (meiner Meinung nach) wichtigsten Ideen. Genauer nachlesen:
   - Praktisch orientiert: @werkle_finite_2021 und @fish_2007
 
   - Mathematisch ausgerichtet: @johnson_numerical_1987 und @braess_finite_2013
+
 
 # Literatur {.smaller}
 

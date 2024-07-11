@@ -2,8 +2,6 @@
 title: 4. Finite Elemente für Plattentragwerke
 format:
     revealjs: default
-project:
-    pre-render: generate-plots.jl
 ---
 
 {{< include ../../definitionen.qmd >}}

@@ -42,54 +42,6 @@ $$
 \end{align}
 $$
 
-
-```{julia}
-function maketitle(p, title)
-    min, max = string.(round.(valuerange(p), digits=2))
-    return title * " | min: " * min * " | max: " * max
-end
-
-function plotr(m, result, title, cr, npoints=15; nodal=false, a3d)
-    fig = Figure(size=(1200, 800))
-    if a3d
-        ax = Axis3(fig[1, 1])
-        zscale = 1
-    else
-        ax = Axis(fig[1, 1], aspect=DataAspect())
-        zscale = 0
-    end
-
-    warpnodes=nothing
-
-    if nodal
-        r = nodalresult(m, result)
-        if a3d
-          warpnodes=r
-        end
-    else
-        r = result
-    end
-
-    p = mplot!(
-        m, r, edgesvisible=a3d,
-        nodewarp=warpnodes,
-        faceplotzscale=zscale, faceplotnpoints=npoints,
-        colorrange=cr
-    )
-
-    if !a3d
-        mplot!(m, edgesvisible=false, facesvisible=false)
-    end
-
-    Colorbar(fig[1, 2], p)
-    hidespines!(ax)
-    hidedecorations!(ax)
-    ax.title = maketitle(p, title)
-
-    return fig
-end;
-```
-
 ## {.smaller}
 ```{julia}
 plotr(m, :mx, "Biegemoment mx", (-17, 17), a3d=false)

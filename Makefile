@@ -4,7 +4,7 @@ MATLAB=/Applications/MATLAB_R2024a.app/bin/matlab
 all: qmd slides_pdf matlab zipit deploy
 
 qmd:
-	for f in $$(find . -name \*.qmd); do \
+	for f in $$(find . -name folien.qmd -o -name aufgaben.qmd -o -name musterloesung.qmd); do \
 		echo "Rendering $$f\n"; \
 		quarto render $$f; \
 	done
@@ -51,7 +51,11 @@ deploy:
 
 clean:
 	rm -rf _output
+	rm -rf .quarto
+	rm -rf *_files
 	rm -rf 0*/*/*_files
-	@for ext in ipynb pdf log html aux tex; do \
+	rm -rf 0*/*/.quarto
+	rm *.aux *.html *.log
+	@for ext in ipynb pdf log html aux tex ipynb; do \
 		rm -f 0*/*/*.$$ext; \
 	done

@@ -182,10 +182,3 @@ Grenzwinkel für Singularitäten von Schnittgrößen an den Eckpunkten schubstar
 $\rightarrow$ Spannungskonzentrationen vermeiden (Materialermüdung)
 
 
-## Zum Umgang mit Finite-Elemente-Programmen
-
-## {.smaller}
-
-![](00-pics/psychologische-aspekte.png)
-
-Aus @werkle_anwendung_1996
