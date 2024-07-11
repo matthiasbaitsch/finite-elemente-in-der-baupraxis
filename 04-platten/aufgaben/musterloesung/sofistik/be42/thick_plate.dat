@@ -1,0 +1,199 @@
+!#!Info Example:    Thick Circular Plate
+!#!Info Program:    ASE
+!#!Info Keywords:   circular, thick plate, bending
+
+
+!#!Chapter model definition
+
+#define r_rf=2.0  $ extension of refined region (measured from center axis of hole) [m]
+#define r_sy=5.00
+
++PROG AQUA urs:2
+HEAD Material
+echo mat yes
+page unii 2 unio 2
+MAT    1  E  3e7  MUE  0.154
+END
+
++Prog template urs:12
+head Iteration parameters
+sto#j 0
+sto#thick 0.50   $[m]
+end
+
++PROG SOFIMSHC iter 5 urs:1
+HEAD Thick Circular Plate
+SYST TYPE 2dsl GDIR zz GDIV 100000
+echo full no
+sto#h     #thick*(#j+1)   $thickness of plate
+sto#D     2*$(r_sy)       $diameter of plate
+let#sin   sin(45)
+let#rad   (2*#pi*$(r_sy))/64
+CTRL MESH 2+64    $ quad mesh
+CTRL HMIN 0.30[m] $ max element size
+$ COORDINATES
+SPT    NO          X            y
+     1001          0            0 // center point
+        1   -$(r_sy)*#sin       -$(r_sy)*#sin
+        2          0            -$(r_sy)
+        3   +$(r_sy)*#sin       -$(r_sy)*#sin
+       11   -$(r_rf)            -$(r_rf)
+       12          0            -$(r_rf)
+       13   +$(r_rf)            -$(r_rf)
+       21   -$(r_sy)            0
+       22   -$(r_rf)            0
+       23   +$(r_rf)            0
+       24   +$(r_sy)            0
+       31   -$(r_rf)            +$(r_rf)
+       32          0            +$(r_rf)
+       33   +$(r_rf)            +$(r_rf)
+       41   -$(r_sy)*#sin       +$(r_sy)*#sin
+       42          0            +$(r_sy)
+       43   +$(r_sy)*#sin       +$(r_sy)*#sin
+$ boundary lines
+SLN  1    1   2    FIX PZ  ; SLNB XM 0 0
+SLN  2    2   3    FIX PZ  ; SLNB XM 0 0
+SLN  41   41  42   FIX PZ  ; SLNB XM 0 0
+SLN  42   42  43   FIX PZ  ; SLNB XM 0 0
+SLN  201  21  1    FIX PZ  ; SLNB XM 0 0
+SLN  221  41  21   FIX PZ  ; SLNB XM 0 0
+SLN  203  3   24   FIX PZ  ; SLNB XM 0 0
+SLN  224  24  43   FIX PZ  ; SLNB XM 0 0
+$ HORIZONTAL LINES
+SLN  11  11  12
+SLN  12  12  13
+SLN  31  31  32
+SLN  32  32  33
+SLN  344 1001  24
+SLN  345 1001  21
+$ VERTICAL LINES
+SLN  211  11 22
+SLN  222  22 31
+SLN  213  13 23
+SLN  223  23 33
+SLN  346 1001  2
+SLN  347 1001  42
+$ DIAGONALS
+SLN  301  1  11
+SLN  303  3  13
+SLN  341 41  31
+SLN  343 43  33
+$areas
+SAR 1 GRP  1  MNO 1 T #h[m]  mctl 1
+SARB OUT   32,347,344,223
+SAR 2 GRP  1  MNO 1 T #h[m]  mctl 1  h2 0.25
+SARB OUT   301,11,346,1
+SAR 3 GRP  1  MNO 1 T #h[m]  mctl 1  h2 0.25
+SARB OUT   346,2,303,12
+SAR 4 GRP  1  MNO 1 T #h[m]  mctl 1  h2 0.25
+SARB OUT  303,203,344,213
+SAR 5 GRP  1  MNO 1 T #h[m]  mctl 1  h2 0.25
+SARB OUT   344,224,343,223
+SAR 6 GRP  1  MNO 1 T #h[m]  mctl 1  h2 0.25
+SARB OUT   343,42,347,32
+SAR 7 GRP  1  MNO 1 T #h[m]  mctl 1  h2 0.25
+SARB OUT   347,41,341,31
+SAR 8 GRP  1  MNO 1 T #h[m]  mctl 1  h2 0.25
+SARB OUT   341,221,345,222
+SAR 9 GRP  1  MNO 1 T #h[m]  mctl 1  h2 0.25
+SARB OUT   345,201,301,211
+SAR 10 GRP 1  MNO 1 T #h[m]  mctl 1
+SARB OUT   344,346,12,213
+SAR 11 GRP 1  MNO 1 T #h[m]  mctl 1
+SARB OUT   345,346,11,211
+SAR 12 GRP 1  MNO 1 T #h[m]  mctl 1
+SARB OUT   345,347,31,222
+END
+
+!#!Chapter analysis
+
++PROG SOFILOAD iter 5 urs:3
+HEAD Area load
+LC 501
+AREA  REF qgrp 1  TYPE  Pzz   1000.0
+END
+
++PROG ASE  iter 5 urs:4
+head Analysis
+lc 501
+end
+
+
++PROG TEMPLATE iter 5 urs:5
+HEAD Get results
+$reference
+sto#x_ref       137.413,17.609,5.431,2.418,1.321         $[mm]
+$read data: cdb record: (024=Displacements and support forces of nodes),  load case , node number
+@KEY 024        501  1001
+sto#x(#j)       ABS(@(3)*1000)           $ u [mm]
+$deviation
+sto#D_ABS(#j)   ABS(#X_REF(#j)-#X(#j))
+sto#D_REL(#j)   #D_ABS(#j)/#X_REF(#j)*100.0
+LET#D_REL_ALL   5.0
+end
+
++prog template iter 5 urs:7
+head  Exit iteration
+IF #j>=4
+ EXIT_ITERATION
+endif
+sto#j #j+1
+end
+
+!#!Chapter Results
+
++PROG TEMPLATE urs:18
+HEAD Result Summary
+TXB
+TXB
+TXB       h      h/D     u,ref    u,calc     diff     diff    result
+TXB      [m]             [mm]      [mm]      [mm]     [%]
+TXB ----------------------------------------------------------------------------------------
+TXB
+loop#i  5
+        TXB #(0.5*(#i+1),8.2) #(0.5*(#i+1)/#D,8.2) #(#X_REF(#i),8.3)  #(#X(#i),8.3) #(#D_ABS(#i),8.2) #(#D_REL(#i),8.2)   <b>OK</b>
+endloop
+END
+
++PROG WING urs:6
+HEAD Plot system with load
+PAGE UNII 0
+CTRL OPT INP
+CTRL OPT GSTR VAL DEFA
+CTRL OPT AXIS VAL DEFA
+PAGE LANO 1 UNIO 0
+SIZE TYPE URS SC 0
+SIZ2
+AND  POSI 1 POSL 0 POSR 100 POSD 0 POSU 100
+SCHH H6 0.010000
+SCH2 DIRE DEFA
+LC   NO 501 DESI 1
+BOX
+VIEW TYPE DIRE X 0.864813 Y -0.422351 Z 0.271511 AXIS POSZ ROTA 0
+DEFO TYPE NO EXPO 0 SMOV NO
+SELE NUMB 0
+LOAD TYPE ALL UNIT DEFA SCHH YES SING VECT FILL NO REPR DREP ETYP ALL GTYP INP
+END
+
++PROG WING urs:8
+HEAD Plot results
+PAGE UNII 0
+CTRL OPT INP
+CTRL OPT GSTR VAL DEFA
+CTRL OPT AXIS VAL DEFA
+PAGE LANO 1 UNIO 0
+SIZE TYPE URS SC 0
+SIZ2
+AND  POSI 1 POSL 0 POSR 100 POSD 0 POSU 100
+SCHH H6 0.300000 ND 3
+SCH2 DIRE DEFA
+LC   NO 501 DESI 1
+BOX
+VIEW TYPE DIRE X 0 Y 0 Z 1 AXIS POSY ROTA 0
+DEFO TYPE NO EXPO 0 SMOV NO
+SELE NUMB 0
+QUAD TYPE MX UNIT -1011.430 SCHH YES STYP NODE FILL NO REPR DVEC AVER NO
+QUAD TYPE MY UNIT -1011.430 SCHH YES STYP NODE FILL NO REPR DVEC AVER NO
+QUAD TYPE UUZ UNIT -1011.430 SCHH YES STYP NODE FILL NO REPR DVEC AVER NO
+END
+

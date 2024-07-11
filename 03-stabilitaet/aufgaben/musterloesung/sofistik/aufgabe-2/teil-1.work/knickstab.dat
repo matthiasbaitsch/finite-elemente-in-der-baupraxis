@@ -1,0 +1,33 @@
++PROG AQUA urs:1
+kopf Material und Querschnitt
+norm DIN 18800
+stah 1 art s   235
+prof 1 typ HEA 300 mnr 1
+ende
+
++PROG SOFIMSHA urs:2
+kopf Struktur
+syst 2d
+knot 1      0    0 fix f
+knot 2      0  -10
+stab mesh   1    2 qnr 1 teil 15
+ende
+
++PROG SOFILOAD urs:3
+kopf Belastung
+lf 1 typ NONE
+    knot nr 2 pyy 1
+ende
+
+prog ase urs:4
+kopf Berechnung der Schnittgroessen
+syst prob line
+lf 1
+ende
+
++PROG ASE URS:5
+kopf Knicken
+syst plf 1 fakv 0.0
+eige 1 beul lf 101
+ende
+

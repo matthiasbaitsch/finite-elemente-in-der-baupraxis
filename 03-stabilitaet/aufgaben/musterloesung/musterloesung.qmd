@@ -141,7 +141,7 @@ Schubstarre Theorie (Bernoulli) wenn "Schubsteifigkeit deaktivieren" angewählt
 Sofistik Eingabedatei
 
 ```{raw}
-{{< include 03-stabilitaet/aufgaben/musterloesung/sofistik/aufgabe-2/teil-2/rahmen.dat >}}
+{{< sofistik/aufgabe-2/teil-2/rahmen.dat >}}
 ```
 
 Ergebnisse
