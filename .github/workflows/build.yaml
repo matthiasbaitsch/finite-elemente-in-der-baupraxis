@@ -24,3 +24,4 @@ jobs:
           remote_host: 193.175.115.74
           remote_user: maba
           remote_key: ${{ secrets.DEPLOY_KEY }}
+
