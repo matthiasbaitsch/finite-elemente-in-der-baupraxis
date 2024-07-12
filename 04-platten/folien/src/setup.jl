@@ -10,7 +10,6 @@ using MMJMesh.Utilities
 using MMJMesh.Plots
 
 using Revise
-using Latexify
 using GLMakie
 using CairoMakie
 using VarStructs
