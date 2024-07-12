@@ -18,3 +18,12 @@ jobs:
       - name: Render
         run: |
           quarto render 01-einfuehrung/folien/folien.qmd
+      - name: Deploy
+        uses: burnett01/rsync-deployments@7.0.1
+        with:
+          switches: -av
+          path: _output
+          remote_path: /var/www/html/feb-2024/test99
+          remote_host: 193.175.115.74
+          remote_user: maba
+          remote_key: ${{ secrets.DEPLOY_KEY }}
