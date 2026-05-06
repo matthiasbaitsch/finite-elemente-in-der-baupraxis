@@ -1,3 +1,12 @@
+.bildunterschrift {
+    position: fixed;
+    top: -30px;
+    left: -100px;
+    font-size: 0.45em;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+}
+
 .up10 {
     display: block;
     margin-top: -10px;

@@ -4,3 +4,31 @@ format:
     revealjs: default
 ---
 
+# Beispiele
+
+## {background-image="00-pics/isozaki-palafolls.jpg"}
+
+::: {.bildunterschrift}
+Sportkomplex Palafolls (Spanien), Arata Isozaki, 1996
+:::
+
+## {background-image="00-pics/tuerme.png"}
+
+::: {.bildunterschrift}
+Türme von Gustave Eiffel und Vladimir Shukhov
+:::
+
+## {background-image="00-pics/Bild01_ausschnitt_MAX.jpg"}
+
+::: {.bildunterschrift}
+Dach DG Bank Berlin, Frank O. Gehry/SBP, 
+:::
+
+## {background-image="00-pics/neue_nationalgalerie_neu.jpg"}
+
+::: {.bildunterschrift}
+Neue Nationalgalerie Berlin, Ludwig Mies van der Rohe, 1968 
+:::
+
+#
+

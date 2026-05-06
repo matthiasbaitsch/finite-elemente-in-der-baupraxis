@@ -1,5 +1,5 @@
 /.quarto/
-/_output/
+/__output/
 **/*_files/
 **/rfem/*.pdf
 

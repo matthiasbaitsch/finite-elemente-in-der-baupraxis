@@ -23,7 +23,5 @@ format:
 
 fig-format: png
 
-jupyter: julia-1.10
-
 bibliography: 
   - references.bib  

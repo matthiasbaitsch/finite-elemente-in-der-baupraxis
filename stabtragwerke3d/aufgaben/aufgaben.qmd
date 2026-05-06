@@ -1,0 +1,16 @@
+---
+title: Aufgabenblatt 3
+subtitle: "Räumliche Stabtragwerke"
+format:
+    html: default
+    pdf: default
+---
+
+\newcommand{\SI}[2]{#1\,\text{#2}}
+
+## Beispiel zur Einführung
+
+Für den dargestellten unterspannten Trägerrost sollen die Schnittgrößen berechnet werden. Eigengewicht bleibt dabei unberücksichtigt.
+
+![](00-pics/traegerrost.jpg)
+
