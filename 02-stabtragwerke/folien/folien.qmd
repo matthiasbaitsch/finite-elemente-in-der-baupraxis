@@ -491,7 +491,7 @@ Um die Sache etwas zu entzaubern
 
 Fachwerkstab 2D
 
-```{matlab}
+```matlab
 function ke = Ke(this)
     ke = this.s.EA / this.l * this.t * this.t';
 end
@@ -499,7 +499,7 @@ end
 
 Balken 2D
 
-```{matlab}
+```matlab
 function ke = Ke(this)
     l = this.l; t = this.tMat;
     ea = this.s.EA; ei = this.s.EI;
@@ -519,7 +519,7 @@ end
 
 ## Gesamtsteifigkeitsmatrix {.smaller}
 
-```{matlab}
+```matlab
 function k = assembleMatrixDense(this)
     k = zeros(this.nDofs);
 
