@@ -16,6 +16,9 @@ jobs:
     permissions:
       contents: write      
     steps:
+      - name: Install required command line tools
+        run: sudo apt-get install librsvg2-bin
+
       - name: Check out
         uses: actions/checkout@v5
 
