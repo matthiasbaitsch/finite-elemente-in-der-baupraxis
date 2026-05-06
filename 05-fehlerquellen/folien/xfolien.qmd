@@ -1,0 +1,68 @@
+---
+title: 5. Fehlerquellen bei FE-Rechnungen
+format:
+    revealjs: 
+      toc: false
+---
+
+
+## Bausteine & Fehler in FE-Rechnung
+
+Tafel
+
+
+## {background-image="00-pics/fehlerquellen.svg"}
+
+
+## Verifizierung und Validierung
+
+[]{.down60}
+
+**Verifizierung**
+
+Löst die Software das gestellte Problem richtig?
+
+$\rightarrow$ *Do I solve the equation right?*
+
+[]{.down60}
+
+**Validierung**
+
+Ist die mit dem Computer gelöste Problemstellung passend gewählt?
+
+$\rightarrow$ *Do I solve the right equation?*
+
+
+## Zum Umgang mit Finite-Elemente-Programmen
+
+
+## {.smaller}
+
+![](00-pics/psychologische-aspekte.png)
+
+Aus @werkle_anwendung_1996
+
+
+## {.smaller}
+
+Man findet zu jedem Plot, egal wie falsch die dargestellten Ergebnisse sind, sofort eine Erklärung, warum das genau so aussehen muss.
+
+Gespräch mit Prof. Günther Schmid ca. 2010
+
+
+## Anmerkungen
+
+Das waren die (meiner Meinung nach) wichtigsten Ideen. Genauer nachlesen:
+
+- Plattentheorie: @altenbach_ebene_2023 und @mittelstedt_theory_2023
+
+- Finite Elemente
+
+  - Praktisch orientiert: @werkle_finite_2021 und @fish_2007
+
+  - Mathematisch ausgerichtet: @johnson_numerical_1987 und @braess_finite_2013
+
+
+# Literatur {.smaller}
+
+
