@@ -1,0 +1,78 @@
+---
+title: Aufgabenblatt 2
+subtitle: "Stabilität und geometrisch nichtlineares Tragverhalten"
+format:
+    html: default
+    pdf: default
+---
+
+\newcommand{\SI}[2]{#1\,\text{#2}}
+
+## Beispiel zur Einführung
+
+Für das dargestellte Fachwerk (von-Mises-Fachwerk) aus zwei Stäben soll der nichtlineare Zusammenhang zwischen Verformung und Last ermittelt und mit den Ergebnissen einer linearen FE-Rechnung verglichen werden.
+
+![](00-pics/zweischlag.png)
+
+Aufgaben
+
+a) Berechnen Sie auf dem Papier oder auf dem Computer (Python, Excel) für die vorgegebenen Verschiebungen
+$$
+u_1 = -\SI{2}{cm}, \; u_2 = \SI{2}{cm}, \; u_3 = \SI{5}{cm}, \; u_4 = \SI{8}{cm}, \; u_5 = \SI{10}{cm}, \; u_6 = \SI{12}{cm}
+$$
+die Kraft $F$, so dass sich das System im verformten Zustand im Gleichgewicht befindet. Mögliche Schritte:
+  - Länge $l$ und Winkel $\alpha$ des Stabes im verformten Zustand
+  - Verzerrung $\varepsilon = (l - l_0) / l_0$ mit der Ausgangslänge $l_0$
+  - Normalkraft $N = EA \varepsilon$
+  - Gleichgewicht mit Vertikalkomponente der Normalkraft $N$ (Sinus)
+Tragen Sie die Ergebnisse in einem $u,F$-Koordinatensystem auf. Wie sieht der Verlauf zwischen den berechneten Punkten höchstwahrscheinlich aus? 
+
+*Tipp für Papier:* Denken Sie an mögliche Symmetrien!
+
+*Tipp für Computer:* Dann können Sie auch gleich in Schritten von fünf Millimetern rechnen.
+
+b) Berechnen Sie mit einem FE-Programm (lineare Rechnung) die Verformungen zu den unter a) ermittelten Lasten. Tragen Sie die Ergebnisse in dem Koordinatensystem an. Erstellen Sie dabei einen Screenshot, wenn das Programm Warnmeldungen ausgibt.
+
+a) Bewerten Sie das Ergebnis.
+
+a) Führen Sie mit einem FE-Programm eine nichtlineare Berechnung durch. Ziel dabei ist es, ein Last-Verformungs-Diagramm zu berechnen und dieses mit dem Ergebnis aus a) zu vergleichen. Diesen Aufgabenteil können Sie nur bearbeiten, falls das FE-Programm in der Lage ist, eine nichtlineare Berechnung (Theorie III. Ordnung) durchzuführen.
+
+
+## Verzweigungslasten
+
+1. Berechnen Sie für einen der Eulerfälle die Knicklast für eine Stahlstütze $l = \SI{10}{m}$ mit einem Profil HEA 300 (Knicken um die starke Achse). Vergleichen Sie ihr Ergebnis mit dem theoretischen Wert. Vergleichen Sie die Ergebnisse für die Unterteilung der Stütze in 2, 5 und 10 Abschnitte.
+
+1. Überprüfen Sie die Verzweigungslastfaktoren für den Rahmen auf [Folie 44](http://igc.hs-bochum.de/html/feb-2024/_output/03-stabilitaet/folien/folien.html#/verzweigungslasten-balkentragwerke) mithilfe einer eigenen FE-Rechnung.
+
+
+## Rahmen nach Theorie II. Ordnung
+
+Führen Sie die Berechnung nach Theorie II. Ordnung aus dem [Beispiel der Universität Kassel](00-pics/Beispiel_4_Th._II._Ordnung-web.pdf) mit einem FE-Programm durch.
+
+
+## Unterspannter Träger
+
+Der dargestellte unterspannte Träger soll als räumliches System modelliert und untersucht werden. Zusätzlich zu den dargestellten Auflagern ist davon auszugehen, dass der Obergurt an den beiden Auflagern gegen Verdrehung um die Stabachse gehalten ist (Gabellagerung). Zusätzlich sind die oberen Anschlusspunkte der Spreizen gegen eine Verschiebung aus der Ebene heraus gesichtert (zum Beispiel durch Pfetten). In der Berechnung soll das Eigengewicht berücksichtigt werden.
+
+![](00-pics/unterspannter-traeger.png)
+
+Bearbeiten Sie folgende Punkte:
+
+1. Schätzen Sie grob Normalkraft und Biegemoment im Obergurt ab (ohne Eigengewicht). 
+
+1. Erstellen Sie ein FE-Modell des unterspannten Trägers.
+
+1. Berechnen Sie die Schnittgrößen nach Theorie I. und II. Ordnung.
+
+1. Ermitteln Sie den Verzweigungslastfaktor für das Stabilitätsversagen des Systems.
+
+1. Führen Sie eine Berechnung nach Theorie II. Ordnung durch wobei die Knickfigur als Imperfektionsform angesetzt werden soll. Verwenden Sie dabei ein Stichmaß von $\delta_0 = \SI{3}{cm}$ für die Imperfektionen.
+
+1. Führen Sie für das System aus dem vorherigen Schritt eine nichtlineare Rechnung durch und stellen Sie die Last-Verformungs-Kurve für die Verformung des unteren Knotenpunktes einer Spreize dar (freiwilling, nur falls vom Programm unterstützt).
+
+1. Bewerten Sie die Ergebnisse.
+
+Für alle Berechnungen sollen die Schnittgrößen und die Axialspannung des Obergurts in der Mitte sowie die Verschiebung eines Spreizenfußpunktes bestimmt und tabellarisch zusammengefasst werden. 
+
+Bei Interesse finden Sie in  @loring_baukonstruktion_2024, @kleinschmidt_festschrift_1990 sowie @springer_traglastberechnung_2004 weitere Informationen zum Tragverhalten unterspannter Träger.
+

@@ -1,0 +1,45 @@
++PROG AQUA urs:1
+kopf Material and sections
+norm DIN 18800
+stah 1 art s 235
+prof 1 typ IPE 500 mnr 1
+prof 2 typ IPE 450 mnr 1
+prof 3 typ IPE 160 mnr 1
+ende
+
++PROG SOFIMSHA urs:2
+kopf Struktur
+syst 2d
+knot 1      0    0 fix zp
+knot 2     25    0 fix zp
+knot 3     30    0 fix zp
+knot 101    0   -8
+knot 111   12.5 -8.66
+knot 102   25   -8
+knot 103   30   -7.74
+stab mesh   1 101 qnr 1 teil 15
+stab mesh   2 102 qnr 1 teil 15
+stab mesh   3 103 qnr 3 teil 15
+stab mesh 101 111 qnr 2 teil 20
+stab mesh 111 102 qnr 2 teil 20
+stab mesh 102 103 qnr 3 teil 20 anfa my
+ende
+
++PROG SOFILOAD urs:3
+kopf Belastung
+lf 1 typ NONE
+    stab 46 106 typ pyp 10
+ende
+
+prog ase urs:4
+kopf Berechnung der Schnittgroessen
+syst prob line
+lf 1
+ende
+
++PROG ASE URS:5
+kopf Knicken
+syst plf 1 fakv 0.0
+eige 2 beul lf 101
+ende
+
