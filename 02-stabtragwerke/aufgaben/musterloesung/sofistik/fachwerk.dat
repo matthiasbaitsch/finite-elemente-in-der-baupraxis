@@ -1,0 +1,62 @@
++PROG AQUA urs:1
+kopf Material und Querschnitte
+mat  1 e 11e3
+quer 1 1 A 10000
+ende
+
++PROG SOFIMSHA urs:17.1
+KOPF System
+syst 2d
+
+knot  1   0    0 fix PXPY
+knot  2 2.5    0
+knot  3   5    0
+knot  4 7.5    0
+knot  5  10    0 fix PY
+knot  6   0   -2
+knot  7 2.5 -2.5
+knot  8   5   -3
+knot  9 7.5 -2.5
+knot 10  10   -2
+
+fach  1   1    2
+fach  2   2    3
+fach  3   3    4
+fach  4   4    5
+fach  5   6    7
+fach  6   7    8
+fach  7   8    9
+fach  8   9   10
+fach  9   1    6
+fach 10   2    7
+fach 11   3    8
+fach 12   4    9
+fach 13   5   10
+fach 14   6    2
+fach 15   7    3
+fach 16   3    9
+fach 17   4   10
+ENDE
+
++PROG SOFILOAD urs:17.2
+KOPF Lasten
+lf 1 none
+knot  6 pyy 7.5
+knot  7 pyy  15
+knot  8 pyy  15
+knot  9 pyy  15
+knot 10 pyy 7.5
+ENDE
+
++PROG ASE urs:17.3
+KOPF Verschiebung
+LF ALLE
+ENDE
+
++PROG AQB urs:17.4
+kopf Spannungen
+steu achs -1
+lf 1
+span E
+ende
+

@@ -1,0 +1,42 @@
++prog aqua urs:1
+kopf Material und Querschnitte
+norm DIN 1045-1
+stah 1 s 235
+prof 1 typ ipe 600
+prof 2 typ hea 300
+ende
+
++prog sofimsha urs:2
+kopf System
+let#nt 5
+syst 2d gdiv 1000
+knot 1  0 0
+knot 2  6 0
+knot 3 22 0
+knot 4 27 0
+knot 5  6 5 fix f
+knot 6 27 5 fix pxpy
+grup 1
+stab mesh 1 2 1 teil #nt
+stab mesh 2 3 1 teil #nt
+stab mesh 3 4 1 teil #nt
+grup 2
+stab mesh 5 2 2 teil #nt
+stab mesh 6 4 2 teil #nt
+ende
+
++prog sofiload urs:3
+kopf Lasten
+lf 1 none
+knot 3 pyy 35
+stab grp 1 typ pyy 7.5
+ende
+
++prog ase urs:4
+kopf Berechnung
+lf alle
+ende
+
+
+
+
