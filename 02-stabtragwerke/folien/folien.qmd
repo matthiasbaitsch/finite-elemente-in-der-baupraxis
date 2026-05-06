@@ -17,12 +17,7 @@ format:
 \newcommand{\kkb}[1]{{\color{orange}{#1}}}
 \newcommand{\kkc}[1]{{\color{teal}{#1}}}
 
-$$
-
-
-
 # Was sind Finite Elemente?
-
 
 ## {.smaller}
 
@@ -312,6 +307,7 @@ $\rightarrow$ [Selber ausprobieren!](01-demos/end-forces-app.zip)
 
 ## Elementsteifigkeitsmatrizen {.smaller}
 
+$$
 \mathbf{K}^1 = 
 \mmat{
     \phantom{-}\kka{15} & 0 & \kka{-15} & 0 \\[1ex]
