@@ -26,8 +26,7 @@ jobs:
 
       - name: "Render"
         run: |
-          quarto render */folien/folien.qmd
-          quarto render */aufgaben/aufgaben.qmd
+          make qmd
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

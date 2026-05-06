@@ -26,3 +26,5 @@ be*.zip
 
 04-platten/folien/src/dev.jl
 Manifest.toml
+
+**/*.quarto_ipynb
