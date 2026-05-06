@@ -1,0 +1,21 @@
+---
+title: 4. Finite Elemente für Plattentragwerke
+format:
+    revealjs: default
+engine: julia
+---
+
+{{< include ../../definitionen.qmd >}}
+
+{{< include 01-anfang.qmd >}}
+
+{{< include 02-plattentheorie.qmd >}}
+
+{{< include 03-finite-elemente-1.qmd >}}
+
+{{< include 03-finite-elemente-2.qmd >}}
+
+{{< include 04-weitere-aspekte.qmd >}}
+
+{{< include 05-ende.qmd >}}
+

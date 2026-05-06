@@ -1,0 +1,32 @@
+---
+title: 4. Finite Elemente für Plattentragwerke
+format:
+    revealjs: default
+engine: julia
+---
+
+```{julia}
+#| output: false
+include("src/setup.jl")
+
+# set_theme!(theme_minimal())
+update_theme!(
+    colormap=:redblue,
+    color=3,
+    faceplotzscale=1,
+    faceplotnpoints=15,
+    edgesvisible=true,
+    featureedgelinewidth=2.5
+)
+
+params.E = 34000e6
+params.nu = 0.2
+m, wHat = plate(params, 20)
+post = m.data[:post];
+```
+
+## {.smaller}
+```{julia}
+plotr(m, :mx, "Biegemoment mx", (-17, 17), a3d=true)
+```
+
