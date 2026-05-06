@@ -6,9 +6,13 @@ format:
 
 # Finite Elemente Programme
 
-## SOFiSTiK
+## Frilo RSX
 
-![](00-pics/show.png)
+![](00-pics/rsx_01_eng.png)
+
+## MicroFe (mb AEC Software)
+
+![](00-pics/MicroFe-2019-2.jpg)
 
 ## InfoCAD
 
@@ -22,17 +26,9 @@ format:
 
 ![](00-pics/cable2.jpg)
 
-## MicroFe (mb AEC Software)
+## SOFiSTiK
 
-![](00-pics/MicroFe-2019-2.jpg)
-
-## Sap2000
-
-![](00-pics/SAP2000_Screenshot_1.png)
-
-## ETABS
-
-![](00-pics/Completely Customizable2.png)
+![](00-pics/show.png)
 
 ## Robot (Autodesk)
 
@@ -45,6 +41,14 @@ format:
 ## ATENA
 
 ![](00-pics/911386767735323827c622e211a74b78c8a2cf1de3a0.jpg)
+
+## Sap2000
+
+![](00-pics/SAP2000_Screenshot_1.png)
+
+## ETABS
+
+![](00-pics/Completely Customizable2.png)
 
 ## Ansys
 
@@ -61,6 +65,11 @@ format:
     aspect-ratio="2422x1154" 
 >}}
 
+## Sketchalyze (iPad/iPhone)
+
+![](00-pics/IMG_F9A190AD367F-1.jpeg)
+
+
 ## FEM - Programme heute
 
 - Eingabe schnell & einfach
@@ -69,7 +78,7 @@ format:
 
 - Statiken werden automatisch und abgabefähig erstellt
 
-- Hunderte von Seiten fast ohne Aufwand
+- Hunderte von Seiten Statik fast ohne Aufwand
 
 $\rightarrow$ Verantwortung liegt beim Ersteller, nicht beim Prüfstatiker!
 
@@ -138,11 +147,11 @@ FE-Rechnung unterschätzt Scherkräfte um 47%, Wände zu dünn ausgelegt, Materi
 
 ## Portfolioprüfung
 
-- Bearbeitung von Fallstudien über das Semester (40%)
+- Fallstudien über das Semester (40%)
 
-  - In der Regel über zwei Wochen
+  - Bearbeitung an der Hochschule und zu Hause
 
-  - Zwischentermin für Fragen
+  - Verwendung eines kommerziellen FE-Programms
 
   - Präsentation der Ergebnisse
 
@@ -151,4 +160,16 @@ FE-Rechnung unterschätzt Scherkräfte um 47%, Wände zu dünn ausgelegt, Materi
 - Mündliche Prüfung (20%)
 
 $\rightarrow$ Bearbeitung Fallstudien/Hausarbeit alleine oder zu zweit
+
+## Auswahl FE-Programm
+
+Empfohlene Programme
+
+- RFEM
+
+- SCIA Engineer
+
+- Sofistik
+
+$\rightarrow$ Andere Programme auf eigene Gefahr
 
