@@ -1,0 +1,6 @@
+---
+title: 3. Räumliche Stabtragwerke
+format:
+    revealjs: default
+---
+

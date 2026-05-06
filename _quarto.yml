@@ -1,5 +1,5 @@
 project:
-  output-dir: _output
+  output-dir: __output
 author: ""
 
 lang: de
