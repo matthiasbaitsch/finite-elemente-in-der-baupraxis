@@ -1,4 +1,4 @@
-REMOTE_DIR = /var/www/html/feb-2024
+REMOTE_DIR = /var/www/html/feb-2025
 MATLAB=/Applications/MATLAB_R2024a.app/bin/matlab
 
 all: qmd slides_pdf matlab zipit deploy
@@ -55,7 +55,7 @@ clean:
 	rm -rf *_files
 	rm -rf 0*/*/*_files
 	rm -rf 0*/*/.quarto
-	rm *.aux *.html *.log
+	rm -f *.aux *.html *.log
 	@for ext in ipynb pdf log html aux tex ipynb; do \
 		rm -f 0*/*/*.$$ext; \
 	done
