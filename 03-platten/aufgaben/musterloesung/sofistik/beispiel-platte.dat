@@ -1,0 +1,46 @@
++prog aqua urs:1
+kopf Material
+NORM DIN 1045-1
+BETO 1 C 35
+ENDE
+
++prog sofimshc urs:2
+kopf Platte
+SYST 2dsl GDIV 10000 POSZ
+
+$ Steuerparameter
+STEU MESH 2     $ Viereckselemente
+STEU HMIN 0.5   $ Elementgröße
+
+$ Strukturpunkte
+spt 1  0  0 0 fix pp
+spt 2 10  0 0
+spt 3 10 15 0
+spt 4  0 15 0 fix pp
+
+$ Strukturlinien
+SLN 1 npa 1 2
+SLN 2 npa 2 3 FIX PP
+SLN 3 npa 3 4
+SLN 4 npa 4 1
+
+$ Strukturfläche
+SAR 1 grp 1 T 0.2 MNR 1
+SARB OUT NL 1,2,3,4
+
+ENDE
+
++prog sofiload urs:3
+kopf Lasten
+lf 1 none
+
+quad grp 1 typ PZ 5
+
+ende
+
+
++PROG ASE urs:4
+KOPF Verschiebung
+LF ALLE
+ENDE
+

@@ -1,0 +1,71 @@
++prog aqua urs:1
+kopf Material
+norm DIN 1045-1
+beto 1 C 35
+ende
+
++prog sofimshc urs:2
+kopf Platte
+syst 2dsl gdiv 10000 posz
+
+$ Dimensionen
+sto#b    6                       $ Platte
+sto#h    4
+sto#w  0.3                       $ Stütze
+sto#cw 1e7                       $ Bettung
+
+$ Steuerparameter
+steu mesh 2                      $ Viereckselemente
+steu hmin 0.05                   $ Elementgröße
+
+$ Strukturpunkte
+spt 1            0          0 0  $ Platte
+spt 2           #b          0 0
+spt 3           #b         #h 0
+spt 4            0         #h 0
+spt 11   #b/3-#w/2  #h/2-#w/2 0  $ Stütze 1
+spt 12   #b/3+#w/2  #h/2-#w/2 0
+spt 13   #b/3+#w/2  #h/2+#w/2 0
+spt 14   #b/3-#w/2  #h/2+#w/2 0
+spt 21 2*#b/3-#w/2  #h/2-#w/2 0  $ Stütze 2
+spt 22 2*#b/3+#w/2  #h/2-#w/2 0
+spt 23 2*#b/3+#w/2  #h/2+#w/2 0
+spt 24 2*#b/3-#w/2  #h/2+#w/2 0
+
+$ Strukturlinien
+sln  1  1  2                     $ Platte
+sln  2  2  3
+sln  3  3  4
+sln  4  4  1
+sln 11 11 12                     $ Stütze1
+sln 12 12 13
+sln 13 13 14
+sln 14 14 11
+sln 21 21 22                     $ Stütze 2
+sln 22 22 23
+sln 23 23 24
+sln 24 24 21
+
+$ Strukturflächen
+sar 1 grp 1 t 0.2 mnr 1          $ Platte
+sarb out nl 1,2,3,4
+sarb in nl 11,12,13,14           $ S1
+sarb in nl 21,22,23,24           $ S2
+sar 2 grp 1 t 0.2 mnr 1 cb #cw   $ Stütze 1
+sarb out nl 11,12,13,14
+sar 3 grp 1 t 0.2 mnr 1 cb #cw   $ Stütze 2
+sarb out nl 21,22,23,24
+
+ende
+
++prog sofiload urs:3
+kopf Lasten
+lf 1 none
+quad grp 1 typ PZ 5
+ende
+
++PROG ASE urs:4
+kopf Verschiebung
+lf alle
+ende
+
