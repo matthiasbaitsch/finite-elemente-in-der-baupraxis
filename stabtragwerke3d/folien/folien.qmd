@@ -30,5 +30,46 @@ Dach DG Bank Berlin, Frank O. Gehry/SBP,
 Neue Nationalgalerie Berlin, Ludwig Mies van der Rohe, 1968 
 :::
 
-#
+# Berechnung
+
+## Räumliches Balkenelement {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+![](00-pics/balken3d.jpg)
+:::
+::: {.column width="50%"}
+- Sechs Freiheitsgrade je Knoten
+  - drei Verschiebungen
+  - drei Verdrehungen
+- Sechs Stabendkräfte je Knoten
+  - Normalkraft, Querkräfte
+  - Torsionsmoment, Biegemomente
+- Ausrichtung des Querschnitts?
+  - y-Achse parallel zur globalen xy-Ebene
+  - Einstellung im Programm
+:::
+:::
+
+## Ablauf Berechnung {.smaller}
+
+- Auflagerbedingung für jeden Freiheitsgrad
+  - Insgesamt $2^6 = 64$ verschiedene Möglichkeiten
+- Streckenlasten in Bezug aus lokales oder globales Koordinatensystem
+- Berechnung läuft genauso ab wie in 2D
+  - Elementsteifigkeitsmatrizen zu globaler Matrix
+  - Lasten in globalen Lastvektor
+  - Lineares Gleichungssystem
+
+## Unterschied zu 2D  {.smaller}
+
+- Mehr Rechenaufwand für Computer (kein Problem bis ca. 10000 Knoten)
+- Viel wichtiger
+  - Deutlich mehr Möglichkeiten für Fehler bei Eingabe
+  - Ergebnisse umfangreicher und schwieriger zu interpretieren
+  - Plots schlechter lesbar
+
+$\rightarrow$ Nur wenn wirklich notwendig!
+
+
 
