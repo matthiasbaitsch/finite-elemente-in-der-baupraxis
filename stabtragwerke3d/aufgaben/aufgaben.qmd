@@ -1,5 +1,5 @@
 ---
-title: Aufgabenblatt 3
+title: Aufgabenblatt 2
 subtitle: "Räumliche Stabtragwerke"
 format:
     html: default
