@@ -1,0 +1,11 @@
+/*-- scss:mixins --*/
+
+#title-slide .title:before {
+  content: url("https://www.hochschule-bochum.de/_assets/e1b7833f96a3afb11c987930cb75faa0/Images/hs-bo_logo.svg");
+  scale: 0.4;
+  display: block;
+}
+
+#title-slide .quarto-title-author-name {
+  font-size: 0.8em;
+}

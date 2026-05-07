@@ -32,13 +32,14 @@ Neue Nationalgalerie Berlin, Ludwig Mies van der Rohe, 1968
 
 # Berechnung
 
-## Räumliches Balkenelement {.smaller}
+## Räumliches Balkenelement
 
 ::: {.columns}
-::: {.column width="50%"}
+::: {.column width="47%"}
+[]{.down80}
 ![](00-pics/balken3d.jpg)
 :::
-::: {.column width="50%"}
+::: {.column width="53%"}
 - Sechs Freiheitsgrade je Knoten
   - drei Verschiebungen
   - drei Verdrehungen
@@ -46,7 +47,7 @@ Neue Nationalgalerie Berlin, Ludwig Mies van der Rohe, 1968
   - Normalkraft, Querkräfte
   - Torsionsmoment, Biegemomente
 - Ausrichtung des Querschnitts?
-  - y-Achse parallel zur globalen xy-Ebene
+  - Lokale y-Achse parallel zur xy-Ebene
   - Einstellung im Programm
 :::
 :::
@@ -62,6 +63,19 @@ Neue Nationalgalerie Berlin, Ludwig Mies van der Rohe, 1968
   - Lineares Gleichungssystem
 
 ## Unterschied zu 2D  {.smaller}
+
+::: {.columns}
+::: {.column width="2%"}
+:::
+::: {.column width="45%"}
+![](00-pics/halle.png)
+:::
+::: {.column width="8%"}
+:::
+::: {.column width="45%"}
+![](00-pics/muc-Munich_-_Frei_Otto_Tensed_structures_-_5244.jpg)
+:::
+:::
 
 - Mehr Rechenaufwand für Computer (kein Problem bis ca. 10000 Knoten)
 - Viel wichtiger

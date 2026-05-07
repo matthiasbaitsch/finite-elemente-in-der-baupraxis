@@ -13,7 +13,11 @@ format:
     slide-number: true
     logo: ../../images/BO-Logo_o_Wortmarke.png
     footer: Finite Elemente in der Baupraxis
-    css: ["../../custom.css"]
+    css:
+    - custom.css
+    theme: 
+    - style-slides.scss
+    - style-titlepage.scss
   html:
     title-block-banner: "#888888"
     number-sections: true
