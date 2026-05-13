@@ -6,6 +6,12 @@ format:
 
 # Beispiele
 
+## {background-image="00-pics/csm_HSBO-ErstibegruessungWISE22-LP5691_6bd0debbd2.jpg"}
+
+::: {.bildunterschrift}
+Blue Box der Hochschule Bochum
+:::
+
 ## {background-image="00-pics/isozaki-palafolls.jpg"}
 
 ::: {.bildunterschrift}
