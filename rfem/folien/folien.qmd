@@ -1,0 +1,116 @@
+---
+title: Arbeiten mit RFEM
+engine: none
+format:
+    revealjs: default
+---
+
+# Grundlagen
+
+## 
+
+[]{.down200}
+
+::: {.r-fit-text}
+[Lesen Sie im Handbuch!](https://www.dlubal.com/de/downloads-und-infos/dokumente/online-handbuecher/rfem-6)
+:::
+
+## Arbeitsweise von RFEM 1/2
+
+::: {.columns}
+::: {.column width="40%"}
+![](00-pics/arbeitsweise.png)
+:::
+::: {.column width="60%"}
+![](00-pics/fe-netz.png)
+:::
+:::
+
+- Objekte in RFEM werden in Berechnungsmodell übertragen
+- Netzgenerierung: FE-Knoten und FE-Elemente erzeugen
+
+## Beispiel Stabunterteilung für Ergebnisse 1/3
+
+![](00-pics/unterteilung-1.png)
+
+- Standardeinstellung
+
+## Beispiel Stabunterteilung für Ergebnisse 2/3
+
+![](00-pics/unterteilung-2.png)
+
+- Unterteilung erhöhen (Voreinstellung ist 10)
+
+## Beispiel Stabunterteilung für Ergebnisse 3/3
+
+![](00-pics/unterteilung-3.png)
+
+- Maximum Biegemoment etwas genauer
+
+## Für uns relevante Terminologie
+
+- Basisobjekte: Elementare Struktureigenschaften
+    - Knoten: Punkt mit Eigenschaften
+    - Linie: Verbindet Knoten (Strecke, Polylinie, Bogen, etc.)
+    - Stab: Linie mit Querschnitt und weiteren Eigenschaften
+    - Stabrepräsentanten: Gruppen von Stäben mit identischen Eigenschaften
+- Typen für Knoten/Linien/Stäbe: Eigenschaften
+    - Lagerbedingungen
+- Lasten: Belastung in Lastfällen
+    - Knoten/Linien/Stäbe/Flächen
+
+## Benutzungsoberfläche
+
+![](00-pics/buttons.png)
+
+# Eingabe von Stabtragwerken
+
+## Vorgehensweise
+
+- Einfache Systeme (eben, wenige Stäbe)
+    - Mit der Maus
+- Moderat komplexe Systeme (räumlich, wenige Stäbe)
+    - Mit Knoten, Linien und Stäben
+    - Eingabe im Tabellenbereich oft effizienter
+    - Wichtig ist gute Skizze
+- Komplexe Systeme (räumlich, > 50 Stäbe)
+    - Tabellen in Excel erzeugen
+    - Skripte programmieren (Javascript)
+
+## Knoten
+
+![](00-pics/knoten.png)
+
+- Eingabe in Tabellenbereich mit Tastatur
+- Alternativ: Koordinaten aus Excel-Tabelle kopieren
+
+## Linien
+
+![](00-pics/linien.png)
+
+- Linien verbinden zwei oder mehr Knoten
+- Eingabe mit `n1, n2, n3` (allgemein) bzw. `n1 - n2` (fortlaufend nummeriert)
+
+## Gekrümmte Linien - besser nicht?
+
+![](00-pics/linien-gekrümmt.png)
+
+- Aufpassen mit lokalem Koordinatensystem
+- Nicht für 'Fachwerkstab (nur N)'
+
+## Stäbe
+
+![](00-pics/staebe.png)
+
+- Liniennummer eingeben
+- Querschnitt anpassen
+
+## Auflager
+
+TODO
+
+## Stablasten
+
+TODO
+
+
