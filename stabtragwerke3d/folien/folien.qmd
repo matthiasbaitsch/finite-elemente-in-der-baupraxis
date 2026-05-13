@@ -14,14 +14,20 @@ Sportkomplex Palafolls (Spanien), Arata Isozaki, 1996
 
 ## {background-image="00-pics/tuerme.png"}
 
-::: {.bildunterschrift}
+::: {.bildunterschrift-s}
 Türme von Gustave Eiffel und Vladimir Shukhov
 :::
 
 ## {background-image="00-pics/Bild01_ausschnitt_MAX.jpg"}
 
-::: {.bildunterschrift}
-Dach DG Bank Berlin, Frank O. Gehry/SBP, 
+::: {.bildunterschrift-s}
+Dach DZ Bank Berlin, Frank O. Gehry/Schlaich Bergerman und Partner, 2001
+:::
+
+## {background-image="00-pics/IMG_4838.jpeg"}
+
+::: {.bildunterschrift-b}
+ZOB Esslingen, Werner Sobeck, 2014
 :::
 
 ## {background-image="00-pics/neue_nationalgalerie_neu.jpg"}
@@ -46,13 +52,14 @@ Neue Nationalgalerie Berlin, Ludwig Mies van der Rohe, 1968
 - Sechs Stabendkräfte je Knoten
   - Normalkraft, Querkräfte
   - Torsionsmoment, Biegemomente
+- Schnittgrößen $M_T$, $M_x$, $M_y$, $N$, $V_y$, $V_z$
 - Ausrichtung des Querschnitts?
   - Lokale y-Achse parallel zur xy-Ebene
   - Einstellung im Programm
 :::
 :::
 
-## Ablauf Berechnung {.smaller}
+## Allgemein
 
 - Auflagerbedingung für jeden Freiheitsgrad
   - Insgesamt $2^6 = 64$ verschiedene Möglichkeiten
@@ -60,9 +67,9 @@ Neue Nationalgalerie Berlin, Ludwig Mies van der Rohe, 1968
 - Berechnung läuft genauso ab wie in 2D
   - Elementsteifigkeitsmatrizen zu globaler Matrix
   - Lasten in globalen Lastvektor
-  - Lineares Gleichungssystem
+  - Lineares Gleichungssystem lösen
 
-## Unterschied zu 2D  {.smaller}
+## Unterschied zu 2D
 
 ::: {.columns}
 ::: {.column width="2%"}
@@ -72,7 +79,8 @@ Neue Nationalgalerie Berlin, Ludwig Mies van der Rohe, 1968
 :::
 ::: {.column width="8%"}
 :::
-::: {.column width="45%"}
+::: {.column width="40%"}
+[]{.down50}
 ![](00-pics/muc-Munich_-_Frei_Otto_Tensed_structures_-_5244.jpg)
 :::
 :::
@@ -83,7 +91,7 @@ Neue Nationalgalerie Berlin, Ludwig Mies van der Rohe, 1968
   - Ergebnisse umfangreicher und schwieriger zu interpretieren
   - Plots schlechter lesbar
 
-$\rightarrow$ Nur wenn wirklich notwendig!
+→ Dreidimensional nur, falls wirklich notwendig!
 
 
 

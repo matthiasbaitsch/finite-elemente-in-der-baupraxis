@@ -6,11 +6,26 @@ format:
     pdf: default
 ---
 
-\newcommand{\SI}[2]{#1\,\text{#2}}
-
 ## Beispiel zur Einführung
 
-Für den dargestellten unterspannten Trägerrost sollen die Schnittgrößen berechnet werden. Eigengewicht bleibt dabei unberücksichtigt.
+Für den dargestellten räumlich unterspannten Trägerrost sollen die Schnittgrößen berechnet und dargestellt werden. Eigengewicht ist zu berücksichtigen.
 
 ![](00-pics/traegerrost.jpg)
 
+Schritte:
+
+1. Fertigen Sie eine bemaßte Skizze an, in der Knoten und Linien nummeriert sind. In der Aufgabenstellung sind die Auflager nicht vollständig definiert. Treffen Sie sinnvolle Annahmen und tragen Sie diese in der Skizze ein
+1. Geben Sie Material und Querschnitte ein
+1. Erstellen Sie Knoten, Linien und Stäbe (tabellarische Eingabe)
+1. Definieren Sie die Lagerung
+1. Definieren Sie die Lasten
+1. Führen Sie die Berechnung durch und korrigieren Sie ggf. Eingabefehler
+1. Ermitteln Sie überschlägig das Eigengegewicht der Konstruktion (schräge Stäbe gerade sein lassen) und die Resultierende der Last und kontrollieren Sie damit die Auflagerreaktionen
+1. Plotten Sie die Schnittgrößenverläufe
+
+## Fachwerkstab in RFEM
+
+In RFEM gibt es einen 'Fachwerkstab' und einen 'Fachwerkstab (nur N)'. Aufgaben:
+
+1. Was sagt hierzu die RFEM Dokumentation?
+1. Erklären Sie anhand eines einfachen Berechnungsbeispiels den Unterschied
