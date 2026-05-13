@@ -6,13 +6,8 @@ lang: de
 
 format:
   revealjs: 
-    toc: true
-    toc-depth: 1
-    chalkboard:
-      chalkEffect: 0.0
     slide-number: true
-    logo: ../../images/BO-Logo_o_Wortmarke.png
-    footer: Finite Elemente in der Baupraxis
+    html-math-method: mathml    
     css:
     - custom.css
     theme: 

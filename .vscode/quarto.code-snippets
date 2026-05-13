@@ -1,0 +1,8 @@
+{
+	"Pfeil rechts": {
+		"scope": "quarto,markdown",
+		"prefix": "arr",
+		"body": "→",
+		"description": "Pfeil nach rechts"
+	}
+}

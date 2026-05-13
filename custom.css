@@ -1,9 +1,24 @@
 .bildunterschrift {
     position: fixed;
     top: -30px;
-    left: -100px;
+    left: -130px;
     font-size: 0.45em;
     color: white;
-    text-shadow: 1px 1px 2px black;
+}
+
+.bildunterschrift-s {
+    position: fixed;
+    top: -30px;
+    left: -130px;
+    font-size: 0.45em;
+    color: black;
+}
+
+.bildunterschrift-b {
+    position: fixed;
+    top: -30px;
+    left: -130px;
+    font-size: 0.45em;
+    color: blue;
 }
 
