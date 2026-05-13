@@ -58,7 +58,7 @@ Neue Nationalgalerie Berlin, Ludwig Mies van der Rohe, 1968
 - Sechs Stabendkräfte je Knoten
   - Normalkraft, Querkräfte
   - Torsionsmoment, Biegemomente
-- Schnittgrößen $M_T$, $M_x$, $M_y$, $N$, $V_y$, $V_z$
+- Schnittgrößen $M_T$, $M_y$, $M_z$, $N$, $V_y$, $V_z$
 - Ausrichtung des Querschnitts?
   - Lokale y-Achse parallel zur xy-Ebene
   - Einstellung im Programm
