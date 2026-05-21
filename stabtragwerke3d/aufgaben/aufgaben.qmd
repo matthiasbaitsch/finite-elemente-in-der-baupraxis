@@ -29,3 +29,25 @@ In RFEM gibt es einen 'Fachwerkstab' und einen 'Fachwerkstab (nur N)'. Aufgaben:
 
 1. Was sagt hierzu die RFEM Dokumentation?
 1. Erklären Sie anhand eines einfachen Berechnungsbeispiels den Unterschied
+
+## Mero-Halle im Berliner Spreepark
+
+Das MERO-System (nach dem Erfinder **Me**ngeringhausen und dem **Ro**hrbauweise-Prinzip) ist ein modulares Raumfachwerk aus Stahlrohren und Kugelknoten. Die vorgefertigten Elemente lassen sich zu weit gespannten, leichten Dachkonstruktionen zusammensetzen.
+
+Im Berliner Spreepark, dem ehemaligen DDR-Freizeitpark Kulturpark Plänterwald, befindet sich eine solche MERO-Halle, die insgesamt rund 1800m² überspannt. Für die Veranstaltungsreihe *Blaue Stunde* wurde die Halle saniert und umgebaut.
+
+::: {layout-ncol=2 #fig-spreepark}
+
+![Zustand vor dem Umbau](00-pics/spreepark-2.png)
+
+![Umbauprojekt](00-pics/spreepark-1.png)
+
+[Mero-Halle](https://www.baunetzwissen.de/sonnenschutz/objekte/sonderbauten/hallenumbau-blaue-stunde-im-berliner-spreepark-8554480) im Berliner Spreepark (Quelle: www.baunetzwissen.de)
+:::
+
+Aufgaben:
+
+1. Installieren Sie das Dlubal-Plugin in Excel ([Anleitung](https://www.dlubal.com/de/support-und-schulungen/support/faq/005188))
+1. Geben Sie das System in RFEM ein und berechnen Sie die Schnittgrößen
+
+![](00-pics/mero-dach.jpg)
