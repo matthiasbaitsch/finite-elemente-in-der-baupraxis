@@ -75,7 +75,7 @@ format:
     - Wichtig ist gute Skizze
 - Komplexe Systeme (räumlich, > 50 Stäbe)
     - Tabellen in Excel erzeugen
-    - Skripte programmieren (Javascript)
+    - Programmieren (Python, Javascript)
 
 ## Knoten
 
@@ -121,7 +121,51 @@ format:
 
 # Systeme mit Excel eingeben
 
-## Installation
+## Installation und Konfiguration
+
+![](00-pics/excel/aktivieren.png)
 
 - Anleitung [hier](https://www.dlubal.com/de/support-und-schulungen/support/faq/005188)
+- Optionen → Programmoptionen... → Webservice | SOAP (veraltet) 
 
+## Ausgangspunkt: Modell mit Querschnitten
+
+![](00-pics/excel/modell-mit-querschnitten.png)
+
+1. Material und Querschnitte definieren
+1. Funktioniert gut in RFEM
+
+## Grundgerüst in Excel laden
+
+![](00-pics/excel/grundgeruest-laden.png)
+
+1. Dlubal-Reiter auswählen → Refresh → Modell auswählen
+1. Import → Benötigte Elemente auswählen
+
+## Knoten eingeben
+
+![](00-pics/excel/knoten.png)
+
+1. Knoten mit Nummer und Koordinaten eingeben
+1. Export klicken und in RFEM kontrollieren (in kleinen Schritten arbeiten)
+
+## Linien eingeben
+
+![](00-pics/excel/linien.png)
+
+1. Linien mit Nummer und Knotennummern eingeben
+1. Schreibweise 1-5 funktioniert leider nicht
+
+## Stäbe eingeben
+
+![](00-pics/excel/staebe.png)
+
+1. Stäbe mit Nummer, Liniennummer und Querschnittsnummer eingeben
+1. Bei Bedarf Drehwinkel im Bogenmaß (`=PI()/2` in Excel)
+
+## Lager eingeben
+
+![](00-pics/excel/lager.png)
+
+1. Eingabe von Federsteifigkeiten
+1. Infinity steht für Festlager, sonst leer lassen

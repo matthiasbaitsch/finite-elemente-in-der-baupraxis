@@ -30,6 +30,14 @@ In RFEM gibt es einen 'Fachwerkstab' und einen 'Fachwerkstab (nur N)'. Aufgaben:
 1. Was sagt hierzu die RFEM Dokumentation?
 1. Erklären Sie anhand eines einfachen Berechnungsbeispiels den Unterschied
 
+## Eingabe mit Excel
+
+Geben Sie den räumlich unterspannten Trägerrost aus dem ersten Aufgabenteil mithilfe von Excel ein
+
+1. Laden Sie das [Grundgrüst](daten/trägerrost-excel.rf6) herunter
+1. Gehen Sie die Schritte in den Folien zu RFEM durch
+1. Vergessen Sie nicht, die Excel-Datei zu sichern
+
 ## Mero-Halle im Berliner Spreepark
 
 Das MERO-System (nach dem Erfinder **Me**ngeringhausen und dem **Ro**hrbauweise-Prinzip) ist ein modulares Raumfachwerk aus Stahlrohren und Kugelknoten. Die vorgefertigten Elemente lassen sich zu weit gespannten, leichten Dachkonstruktionen zusammensetzen.
