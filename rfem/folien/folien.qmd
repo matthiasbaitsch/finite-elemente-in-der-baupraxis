@@ -91,13 +91,6 @@ format:
 - Linien verbinden zwei oder mehr Knoten
 - Eingabe mit `n1, n2, n3` (allgemein) bzw. `n1 - n2` (fortlaufend nummeriert)
 
-## Gekrümmte Linien - besser nicht?
-
-![](00-pics/linien-gekrümmt.png)
-
-- Aufpassen mit lokalem Koordinatensystem
-- Nicht für 'Fachwerkstab (nur N)'
-
 ## Stäbe
 
 ![](00-pics/staebe.png)
@@ -105,12 +98,30 @@ format:
 - Liniennummer eingeben
 - Querschnitt anpassen
 
+## Stäbe auf gekrümmten Linien
+
+![](00-pics/linien-gekrümmt.png)
+
+- Gegebenenfalls Stabachse um 90° drehen
+- Nicht für 'Fachwerkstab (nur N)'
+
 ## Auflager
 
-TODO
+![](00-pics/auflager.png)
+
+- Typen für Knoten auswählen
+- Gegebenenfalls Federsteifigkeiten definieren
 
 ## Stablasten
 
-TODO
+![](00-pics/stablasten.png)
 
+- Lasten und Lastfall auswählen
+- Einstellungen ggf. mit Dialog
+
+# Systeme mit Excel eingeben
+
+## Installation
+
+- Anleitung [hier](https://www.dlubal.com/de/support-und-schulungen/support/faq/005188)
 
