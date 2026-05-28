@@ -59,3 +59,34 @@ Aufgaben:
 1. Geben Sie das System in RFEM ein und berechnen Sie die Schnittgrößen
 
 ![](00-pics/mero-dach.jpg)
+
+## Tiergarten-Brücke in Dessau
+
+In Dessau verbindet die Tiergarten-Brücke die Stadtmitte mit einem Naherholungsgebiet. Das Bauwerk, eine Zusammenarbeit des Tragwerksplaners Stefan Polónyi und der Architekten kister scheithauer gross, ist charakterisiert durch einen bogenförmigen Steg, der von einem schräggestellten Bogen gehalten wird. In dieser Aufgabe soll untersucht werden, wie eine solche Konstruktion funktioniert und welche wesentlichen Aspekte bei der Auslegung zu beachten sind.
+
+::: {.columns}
+::: {.column width=65%}
+![](00-pics/stab202070704-fig-0800-m.jpg)
+:::
+::: {.column width=2%}
+:::
+::: {.column width=32%}
+![](00-pics/Tiergartenbruecke_Dessau2.jpg)
+:::
+:::
+
+Die Skizze unten zeigt die Abmessungen eines vergleichbaren Tragsystems. 
+
+![](00-pics/tiergartenbruecke.svg){width=70%}
+
+Gehen Sie bei der Berechnung in den angegebenen Schritten vor:
+
+1. Bogen: Erstellen Sie den Bogen mithilfe einer gekrümmten Linie. Wie sind die Schnittgrößen und Spannung unter Eigengewicht alleine? 
+
+1. Steg und Hänger: Geben Sie den Steg und die Hänger ein. Dabei sollen die Hänger zunächst direkt an der Schwerlinie des Stegprofils angeschlossen werden.
+
+1. Ausmitte: Koppeln Sie die Hänger mit der angegebenen Ausmitte an den Steg. Wie ändern sich die Schnittgrößen?
+
+1. Variieren Sie die Ausmitte $a$ des Bogens mit dem Ziel, die auftretenden Biegemomente zu minimieren.
+
+Sichern Sie das Modell zu jedem Schritt in einer eigenen Datei.
