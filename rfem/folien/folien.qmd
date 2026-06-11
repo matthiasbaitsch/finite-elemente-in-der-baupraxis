@@ -163,9 +163,11 @@ format:
 1. Stäbe mit Nummer, Liniennummer und Querschnittsnummer eingeben
 1. Bei Bedarf Drehwinkel im Bogenmaß (`=PI()/2` in Excel)
 
-## Lager eingeben
+# Systeme mit gekrümmten Linien
 
-![](00-pics/excel/lager.png)
+## Kreisbogen definieren
 
-1. Eingabe von Federsteifigkeiten
-1. Infinity steht für Festlager, sonst leer lassen
+![](00-pics/eingabe-bogen.png)
+
+1. Eingabe mit der Maus benötigt dritten Knoten, der nicht an den Bogen gekoppelt wird. Unpraktisch!
+1. Besser: In Tabelle mit Knotennummer eingeben, Linientyp Bogen und dann Koordinaten P3 von Hand eintragen

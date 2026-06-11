@@ -283,12 +283,12 @@
             <g transform="matrix(1,0,0,1,-110,123.337763)">
                 <g transform="matrix(50,0,0,50,2168.263483,1193.777868)">
                 </g>
-                <text x="1879.225px" y="1193.778px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:50px;">ROR 900x30</text>
+                <text x="1879.225px" y="1193.778px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:50px;">ROR 914x30</text>
             </g>
             <g transform="matrix(1,0,0,1,-110,225.73541)">
-                <g transform="matrix(50,0,0,50,2020.94903,1193.777868)">
+                <g transform="matrix(50,0,0,50,1984.840632,1193.777868)">
                 </g>
-                <text x="1879.225px" y="1193.778px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:50px;">RD 60</text>
+                <text x="1879.225px" y="1193.778px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:50px;">R 60</text>
             </g>
             <g transform="matrix(1,0,0,1,499.689678,-54.821869)">
                 <circle cx="1188" cy="1358" r="22" style="fill:white;stroke:black;stroke-width:6.25px;"/>
