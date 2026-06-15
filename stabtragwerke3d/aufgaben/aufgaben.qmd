@@ -90,3 +90,12 @@ Gehen Sie bei der Berechnung in den angegebenen Schritten vor:
 1. Variieren Sie die Ausmitte $a$ des Bogens mit dem Ziel, die auftretenden Biegemomente zu minimieren.
 
 Sichern Sie das Modell zu jedem Schritt in einer eigenen Datei.
+
+Tipp: Die Paramter der Knoten auf dem Bogen lassen sich mit einem [kleinen Julia-Programm](musterloesung/tiergartenbruecke/parameter/parameters.jl) bestimmen. Hier die Werte:
+
+```
+25.71%, 31.36%, 36.42%, 41.12%, 45.61%, 50.0%, 54.39%, 58.88%, 63.58%, 68.64%, 74.29%
+```
+
+
+
