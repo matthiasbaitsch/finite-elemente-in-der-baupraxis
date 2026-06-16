@@ -38,8 +38,17 @@ end
 # Actual calculation
 # -------------------------------------------------------------------------------------------------
 
+println("Bogen")
 curve = arc_through_points([108.5, -50, 0], [98, 0, 30], [108.5, 50, 0])
+for alpha = -16:3.2:16
+    plane = plane_from_angle(alpha)
+    equation = t -> plane(curve(t))
+    parameter = find_zero(equation, 0.5)
+    print(round(100 * parameter, digits=2), "%, ")
+end
 
+println("\n\nSteg")
+curve = arc_through_points([98, -50, 0], [110, 0, 0], [98, 50, 0])
 for alpha = -16:3.2:16
     plane = plane_from_angle(alpha)
     equation = t -> plane(curve(t))
