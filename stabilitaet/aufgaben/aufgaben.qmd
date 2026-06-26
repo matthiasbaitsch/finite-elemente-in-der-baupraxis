@@ -1,5 +1,5 @@
 ---
-title: Aufgabenblatt 2
+title: Aufgabenblatt 3
 subtitle: "Stabilität und geometrisch nichtlineares Tragverhalten"
 format:
     html: default
