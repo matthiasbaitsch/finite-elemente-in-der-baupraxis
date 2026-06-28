@@ -15,12 +15,19 @@ Für den dargestellten räumlich unterspannten Trägerrost sollen die Schnittgr�
 Schritte:
 
 1. Fertigen Sie eine bemaßte Skizze an, in der Knoten und Linien nummeriert sind. In der Aufgabenstellung sind die Auflager nicht vollständig definiert. Treffen Sie sinnvolle Annahmen und tragen Sie diese in der Skizze ein
+
 1. Geben Sie Material und Querschnitte ein
+
 1. Erstellen Sie Knoten, Linien und Stäbe (tabellarische Eingabe)
+
 1. Definieren Sie die Lagerung
+
 1. Definieren Sie die Lasten
+
 1. Führen Sie die Berechnung durch und korrigieren Sie ggf. Eingabefehler
+
 1. Ermitteln Sie überschlägig das Eigengegewicht der Konstruktion (schräge Stäbe gerade sein lassen) und die Resultierende der Last und kontrollieren Sie damit die Auflagerreaktionen
+
 1. Plotten Sie die Schnittgrößenverläufe
 
 ## Fachwerkstab in RFEM
@@ -28,6 +35,7 @@ Schritte:
 In RFEM gibt es einen 'Fachwerkstab' und einen 'Fachwerkstab (nur N)'. Aufgaben:
 
 1. Was sagt hierzu die RFEM Dokumentation?
+
 1. Erklären Sie anhand eines einfachen Berechnungsbeispiels den Unterschied
 
 ## Eingabe mit Excel
@@ -35,7 +43,9 @@ In RFEM gibt es einen 'Fachwerkstab' und einen 'Fachwerkstab (nur N)'. Aufgaben:
 Geben Sie den räumlich unterspannten Trägerrost aus dem ersten Aufgabenteil mithilfe von Excel ein
 
 1. Laden Sie das [Grundgrüst](daten/trägerrost-excel.rf6) herunter
+
 1. Gehen Sie die Schritte in den Folien zu RFEM durch
+
 1. Vergessen Sie nicht, die Excel-Datei zu sichern
 
 ## Mero-Halle im Berliner Spreepark
@@ -56,6 +66,7 @@ Im Berliner Spreepark, dem ehemaligen DDR-Freizeitpark Kulturpark Plänterwald, 
 Aufgaben:
 
 1. Installieren Sie das Dlubal-Plugin in Excel ([Anleitung](https://www.dlubal.com/de/support-und-schulungen/support/faq/005188))
+
 1. Geben Sie das System in RFEM ein und berechnen Sie die Schnittgrößen
 
 ![](00-pics/mero-dach.jpg)

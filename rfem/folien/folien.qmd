@@ -15,6 +15,14 @@ format:
 [Lesen Sie im Handbuch!](https://www.dlubal.com/de/downloads-und-infos/dokumente/online-handbuecher/rfem-6)
 :::
 
+## Speichern von Versionen
+
+![](00-pics/speichern-als-version.png)
+
+- Datei → Speichern als Version
+- Datei → Basisangaben..., darin Reiter Historie
+- Klick auf Ordnersymbol öffnet Bearbeitungsstand als eigenes Projekt
+
 ## Arbeitsweise von RFEM 1/2
 
 ::: {.columns}
@@ -171,3 +179,19 @@ format:
 
 1. Eingabe mit der Maus benötigt dritten Knoten, der nicht an den Bogen gekoppelt wird. Unpraktisch!
 1. Besser: In Tabelle mit Knotennummer eingeben, Linientyp Bogen und dann Koordinaten P3 von Hand eintragen
+
+# Nichtlineare Analyse
+
+## Analyseoptionen
+
+![](00-pics/nichtlinear-analyseoptionen.png)
+
+1. Anzahl Laststufen für Last-Verformungsdiagramm
+
+## Last-Verschiebungsdiagramm plotten
+
+![](00-pics/nichtlinear-diagramm.png)
+
+1. Maximale Verformung und Lastfaktor auwählen (häufig die beste Option)
+1. Reiter Tabelle für Zahlenwerte
+1. [Dokumentation zum Thema](https://www.dlubal.com/de/downloads-und-infos/dokumente/online-handbuecher/rfem-6/003793){target="_blank"}
